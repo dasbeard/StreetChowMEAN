@@ -1,0 +1,12 @@
+*{
+  background-color: silver;
+}
+
+label{
+  display: block;
+  margin-bottom: 15px;
+}
+
+input{
+  display: inline-block;
+}
