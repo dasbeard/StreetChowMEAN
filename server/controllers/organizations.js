@@ -13,6 +13,10 @@ module.exports = (function(){
       console.log('In the Reg method  ----> users controler'. cyan);
       console.log(req.body);
 
+
+    // ===== Validations Needed Here =====
+
+
       Organization.findOne({email: req.body.email}, function(err, oneUser){
         if (err){
           console.log('==== Error ===='.red);
@@ -78,3 +82,67 @@ module.exports = (function(){
 
   } // End Return
 })();
+
+
+
+
+// ============================== Helper Functions ==============================
+
+function validateEmail(email){
+  var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if(!emailRegex.test(email)){
+    return true;
+  } else {
+    return false;
+  }
+} // End Validate Email Function
+
+
+function validateLocation(orgObj){
+var error = '';
+var streetFlag = false;
+
+  if(!orgObj.organization){
+    error = 'Organization name is required';
+    return error;
+  }
+  else if (orgObj.organization.length < 3){
+    error = 'Organization name must be at least 3 characters long';
+    return error;
+  }
+  else if (!orgObj.street1){
+    error = 'Street address is required';
+    return error;
+  }
+  else if (orgObj.street1.length < 3){
+    error = 'Street address must be at least 3 characters long';
+    return error;
+  }
+  else if (orgObj.street2){
+    streetFlag = true;
+    if (orgObj.street2.length < 2){
+      error = 'Street address 2 must be at least 2 characters long';
+      return error;
+    }
+  }
+  else if (!orgObj.city){
+    error = 'City name is required';
+    return error;
+  }
+  else if (orgObj.city.length < 2){
+    error = 'City name must be at least 2 characters long';
+    return error;
+  }
+  else if (!orgObj.zip){
+    error = 'ZIP code is required';
+    return error;
+  }
+  else if (orgObj.zip.length < 5){
+    error = 'ZIP code must be at least 5 digits long';
+    return error;
+  }
+
+
+
+}

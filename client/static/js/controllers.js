@@ -166,7 +166,7 @@ function regValidation(reg){
       flag = false;
     }
     else if (reg.zip.length < 5){
-      error = 'Zip Code must be at least 5 characters long';
+      error = 'Zip Code must be at least 5 digits long';
       flag = false;
     }
     else if (!reg.description){
