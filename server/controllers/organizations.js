@@ -35,11 +35,14 @@ module.exports = (function(){
             // Create User object
               // WITHOUT LAT AND LONG!! -- 3/12/17
             var newOrganization = new Organization({
-              organization: req.body.organization, street1: req.body.street1, street2: req.body.street2, city: req.body.city, state: req.body.state, zip: req.body.zip, phone: req.body.phone, website: req.body.website, description: req.body.description, services: req.body.services, email: req.body.email, password: pw
+              organization: req.body.organization, street1: req.body.street1, city: req.body.city, state: req.body.state, zip: req.body.zip, description: req.body.description, email: req.body.email, password: pw
             })
+            //  phone: req.body.phone, website: req.body.website, street2: req.body.street2
+
             newOrganization.save(function(err){
               if (err){
                 console.log('==== Error When saving new organization ===='.red);
+                console.log(err);
               } else {
                 console.log('==== Successfuly Registed ===='.yellow);
                 res.json(newOrganization)
@@ -99,6 +102,9 @@ function validateEmail(email){
 } // End Validate Email Function
 
 
+
+
+
 function validateLocation(orgObj){
 var error = '';
 var streetFlag = false;
@@ -143,6 +149,10 @@ var streetFlag = false;
     return error;
   }
 
+  if (streetFlag == true){
+    return 2;
+  } else {
+    return 1;
+  }
 
-
-}
+}; // End Validate Location

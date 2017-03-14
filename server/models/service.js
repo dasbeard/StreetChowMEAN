@@ -7,14 +7,12 @@ const mongoose = require('mongoose');
 // =========================================================================
 // ============================== Schemas ==================================
 // =========================================================================
-var MessageSchema = new mongoose.Schema({
-  content: {type: String, required: true, minlength: 2, trim: true},
-  // _user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  // _comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
+var ServiceSchema = new mongoose.Schema({
+  content: [{type: String, minlength: 2, trim: true}]
 }, {timestamps: true});
 
 // =========================================================================
 // ========================== Set Schema Name===============================
 // =========================================================================
 
-mongoose.model('Message', MessageSchema);
+mongoose.model('Service', ServiceSchema);

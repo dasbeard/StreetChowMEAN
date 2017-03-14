@@ -11,13 +11,13 @@
 
 <div class="register">
   <h3>Register</h3>
-  <label>Organization: <input type="text" ng-model=reg.organization></label>
-  <label>Email: <input type="email" ng-model=reg.email></label>
-  <label>Street: <input type="text" ng-model=reg.street1></label>
-  <label>Street 2 (opt): <input type="text" ng-model=reg.street2></label>
-  <label>City: <input type="text" ng-model=reg.city></label>
+  <label>Organization: <input type="text" ng-model='reg.organization'></label>
+  <label>Email: <input type="email" ng-model='reg.email'></label>
+  <label>Street: <input type="text" ng-model='reg.street1'></label>
+  <label>Street 2 (opt): <input type="text" ng-model='reg.street2'></label>
+  <label>City: <input type="text" ng-model='reg.city'></label>
   <label>State:
-    <select>
+    <select ng-model='reg.state'>
     	<option value="AL">Alabama</option>
     	<option value="AK">Alaska</option>
     	<option value="AZ">Arizona</option>
@@ -72,18 +72,18 @@
     </select>
   </label>
 
-  <label>ZIP code: <input type="number" ng-model=reg.zip></label>
+  <label>ZIP code: <input type="number" ng-model='reg.zip'></label>
 
   <!-- Auto populate paraens and dashes -->
-  <label>Phone Number: <input type="number" ng-model=reg.phone></label>
-  <label>Website: <input type="text" ng-model=reg.website></label>
+  <label>Phone Number: <input type="number" ng-model='reg.phone'></label>
+  <label>Website: <input type="text" ng-model='reg.website'></label>
 
 <!-- Change to a text area and add a character counter counting down from 150 -->
-  <label>Description (max 150 characters): <input type="text" ng-model=reg.description></label>
+  <label>Description (max 150 characters): <input type="text" ng-model='reg.description'></label>
 <!-- Make a checkbox section with a add new input field -->
-  <label>Services: <input type="text" ng-model=reg.services></label>
+  <label>Services: <input type="text" ng-model='reg.services'></label>
 
-  <label>Password: <input type="password" ng-model=reg.password></label>
-  <label>Confirm Password: <input type="password" ng-model=reg.password_conf></label>
+  <label>Password: <input type="password" ng-model='reg.password'></label>
+  <label>Confirm Password: <input type="password" ng-model='reg.password_conf'></label>
   <button type="button" name="button" ng-click="regOrganization()">Register</button>
 </div>

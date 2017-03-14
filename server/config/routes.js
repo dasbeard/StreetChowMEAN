@@ -2,7 +2,7 @@
 // ========================= Required Models ===============================
 // =========================================================================
 var organizations = require('./../controllers/organizations.js');
-// var messages = require('./../controllers/messages.js');
+var services = require('./../controllers/services.js');
 
 module.exports = function(app){
 // =========================================================================

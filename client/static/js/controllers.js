@@ -153,14 +153,6 @@ function regValidation(reg){
       error = 'Street Address must be at least 3 characters long';
       flag = false;
     }
-    else if (!reg.city){
-      error = 'Please enter a City Name to continue';
-      flag = false;
-    }
-    else if (reg.city.length < 2){
-      error = 'City Name must be at least 2 characters long';
-      flag = false;
-    }
     else if (!reg.zip){
       error = 'Please enter a Zip Code to continue';
       flag = false;
