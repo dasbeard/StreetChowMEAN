@@ -12,7 +12,7 @@ var OrganizationSchema = new mongoose.Schema({
   street1: {type: String, required: true, minlength: 3, trim: true},
   street2: {type: String, required: false, minlength: 2, trim: true},
   city: {type: String, required: true, minlength: 2, trim: true},
-  state: {type: String, required: true, minlength: 2, trim: true},
+  state: {type: String, required: true, minlength: 1, trim: true},
   zip: {type: Number, required: true, minlength: 5, trim: true},
   phone: {type: String, required: false, minlength: 10, trim: true},
   website: {type: String, required: false, minlength: 3, trim: true},
