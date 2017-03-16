@@ -10,7 +10,7 @@ app.factory('logRegFactory', function ($http){
   //Register method
   factory.register = function(input, callback){
     $http.post('/reg', input).then(function(output){
-      console.log('Made it back to factory');
+      // console.log('Made it back to factory');
       callback(output);
     });
   }
@@ -18,7 +18,7 @@ app.factory('logRegFactory', function ($http){
   //Login method
   factory.login = function(input, callback){
     $http.post('/login', input).then(function(output){
-      console.log('Made it back to factory');
+      // console.log('Made it back to factory');
       callback(output);
     });
   }

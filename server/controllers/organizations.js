@@ -10,9 +10,8 @@ module.exports = (function(){
   return {
 
     reg: function(req,res){
-      console.log('In the Reg method  ----> users controler'. cyan);
-      console.log(req.body);
-
+      // console.log('In the Reg method  ----> users controler'. cyan);
+      // console.log(req.body);
 
     // ===== Validations =====
         if (validateLocation(req.body)){
@@ -43,7 +42,7 @@ module.exports = (function(){
 // ============= WITHOUT LAT AND LONG!! -- 3/12/17 =============
 
             var newOrganization = new Organization({
-              organization: req.body.organization, street1: req.body.street1, street2: req.body.street2, city: req.body.city, state: req.body.state, zip: req.body.zip, description: req.body.description, website: req.body.website, email: req.body.email, password: pw
+              organization: req.body.organization, street1: req.body.street1, street2: req.body.street2, city: req.body.city, state: req.body.state, zip: myZip, description: req.body.description, website: req.body.website, phone: myPhone, email: req.body.email, password: pw
             })
             newOrganization.save(function(err){
               if (err){
