@@ -1,24 +1,4 @@
 // =========================================================================
-// =========================== Controller 1 ================================
-// =========================================================================
-app.controller('controller1', function($scope, $location, $cookies){
-  $scope.test = 'Hello';
-
-  if($cookies.getObject('loggedUser')){
-    $scope.organization = $cookies.getObject('loggedUser')
-  }
-
-  $scope.logout = function(){
-    $cookies.remove('loggedUser');
-    $location.url('/logout');
-  } // End Logout
-
-
-
-});
-
-
-// =========================================================================
 // ==================== Login / Register Controller ========================
 // =========================================================================
 app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
@@ -27,16 +7,12 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
 
 // Register New Organization Method
   $scope.regOrganization = function (){
-    console.log('Register Button Clicked');
-    console.log($scope.reg);
-
     $scope.error = "";
     $scope.user = {};
     if($scope.reg){
       var reg = $scope.reg;
-      var test = regValidation(reg)
-      if (test != true){
-        $scope.error = test;
+      if (regValidation(reg) != true){
+        $scope.error = regValidation(reg);
       } else {
 
         // ==================================
@@ -66,18 +42,6 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
     } else {
       $scope.error = 'Please enter in the required information to continue';
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
   } // End regOrganization Method
 
@@ -125,6 +89,10 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
 function regValidation(reg){
   var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+  var zipRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
+  var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
   var websiteRegex = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   var error = '';
   var flag = true;
@@ -138,7 +106,7 @@ function regValidation(reg){
       flag = false;
     }
     else if (!reg.email){
-      error = 'Please enter a Email to continue';
+      error = 'Please enter an Email to continue';
       flag = false;
     }
     else if (!emailRegex.test(reg.email)){
@@ -153,12 +121,20 @@ function regValidation(reg){
       error = 'Street Address must be at least 3 characters long';
       flag = false;
     }
+    else if (!reg.city){
+      error = 'Please enter a City to continue';
+      flag = false;
+    }
+    else if (!reg.state){
+      error = 'Please select a State to continue';
+      flag = false;
+    }
     else if (!reg.zip){
       error = 'Please enter a Zip Code to continue';
       flag = false;
     }
-    else if (reg.zip.length < 5){
-      error = 'Zip Code must be at least 5 digits long';
+    else if (!zipRegex.test(reg.zip)){
+      error = 'Please enter a valid Zip Code';
       flag = false;
     }
     else if (!reg.description){
@@ -171,6 +147,10 @@ function regValidation(reg){
     }
     else if (reg.description.length > 150){
       error = 'Description is too long. 150 Characters max';
+      flag = false;
+    }
+    else if (reg.password == "") {
+      error = 'Please enter a password to continue1';
       flag = false;
     }
     else if (!reg.password){
@@ -187,18 +167,20 @@ function regValidation(reg){
       reg.password = '';
       flag = false;
     }
-    if (reg.phone){
-      if (reg.phone.length < 10){
-      error = 'Phone Number must be 10 digits long';
-      flag = false;
-      }
-    }
     if (reg.website){
       if (!websiteRegex.test(reg.website)){
         error = 'Please enter a valid Website';
         flag = false;
       }
     }
+    if (reg.phone){
+      var phone = Number(reg.phone);
+      if (!phoneRegex.test(phone)){
+        error = 'Please enter a valid Phone Number';
+        flag = false;
+      }
+    }
+
     if (flag == true){
       return true;
     } else if (flag == false){
@@ -207,12 +189,3 @@ function regValidation(reg){
 
 
 } // End if Scope.Reg
-
-
-
-
-//  =========== Check if user is logged in ==========
-// $scope.user = $cookies.get('loggedUser');
-// if(!$scope.user){
-//   $location.url('/');
-// }
