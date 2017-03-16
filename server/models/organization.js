@@ -21,8 +21,8 @@ var OrganizationSchema = new mongoose.Schema({
   days:[{type: String, minlength: 2, trim: true}],
   startTime:[{type: String, trim: true}],
   endTime:[{type: String, trim: true}],
-  latitude:{type: Number},
-  longitude:{type: Number},
+  latitude:{type: Number, trim: true},
+  longitude:{type: Number, trim: true},
   email:{
         type: String,
         required: true,

@@ -91,9 +91,12 @@ function regValidation(reg){
 
   var zipRegex = /^\d{5}(?:[-\s]\d{4})?$/;
 
-  var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  // var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  var phoneRegex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+
 
   var websiteRegex = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+
   var error = '';
   var flag = true;
 
@@ -149,8 +152,8 @@ function regValidation(reg){
       error = 'Description is too long. 150 Characters max';
       flag = false;
     }
-    else if (reg.password == "") {
-      error = 'Please enter a password to continue1';
+    else if (reg.password == "     ") {
+      error = 'Please enter a password to continue';
       flag = false;
     }
     else if (!reg.password){
@@ -174,8 +177,7 @@ function regValidation(reg){
       }
     }
     if (reg.phone){
-      var phone = Number(reg.phone);
-      if (!phoneRegex.test(phone)){
+      if (!phoneRegex.test(reg.phone)){
         error = 'Please enter a valid Phone Number';
         flag = false;
       }
