@@ -16,6 +16,10 @@ app.config(function($routeProvider){
       templateUrl: 'static/partials/locationDetails.html',
       controller: 'locationController'
     })
+    .when('/food', {
+      templateUrl: 'static/partials/foodschedule.html',
+      controller: 'foodController'
+    })
     .otherwise({
       redirectTo: '/'
     })

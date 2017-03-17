@@ -1,4 +1,4 @@
-app.factory('daysFactory', function(http){
+app.factory('foodFactory', function ($http){
   var factory = {};
 
 factory.getdays = function(input, callback){
