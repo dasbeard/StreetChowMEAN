@@ -3,15 +3,71 @@
 
 <h3>Serving food on:</h3>
 
-Day <input type="text" name="" value="">
-start time <input type="text" name="" value="">
-end time <input type="text" name="" value="">
+<label><select ng-model = 'days.days'>
+  <option value="Mon">Monday</option>
+  <option value="Tues">Tuesday</option>
+  <option value="Wed">Wednesday</option>
+  <option value="Thur">Thursday</option>
+  <option value="Fri">Friday</option>
+  <option value="Sat">Saturday</option>
+  <option value="Sun">Sunday</option></select></label>
 
+<label>start time <select ng-model='days.start'>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+</select></label>
+
+<label>am/pm <select ng-model='days.start2'>
+  <option value="am">am</option>
+  <option value="pm">pm</option>
+</select>
+</label>
+<label>end time <select ng-model='days.end'>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+</select></label>
+
+<label>am/pm <select ng-model='days.end2'>
+  <option value="am">am</option>
+  <option value="pm">pm</option>
+</select>
+</label>
+<button type="button" name="button" ng-click = 'addDay()'></button>
+
+
+<div class="services">
 
 
 <h1>services</h1>
-form action="/action_page.php" method="get">
-  <input type="checkbox" name="" value="beds"> beds <br>
-  <input type="checkbox" name="" value="jobs" checked="checked"> jobs<br>
-  <input type="submit" value="Submit">
-</form>
+<label>Jobs: <input type="checkbox" ng-model='services.jobs'></label>
+<label>Beds: <input type="checkbox" ng-model='services.beds'></label>
+<label>Clothes: <input type="checkbox" ng-model='services.clothes'></label>
+<label>Interview Help: <input type="checkbox" ng-model='services.interview'></label>
+<button type="button" name="button" ng-click = 'addServices()'></button>
+<div class="other">
+
+
+<label>Other: <input type="text" name="" value="" ng-model='newservice'></label>
+<button type="button" name="button" ng-click = 'newService()'></button>
+</div>
+</div>
