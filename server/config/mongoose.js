@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const fs = require('fs');
-const database_name = 'ChowTemp' // Replace with new Database name
+const database_name = 'ChowTemp'; // Replace with new Database name
 
 // =========================================================================
 // ============================ Connection =================================

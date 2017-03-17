@@ -12,6 +12,10 @@ app.config(function($routeProvider){
       templateUrl: 'static/partials/logReg.html',
       controller: 'logReg'
     })
+    .when('/reg', {
+      templateUrl: 'static/partials/locationDetails.html',
+      controller: 'locationController'
+    })
     .otherwise({
       redirectTo: '/'
     })
