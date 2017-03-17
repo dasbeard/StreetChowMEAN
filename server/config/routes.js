@@ -16,6 +16,11 @@ module.exports = function(app){
     organizations.login(req,res)
   });
 
+  app.post('/newRegCheck', function(req,res){
+    organizations.regCheck(req,res)
+  });
+
+
 // =========================================================================
 // ============================ Wall Routes ================================
 // =========================================================================

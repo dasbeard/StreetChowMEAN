@@ -9,17 +9,45 @@ var Organization = mongoose.model('Organization');
 module.exports = (function(){
   return {
 
-    reg: function(req,res){
-      // console.log('In the Reg method  ----> users controler'. cyan);
-      // console.log(req.body);
+    regCheck: function(req,res){
+      var checkObj = req.body;
+      var flag = true;
+      var inDB = {};
+      if (checkNewReg(checkObj)){
+        var checkZip = intParsing(checkObj.zip);
+    // ======== Query DB to find instance ========
+        Organization.find({zip: checkObj.zip}, function(err, oneUser){
+          if (err){
+            console.log('===== Error =====');
+            console.log(err);
+          } else if (oneUser){
+    // ====== Looping through all obj =====
+            inDB = oneUser;
 
+            for (var objCount = 0; objCount<inDB.length; objCount++){
+              if (inDB[objCount].organization.toLowerCase() == checkObj.organization.toLowerCase() && inDB[objCount].street1.toLowerCase() == checkObj.street1.toLowerCase()){
+                console.log('===== User already in System ===== line 33');
+                flag = false;
+                break;
+              }
+            };
+          }
+          res.json(flag);
+        });
+      } else {
+        res.json({error: checkNewReg(checkObj)});
+      }
+    }, // End regCheck
+
+
+    reg: function(req,res){
     // ===== Validations =====
-        if (validateLocation(req.body)){
-          console.log();
+        var validatedObj = req.body;
+        if (validateLocation(validatedObj)){
           var myPhone = intParsing(req.body.phone);
           var myZip = intParsing(req.body.zip);
         } else {
-          res.json({error: validatedObj});
+          res.json({error: validateLocation(validatedObj)});
         }
     // ===== Creating and Saving new Organization =====
       Organization.findOne({email: req.body.email}, function(err, oneUser){
@@ -49,7 +77,7 @@ module.exports = (function(){
                 console.log('==== Error When saving new organization ===='.red);
                 console.log(err);
               } else {
-                console.log('==== Successfuly Registed ===='.yellow);
+                console.log('==== Successfuly Registered ===='.yellow);
                 res.json(newOrganization)
               }
             });
@@ -108,15 +136,35 @@ return Number(myStr);
 } // End intParsing
 
 
+function checkNewReg(regObj){
+  var zipRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
+  if(!regObj.organization){
+    return 'Organization name is required';
+  }
+  else if (regObj.organization.length < 3){
+    return 'Organization name must be at least 3 characters long';
+  }
+  else if (!regObj.street1){
+    return 'Street address is required';
+  }
+  else if (regObj.street1.length < 3){
+    return 'Street address must be at least 3 characters long';
+  }
+  else if (!zipRegex.test(regObj.zip)){
+    return 'Please enter a valid Zip Code';
+  } else {
+    return true;
+  }
+} // End checkNewReg
+
+
 
 function validateLocation(orgObj){
   var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var zipRegex = /^\d{5}(?:[-\s]\d{4})?$/;
   var phoneRegex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
   var websiteRegex = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
-
-  var error = '';
-  var streetFlag = false;
 
   if(!orgObj.organization){
     return 'Organization name is required';
@@ -134,7 +182,6 @@ function validateLocation(orgObj){
     return 'Street address must be at least 3 characters long';
   }
   else if (orgObj.street2){
-    streetFlag = true;
     if (orgObj.street2.length < 2){
       return 'Street address 2 must be at least 2 characters long';
     }
@@ -169,8 +216,6 @@ function validateLocation(orgObj){
   else if(orgObj.password != orgObj.password_conf){
     return 'Passwords do not match!';
   }
-
-// Needs intParsing
   else if (!orgObj.zip){
     return 'ZIP code is required';
   }
@@ -179,8 +224,6 @@ function validateLocation(orgObj){
       return 'Please enter a valid Website';
     }
   }
-
-// Needs intParsing
   if (orgObj.phone){
     if (!phoneRegex.test(orgObj.phone)){
       return 'Please enter a valid Phone Number';

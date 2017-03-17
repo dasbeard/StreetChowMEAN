@@ -14,7 +14,7 @@ var OrganizationSchema = new mongoose.Schema({
   city: {type: String, required: true, minlength: 2, trim: true},
   state: {type: String, required: true, minlength: 1, trim: true},
   zip: {type: Number, required: true, minlength: 5, trim: true},
-  phone: {type: String, required: false, minlength: 10, trim: true},
+  phone: {type: String, required: false, trim: true},
   website: {type: String, required: false, minlength: 3, trim: true},
   description: {type: String, required: true, minlength: 3, maxlength: 150, trim: true},
   services:[{type: String, minlength: 3, trim: true}],
