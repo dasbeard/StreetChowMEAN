@@ -17,7 +17,7 @@ var OrganizationSchema = new mongoose.Schema({
   phone: {type: String, required: false, trim: true},
   website: {type: String, required: false, minlength: 3, trim: true},
   description: {type: String, required: true, minlength: 3, maxlength: 150, trim: true},
-  services:[{type: String, minlength: 3, trim: true}],
+  services:[{type: String, minlength: 2, trim: true}],
   days:[{type: String, minlength: 2, trim: true}],
   startTime:[{type: String, trim: true}],
   endTime:[{type: String, trim: true}],

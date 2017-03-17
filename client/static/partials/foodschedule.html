@@ -3,7 +3,7 @@
 
 <h3>Serving food on:</h3>
 
-<label><select ng-model = 'days.days'>
+<label><select ng-model = 'days.day'>
   <option value="Mon">Monday</option>
   <option value="Tues">Tuesday</option>
   <option value="Wed">Wednesday</option>
@@ -52,7 +52,7 @@
   <option value="pm">pm</option>
 </select>
 </label>
-<button type="button" name="button" ng-click = 'addDay()'></button>
+<button type="button" name="button" ng-click = 'addDay()'>Add Day</button>
 
 
 <div class="services">
@@ -63,14 +63,14 @@
 <label>Beds: <input type="checkbox" ng-model='services.beds'></label>
 <label>Clothes: <input type="checkbox" ng-model='services.clothes'></label>
 <label>Interview Help: <input type="checkbox" ng-model='services.interview'></label>
-<button type="button" name="button" ng-click = 'updateServices()'></button>
+<button type="button" name="button" ng-click = 'updateServices()'>Save Services</button>
 <div class="other">
 
 
 <label>Other: <input type="text" name="" value="" ng-model='newService'></label>
-<button type="button" name="button" ng-click = 'addNewService()'></button>
+<button type="button" name="button" ng-click = 'addNewService()'>Add New Service</button>
 </div>
 </div>
 
 
-<a href="#!/reg">edit organization</a>
+<a href="#!/reg">Edit Organization</a>
