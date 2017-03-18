@@ -9,6 +9,19 @@ var Organization = mongoose.model('Organization');
 module.exports = (function(){
   return {
 
+// ============== Get all info from DB for API ==============
+    apiTest: function(req,res){
+      Organization.find({}, function(err, data){
+        if (err){
+          console.log('===== Error ====='.red);
+          console.log(err);
+        } else {
+          res.json(data);
+        }
+      });
+    }, // End API Test
+
+
     regCheck: function(req,res){
       var checkObj = req.body;
       var flag = true;
@@ -18,7 +31,7 @@ module.exports = (function(){
     // ======== Query DB to find instance ========
         Organization.find({zip: checkObj.zip}, function(err, oneUser){
           if (err){
-            console.log('===== Error =====');
+            console.log('===== Error ====='.red);
             console.log(err);
           } else if (oneUser){
     // ====== Looping through all obj =====

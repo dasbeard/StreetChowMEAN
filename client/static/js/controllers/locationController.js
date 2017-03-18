@@ -3,10 +3,6 @@
 // =========================================================================
 app.controller('locationController', function($scope, logRegFactory, $location, $cookies){
   $scope.myTemp = $cookies.getObject('myTemp');
-  // if($scope.myTemp == undefined){
-  //   $location.url('/logReg');
-  // };
-
 
 // Verify info is myTemp cookie
   $scope.cancelReg = function(){

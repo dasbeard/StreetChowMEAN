@@ -20,6 +20,10 @@ module.exports = function(app){
     organizations.regCheck(req,res)
   });
 
+  app.get('/apiTest', function(req,res){
+    organizations.apiTest(req,res)
+  });
+
 
 // =========================================================================
 // ============================ Wall Routes ================================
