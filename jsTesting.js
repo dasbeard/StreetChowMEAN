@@ -22,3 +22,37 @@
 //
 // var phoneNum = '(234).567.8901';
 // console.log(fullPhoneRegex.test(phoneNum));
+
+
+function firstFunction(_callback){
+    // do some asynchronous work
+    // and when the asynchronous stuff is complete
+    console.log('some stuff in one');
+    _callback();
+}
+
+function geocodeAddress(address, callback) {
+  console.log('in function');
+  var geocoder = new google.maps.Geocoder()
+  geocoder.geocode({'address': address}, function(results, status) {
+    console.log('back from api');
+    if (status === 'OK') {
+      return results;
+    } else {
+      return false;
+    }
+  });
+  callback();
+}; // End geocodeAddress
+
+
+
+function secondFunction(){
+    // call first function and pass in a callback function which
+    // first function runs when it has completed
+    geocodeAddress('245 main st, los angeles', function() {
+        console.log('huzzah, I\'m done!');
+    });
+}
+
+secondFunction()

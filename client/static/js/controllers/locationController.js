@@ -7,9 +7,15 @@ app.controller('locationController', function($scope, logRegFactory, $location, 
 // Verify info is myTemp cookie
   $scope.cancelReg = function(){
     $cookies.remove('myTemp');
+    $cookies.remove('geocode');
     $location.url('/logReg')
   }
 
+  $scope.clicked = function(){
+    var geoCode = $cookies.getObject('geocode');
+    console.log(geoCode);
+    // console.log(geoCode[0].geometry.location);
+  }
 
   // Register New Organization Method
     $scope.regOrganization = function (){
@@ -60,7 +66,12 @@ app.controller('locationController', function($scope, logRegFactory, $location, 
 
 
 
-// ===== Front End Validation Sill Needed ====
+
+
+
+
+
+// ===== Front End Validation ====
 function regValidation(reg){
   var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -163,5 +174,4 @@ function regValidation(reg){
       return error;
     }
 
-
-} // End if Scope.Reg
+} // End Front End Validation

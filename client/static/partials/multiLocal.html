@@ -1,0 +1,18 @@
+<div class="multiLocations">
+  <table>
+    <thead>
+      <th>Street</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip Code</th>
+    </thead>
+    <tr ng-repeat='place in locations'>
+      <td>{{place.address_components[0].short_name}} {{place.address_components[1].short_name}}</td>
+      <td>{{place.address_components[2].short_name}}</td>
+      <td>{{place.address_components[5].short_name}}</td>
+      <td>{{place.address_components[7].short_name}}</td>
+      <td><button ng-click= 'selectedAddress(place)'>Select Address</button></td>
+    </tr>
+  </table>
+
+</div>

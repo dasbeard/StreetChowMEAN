@@ -17,6 +17,7 @@
   "dependencies": {
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
-    "angular-cookies": "^1.6.1"
+    "angular-cookies": "^1.6.1",
+    "ngmap": "^1.18.4"
   }
 }

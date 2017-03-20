@@ -3,6 +3,13 @@
 // =========================================================================
 app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
   $scope.user = {};
+  var testing;
+  var toSearch;
+// See Locations Button
+  $scope.locations = function (){
+    console.log(testing);
+  }
+
 
 // Validate before changing pages
   $scope.continueReg = function (){
@@ -11,21 +18,25 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
     var toCheck = $scope.temp;
     if(!toCheck){
       $scope.error = 'Please enter information to begin registration, or log in to continue';
+// ==== Validate that input was received ====
     } else if (regCheck(toCheck) == true){
-        logRegFactory.newRegCheck(toCheck, function(output){
-          console.log(output);
-          if(!output.data){
-            $scope.error = 'Organization already registered. Please log in to continue';
-          } else {
-            $cookies.putObject("myTemp", $scope.temp);
-            $location.url('/reg');
-            $scope.temp = {};
-          }
-        })
-      } else {
-        $scope.error = regCheck(toCheck);
-      }
+      var toSearch = ($scope.temp.street1 + ', ' + $scope.temp.city + $scope.temp.city);
+
+      callMe(toSearch);
+      console.log(toSearch);
+      console.log(testing);
+
+      // var temp = (geocodeAddress($scope.temp.street1 + ', ' + $scope.temp.city + $scope.temp.city));
+
+
+
+
+// ==== Did not pass regCheck ====
+    } else {
+      $scope.error = regCheck(toCheck);
+    }
   }; // End continueReg
+
 
 
 
@@ -62,6 +73,46 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
   }; // End Login Method
 
 
+
+
+  // ========== Geocode Lat/Long from Adress ==========
+  function geocodeAddress(address, callback) {
+
+    var geocoder = new google.maps.Geocoder()
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === 'OK') {
+        console.log('all good in the function');
+        testing = results;
+        // return results;
+      } else {
+        testing = false;
+        // return false;
+      }
+      callback();
+    });
+  }; // End geocodeAddress
+
+  function callMe(toSearch){
+    geocodeAddress(toSearch, function(){
+      // sleep(2000);
+      console.log(testing);
+      console.log('testing');
+    });
+  };
+
+
+  // ===== Sleep Function =====
+  function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  };
+
+
+
 }); //End of LogReg Controller
 
 
@@ -75,15 +126,15 @@ function regCheck(reg){
   var error = '';
   var flag = true;
 
-    if (!reg.organization){
-      error = 'Please enter a Organization name to continue';
-      flag = false;
-    }
-    else if (reg.organization.length < 3){
-      error = 'Organization Name must be at least 3 characters long';
-      flag = false;
-    }
-    else if (!reg.street1){
+    // if (!reg.organization){
+    //   error = 'Please enter a Organization name to continue';
+    //   flag = false;
+    // }
+    // else if (reg.organization.length < 3){
+    //   error = 'Organization Name must be at least 3 characters long';
+    //   flag = false;
+    // }
+    if (!reg.street1){
       error = 'Please enter a Street Address to continue';
       flag = false;
     }
@@ -91,14 +142,14 @@ function regCheck(reg){
       error = 'Street Address must be at least 3 characters long';
       flag = false;
     }
-    else if (!reg.zip){
-      error = 'Please enter a Zip Code to continue';
-      flag = false;
-    }
-    else if (!zipRegex.test(reg.zip)){
-      error = 'Please enter a valid Zip Code';
-      flag = false;
-    }
+    // else if (!reg.zip){
+    //   error = 'Please enter a Zip Code to continue';
+    //   flag = false;
+    // }
+    // else if (!zipRegex.test(reg.zip)){
+    //   error = 'Please enter a valid Zip Code';
+    //   flag = false;
+    // }
     if (flag == true){
       return true;
     } else if (flag == false){
