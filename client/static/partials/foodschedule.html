@@ -54,15 +54,36 @@
 </label>
 <button type="button" name="button" ng-click = 'addDay()'>Add Day</button>
 
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+<table>
+
+  <thead>
+    <th>days</th>
+    <th>start time</th>
+    <th>end time</th>
+
+  </thead>
+  <tr ng-repeat="d in days">
+    <td>{{ d.days }}</td>
+    <td>{{ d.startTime }}</td>
+    <td>{{ d.endTime }}</td>
+    <th><button type="button" name="button" style = "background-color:blue" ng-click = "deleteDays($index)"> Delete this shit</button></th>
+  </tr>
+</table>
+
+</div>
+
+
 
 <div class="services">
 
 
 <h1>services</h1>
-<label>Jobs: <input type="checkbox" ng-model='services.jobs'></label>
-<label>Beds: <input type="checkbox" ng-model='services.beds'></label>
-<label>Clothes: <input type="checkbox" ng-model='services.clothes'></label>
-<label>Interview Help: <input type="checkbox" ng-model='services.interview'></label>
+<label>Jobs: <input name="services[]" type="checkbox" value="jobs" ng-model='services.jobs'></label>
+<label>Beds: <input name="services[]" type="checkbox" value= "beds" ng-model='services.beds'></label>
+<label>Clothes: <input name="services[]" type="checkbox" value= "clothes" ng-model='services.clothes'></label>
+<label>Interview Help: <input name="services[]" type="checkbox" value= "interview workshops" ng-model='services.interview_workshops'></label>
 <button type="button" name="button" ng-click = 'updateServices()'>Save Services</button>
 <div class="other">
 
@@ -71,6 +92,20 @@
 <button type="button" name="button" ng-click = 'addNewService()'>Add New Service</button>
 </div>
 </div>
+
+<table>
+
+  <thead>
+    <th>Services</th>
+
+
+  </thead>
+  <tr ng-repeat="s in services">
+    <td><h3>Other services available: {{ d.services }}</td>
+
+    <th><button type="button" name="button" ng-click = "deleteServices($index)"> Delete this shit</button></th>
+  </tr>
+</table>
 
 
 <a href="#!/reg">Edit Organization</a>
