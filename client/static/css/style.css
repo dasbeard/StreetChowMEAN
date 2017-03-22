@@ -10,3 +10,9 @@ label{
 input{
   display: inline-block;
 }
+
+#myMap{
+  height: 450px;
+  width: 80%;
+  margin: auto;
+}
