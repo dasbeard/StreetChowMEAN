@@ -5,6 +5,10 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   $scope.services = [];
 
 
+
+
+
+
   // foodFactory.getdays(function(data){
   //   $scope.error = "";
   //   if(data.error){
@@ -28,13 +32,13 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   // });
   //
 
-  $scope.deleteDay = function(idx){
-    console.log("deleting this shit");
-    foodFactory.destroy(idx, function(data){
-      $scope.services = data;
-
-  });
-  }
+  // $scope.deleteDay = function(idx){
+  //   console.log("deleting this shit");
+  //   foodFactory.destroy(idx, function(data){
+  //     $scope.services = data;
+  //
+  // });
+  // }
 // $scope.updateServices = function(){
  // console.log($scope.services);
  // if(Meteor.isClient) { Template.services.events({ 'submit form': function()
@@ -43,13 +47,13 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
  // } }); } with: Checkboxs = new Mongo.Collection('checkboxs');
 // }
 
-$scope.addNewService = function(data){
-  console.log($scope.newService);
-  servicesFactory.add($scope.newService, function(data){
-    $scope.services = data
-  });
-    $scope.newService = {};
-}
+// $scope.addNewService = function(data){
+//   console.log($scope.newService);
+//   servicesFactory.add($scope.newService, function(data){
+//     $scope.services = data
+//   });
+//     $scope.newService = {};
+// }
 // $scope.get(addDay(data))
 // .then(function(response){
 //   $scope.days = response.data.days
@@ -57,11 +61,11 @@ $scope.addNewService = function(data){
 //   $scope.endTime = response.data.endTime
 // });
 
-$scope.deleteService = function(idx){
-  console.log("deleting this shit");
-  sFactory.destroy(idx, function(data){
-    $scope.services = data;
-
-});
-}
+// $scope.deleteService = function(idx){
+//   console.log("deleting this shit");
+//   sFactory.destroy(idx, function(data){
+//     $scope.services = data;
+//
+// });
+// }
 });
