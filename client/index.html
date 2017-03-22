@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app='myApp'>
+<<<<<<< HEAD
 <head>
     <meta charset="utf-8">
     <title>Street Chow</title>
@@ -55,6 +56,38 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbW3TdXS5xORowuXS1M6xF1Ho3T2kFuMw&callback=initMap">
       </script>
 </head>
+=======
+ <head>
+  <meta charset="utf-8">
+  <title>Street Chow</title>
+  <link rel="shortcut icon" type="image/gif" href="assets/favicon.ico"/>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src='angular/angular.min.js'></script>
+  <script type="text/javascript" src='angular-route/angular-route.min.js'></script>
+  <script type="text/javascript" src='angular-cookies/angular-cookies.min.js'></script>
+  <script type="text/javascript" src='ngmap/build/scripts/ng-map.min.js'></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM"></script>
+
+  <script type="text/javascript" src='js/app.js'></script>
+
+  <script type="text/javascript" src='js/factories/logRegFactory.js'></script>
+  <script type="text/javascript" src='js/factories/factory1.js'></script>
+  <script type="text/javascript" src='js/factories/foodFactory.js'></script>
+
+   <script type="text/javascript" src='js/controllers/controller1.js'></script>
+  <script type="text/javascript" src='js/controllers/logRegController.js'></script>
+  <script type="text/javascript" src='js/controllers/locationController.js'></script>
+  <script type="text/javascript" src='js/controllers/foodController.js'></script>
+
+
+
+
+ </head>
+ <body>
+   <a href="#!/">Home</a> <a href="#!/logReg">Log/Reg</a>
+   <a href="#!/food">Services</a>
+   <div ng-view=""></div>
+>>>>>>> GoogleMaps
 
 <body>
     <a href="#!/">Home</a> <a href="#!/logReg">Log/Reg</a>

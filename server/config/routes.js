@@ -20,6 +20,19 @@ module.exports = function(app){
     organizations.regCheck(req,res)
   });
 
+  app.post('/findLocation', function(req, res){
+    organizations.findLocal(req,res)
+  });
+
+  app.get('/getAll', function(req,res){
+    organizations.getAll(req,res)
+  });
+
+
+  app.get('/apiTest', function(req,res){
+    organizations.apiTest(req,res)
+  });
+
 
 // =========================================================================
 // ============================ Wall Routes ================================

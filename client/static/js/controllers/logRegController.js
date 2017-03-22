@@ -3,6 +3,7 @@
 // =========================================================================
 app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
   $scope.user = {};
+  $scope.foundLocations = $cookies.getObject('locations');
 
 // Validate before changing pages
   $scope.continueReg = function (){
@@ -11,22 +12,59 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
     var toCheck = $scope.temp;
     if(!toCheck){
       $scope.error = 'Please enter information to begin registration, or log in to continue';
+// ==== Validate that input was received ====
     } else if (regCheck(toCheck) == true){
-        logRegFactory.newRegCheck(toCheck, function(output){
-          console.log(output);
-          if(!output.data){
-            $scope.error = 'Organization already registered. Please log in to continue';
-          } else {
-            $cookies.putObject("myTemp", $scope.temp);
-            $location.url('/reg');
-            $scope.temp = {};
-          }
-        })
-      } else {
-        $scope.error = regCheck(toCheck);
-      }
+      $cookies.put('orgName', $scope.temp.organization)
+      logRegFactory.findAddress($scope.temp, function(output){
+        if (output.data == false){
+          $scope.error = 'Please enter a valid location to continue';
+        } else if (output.data.length > 1){
+          $cookies.putObject('locations', output.data)
+          $location.url('/multi');
+        } else {
+          $scope.toCheckDB = output.data[0];
+
+          logRegFactory.newRegCheck($scope.toCheckDB, function(output){
+            if (output.data == false){
+                $scope.error = 'Error, There is already an organization at this address';
+            } else {
+              if (output){
+                $cookies.putObject('myTemp', $scope.toCheckDB)
+                $location.url('/reg');
+              } else {
+                $scope.error = output.error;
+              }
+            }
+          })
+        }
+      });
+// ==== Did not pass regCheck ====
+    } else {
+      $scope.error = regCheck(toCheck);
+    }
   }; // End continueReg
 
+
+
+// Select correct Address if multiple
+  $scope.selectedAddress = function(correctAddress){
+
+    $scope.toCheckDB = correctAddress;
+    console.log($scope.toCheckDB);
+
+    logRegFactory.newRegCheck($scope.toCheckDB, function(output){
+      if (output.data == false){
+          $scope.error = 'Error, There is already an organization at this address';
+      } else {
+        if (output){
+          $cookies.putObject('myTemp', $scope.toCheckDB)
+          $location.url('/reg');
+        } else {
+          $scope.error = output.error;
+        }
+      }
+    })
+  };
 
 
 // Login Method
@@ -62,6 +100,14 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
   }; // End Login Method
 
 
+  $scope.cancelReg = function(){
+    $cookies.remove('myTemp');
+    $cookies.remove('locations');
+    $cookies.remove('orgName');
+    $location.url('/logReg')
+  }
+
+
 }); //End of LogReg Controller
 
 
@@ -70,7 +116,6 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
 
 // ===== Front End Validation ====
 function regCheck(reg){
-  var zipRegex = /^\d{5}(?:[-\s]\d{4})?$/;
 
   var error = '';
   var flag = true;
@@ -83,7 +128,7 @@ function regCheck(reg){
       error = 'Organization Name must be at least 3 characters long';
       flag = false;
     }
-    else if (!reg.street1){
+    if (!reg.street1){
       error = 'Please enter a Street Address to continue';
       flag = false;
     }
@@ -91,12 +136,12 @@ function regCheck(reg){
       error = 'Street Address must be at least 3 characters long';
       flag = false;
     }
-    else if (!reg.zip){
-      error = 'Please enter a Zip Code to continue';
+    else if (!reg.city){
+      error = 'Please enter a City Name to continue';
       flag = false;
     }
-    else if (!zipRegex.test(reg.zip)){
-      error = 'Please enter a valid Zip Code';
+    else if (!reg.zip == ' '){
+      error = 'Please enter a valid City Name';
       flag = false;
     }
     if (flag == true){
@@ -105,3 +150,15 @@ function regCheck(reg){
       return error;
     }
 } // End Reg Check
+
+
+
+// ===== Sleep Function =====
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+};

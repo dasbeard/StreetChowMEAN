@@ -3,14 +3,20 @@
 // =========================================================================
 app.factory('logRegFactory', function ($http){
   var factory = {};
-  var user = {};
-  var message = {}
+
+// Find address
+  factory.findAddress = function(input, callback){
+    $http.post('/findLocation', input).then(function(output){
+      callback(output)
+    });
+  } // End findAddress
+
 
   //Check if user is registered already or not
   factory.newRegCheck = function(input, callback){
     console.log(input);
     $http.post('/newRegCheck', input).then(function(output){
-      console.log('Back from factory');
+      console.log('Back from server');
       console.log(output);
       callback(output);
     });
@@ -35,5 +41,15 @@ app.factory('logRegFactory', function ($http){
   } // End login
 
 
-  return factory;
+  factory.getAll = function(callback){
+    $http.get('/getAll').then(function(output){
+      callback(output);
+    });
+  } // End Get All
+
+
+
+
+
+return factory;
 }); // End Login Factory

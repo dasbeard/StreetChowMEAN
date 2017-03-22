@@ -3,36 +3,99 @@
 // =========================================================================
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const NodeGeocoder = require('node-geocoder');
 
+var options = {
+  provider: 'google'
+};
+var geocoder = NodeGeocoder(options)
 var Organization = mongoose.model('Organization');
 
 module.exports = (function(){
   return {
 
+    // ============== Get all info from DB for API ==============
+    apiTest: function(req,res){
+      Organization.find({}, function(err, data){
+        if (err){
+          console.log('===== Error ====='.red);
+          console.log(err);
+        } else {
+          res.json(data);
+        }
+      });
+    }, // End API Test
+
+
+
+    findLocal: function (req,res){
+      console.log(req.body);
+      var toSearch = (req.body.street1 + ', ' + req.body.city);
+      geocoder.geocode(toSearch, function(err, output){
+        if (err){
+          console.log('===== Error ====='.red);
+          console.log(err);
+        } else {
+          if (output.length > 0){
+          console.log('the output'.cyan);
+          console.log(output.length);
+          console.log(output);
+          res.json(output);
+          } else {
+            console.log('Nope'.red);
+            res.json(false)
+          }
+        }
+      });
+
+
+
+
+    }, // End findLocal
+
+
+    getAll: function(req,res){
+      Organization.find(({}),function(err, allOrgs){
+        if (err){
+          console.log('===== ERROR ====='.red);
+          console.log(err);
+        } else {
+          var sendBack = [];
+          for (var i = 0; i<allOrgs.length; i++){
+            sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
+                        organization: allOrgs[i].organization,
+                        description: allOrgs[i].description,
+                        latitude: allOrgs[i].latitude,
+                        longitude: allOrgs[i].longitude,
+                        _id: allOrgs[i]._id
+                      }
+            );
+          }
+          res.json(sendBack);
+        };
+      });
+    },
+
+
+
     regCheck: function(req,res){
       var checkObj = req.body;
-      var flag = true;
-      var inDB = {};
+      console.log('in regCheck'.cyan);
+      console.log(checkObj);
       if (checkNewReg(checkObj)){
-        var checkZip = intParsing(checkObj.zip);
     // ======== Query DB to find instance ========
-        Organization.find({zip: checkObj.zip}, function(err, oneUser){
+        Organization.findOne({formattedAddress: checkObj.formattedAddress}, function(err, oneUser){
           if (err){
-            console.log('===== Error =====');
+            console.log('===== Error ====='.red);
             console.log(err);
           } else if (oneUser){
-    // ====== Looping through all obj =====
-            inDB = oneUser;
-
-            for (var objCount = 0; objCount<inDB.length; objCount++){
-              if (inDB[objCount].organization.toLowerCase() == checkObj.organization.toLowerCase() && inDB[objCount].street1.toLowerCase() == checkObj.street1.toLowerCase()){
-                console.log('===== User already in System ===== line 33');
-                flag = false;
-                break;
-              }
-            };
+            // All Good
+            console.log('Already in system'.red);
+            res.json(false);
+          } else {
+            console.log('All Good'.cyan);
+            res.json(true);
           }
-          res.json(flag);
         });
       } else {
         res.json({error: checkNewReg(checkObj)});
@@ -42,6 +105,8 @@ module.exports = (function(){
 
     reg: function(req,res){
     // ===== Validations =====
+      console.log('In the reg method'.yellow);
+      console.log(req.body);
         var validatedObj = req.body;
         if (validateLocation(validatedObj)){
           var myPhone = intParsing(req.body.phone);
@@ -50,7 +115,7 @@ module.exports = (function(){
           res.json({error: validateLocation(validatedObj)});
         }
     // ===== Creating and Saving new Organization =====
-      Organization.findOne({email: req.body.email}, function(err, oneUser){
+      Organization.findOne({formattedAddress: req.body.formattedAddress}, function(err, oneUser){
         if (err){
           console.log('==== Error ===='.red);
         } else {
@@ -70,7 +135,7 @@ module.exports = (function(){
 // ============= WITHOUT LAT AND LONG!! -- 3/12/17 =============
 
             var newOrganization = new Organization({
-              organization: req.body.organization, street1: req.body.street1, street2: req.body.street2, city: req.body.city, state: req.body.state, zip: myZip, description: req.body.description, website: req.body.website, phone: myPhone, email: req.body.email, password: pw
+              organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: myZip, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw
             })
             newOrganization.save(function(err){
               if (err){
@@ -137,8 +202,6 @@ return Number(myStr);
 
 
 function checkNewReg(regObj){
-  var zipRegex = /^\d{5}(?:[-\s]\d{4})?$/;
-
   if(!regObj.organization){
     return 'Organization name is required';
   }
@@ -151,8 +214,8 @@ function checkNewReg(regObj){
   else if (regObj.street1.length < 3){
     return 'Street address must be at least 3 characters long';
   }
-  else if (!zipRegex.test(regObj.zip)){
-    return 'Please enter a valid Zip Code';
+  else if (!regObj.city){
+    return 'Please enter a City Name';
   } else {
     return true;
   }
@@ -162,38 +225,13 @@ function checkNewReg(regObj){
 
 function validateLocation(orgObj){
   var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  var zipRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
   var phoneRegex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+
   var websiteRegex = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
-  if(!orgObj.organization){
-    return 'Organization name is required';
-  }
-  else if (orgObj.organization.length < 3){
-    return 'Organization name must be at least 3 characters long';
-  }
-  else if (!emailRegex.test(orgObj.email)){
+if (!emailRegex.test(orgObj.email)){
     return 'Please enter in a valid email';
-  }
-  else if (!orgObj.street1){
-    return 'Street address is required';
-  }
-  else if (orgObj.street1.length < 3){
-    return 'Street address must be at least 3 characters long';
-  }
-  else if (orgObj.street2){
-    if (orgObj.street2.length < 2){
-      return 'Street address 2 must be at least 2 characters long';
-    }
-  }
-  else if (!orgObj.city){
-    return 'City name is required';
-  }
-  else if (!orgObj.state){
-    return 'State is required';
-  }
-  else if (!zipRegex.test(orgObj.zip)){
-    return 'Please enter a valid Zip Code';
   }
   else if (!orgObj.description){
     return 'Please enter a Description to continue';
@@ -215,9 +253,6 @@ function validateLocation(orgObj){
   }
   else if(orgObj.password != orgObj.password_conf){
     return 'Passwords do not match!';
-  }
-  else if (!orgObj.zip){
-    return 'ZIP code is required';
   }
   if (orgObj.website){
     if (!websiteRegex.test(orgObj.website)){

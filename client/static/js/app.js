@@ -1,5 +1,5 @@
 //==================== Creating Angular App ====================
-var app = angular.module('myApp', ['ngRoute', 'ngCookies']);
+var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ngMap']);
 
 //==================== Angular Routes ====================
 app.config(function($routeProvider){
@@ -19,6 +19,10 @@ app.config(function($routeProvider){
     .when('/food', {
       templateUrl: 'static/partials/foodschedule.html',
       controller: 'foodController'
+    })
+    .when('/multi', {
+      templateUrl: 'static/partials/multiLocal.html',
+      controller: 'logReg'
     })
     .otherwise({
       redirectTo: '/'
