@@ -2,7 +2,6 @@
 // ========================= Required Models ===============================
 // =========================================================================
 var organizations = require('./../controllers/organizations.js');
-var services = require('./../controllers/services.js');
 
 module.exports = function(app){
 // =========================================================================
@@ -26,6 +25,18 @@ module.exports = function(app){
 
   app.get('/getAll', function(req,res){
     organizations.getAll(req,res)
+  });
+
+  app.post('/addDay', function(req, res){
+    organizations.addDay(req,res)
+  });
+
+  app.post('/getDayService', function(req,res){
+    organizations.getDayService(req,res)
+  });
+
+  app.post('/removeDay', function(req,res){
+    organizations.removeDay(req,res)
   });
 
 

@@ -1,13 +1,20 @@
 app.factory('foodFactory', function ($http){
   var factory = {};
 
-  factory.getdays = function(input, callback){
-    $http.post('/getDays', input).then(function(output){
+  factory.addDay = function(input, callback){
+    $http.post('/addDay', input).then(function(output){
+      callback(output);
+    });
+  }
 
-
+  factory.getDayService = function(input, callback){
+    $http.post('/getDayService', input).then(function(output){
     callback(output);
     });
   }
+
+
+
 
 
   factory.destroy = function(idx, callback){
@@ -17,20 +24,15 @@ app.factory('foodFactory', function ($http){
 
   factory.getservices = function(input, callback){
     $http.post('/getServices', input).then(function(output){
-
-
     callback(output);
     });
   }
 
-  factory.add = function(newService, callback){
-    services.push(newService);
-    callback(services);
-  };
 
   factory.destroy = function(idx, callback){
-    days.splice(idx, 1);
-    callback(services);
+    $http.post('/removeDay', idx).then(function(output){
+      callback(output);
+    })
 };
 
 

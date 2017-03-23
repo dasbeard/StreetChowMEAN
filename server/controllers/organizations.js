@@ -14,6 +14,69 @@ var Organization = mongoose.model('Organization');
 module.exports = (function(){
   return {
 
+  addDay: function(req,res){
+    console.log(req.body);
+    Organization.findOne({_id: req.body.user}, function(err, oneUser){
+      if (err){
+        console.log('===== Error ====='.red);
+        console.log(err);
+      } else {
+        console.log('The User'.cyan);
+        console.log(req.body);
+        oneUser.days.push(req.body);
+        oneUser.save(function(err){
+          if (err){
+            console.log('==== Error When saving new day ===='.red);
+            console.log(err);
+          } else {
+            console.log('==== Successfuly Saved New Day ===='.yellow);
+            var toSendBack = {'days': oneUser.days, 'services': oneUser.services};
+            res.json(toSendBack);
+          }
+        })
+      }
+    })
+  }, //End addDay
+
+
+  getDayService: function(req, res){
+    Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      if (err){
+        console.log('==== Error When saving new day ===='.red);
+        console.log(err);
+      } else {
+        var toSendBack = {'days': oneUser.days, 'services': oneUser.services};
+        res.json(toSendBack);
+      }
+    })
+  },
+
+
+
+  removeDay: function(req,res){
+    console.log(req.body);
+    Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      if (err){
+        console.log('==== Error When finding user ===='.red);
+        console.log(err);
+      } else {
+        oneUser.days.splice(req.body.index,1)
+        oneUser.save(function(err){
+          if (err){
+            console.log('==== Error When removing day ===='.red);
+            console.log(err);
+          } else {
+            res.json(true);
+          }
+        })
+      }
+    })
+  },
+
+
+
+
+
     // ============== Get all info from DB for API ==============
     apiTest: function(req,res){
       Organization.find({}, function(err, data){
@@ -135,7 +198,15 @@ module.exports = (function(){
 // ============= WITHOUT LAT AND LONG!! -- 3/12/17 =============
 
             var newOrganization = new Organization({
-              organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: myZip, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw
+              organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: myZip, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw, services: [{name: 'Jobs', val: false},
+               {name: 'Education', val: false},
+               {name: 'Childcare', val: false},
+               {name: 'Recreational', val: false},
+               {name: 'Beds', val: false},
+               {name: 'Donations', val: false},
+               {name: 'Clothes', val: false},
+               {name: 'Interview', val: false}
+              ]
             })
             newOrganization.save(function(err){
               if (err){
@@ -143,7 +214,12 @@ module.exports = (function(){
                 console.log(err);
               } else {
                 console.log('==== Successfuly Registered ===='.yellow);
-                res.json(newOrganization)
+
+                var toSendBack = {id: newOrganization._id,
+                  formattedAddress: newOrganization.formattedAddress,
+                  organization: newOrganization.organization,
+                };
+                res.json(toSendBack)
               }
             });
           }
@@ -171,7 +247,11 @@ module.exports = (function(){
           // Authenticate password
           if(bcrypt.compareSync(req.body.password, oneUser.password)){
             console.log('====== Successfuly Logged In ======');
-            res.json(oneUser)
+            var toSendBack = {id: oneUser._id,
+              formattedAddress: oneUser.formattedAddress,
+              organization: oneUser.organization,
+            };
+            res.json(toSendBack)
           } else {
             res.json({error: "Email or Password do not match"});
           }

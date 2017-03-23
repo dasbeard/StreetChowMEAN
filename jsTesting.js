@@ -56,3 +56,17 @@ function secondFunction(){
 }
 
 secondFunction()
+
+
+
+
+
+// services: [{name: 'Jobs', val: false},
+//  {name: 'Education', val: false},
+//  {name: 'Childcare', val: false},
+//  {name: 'Recreational Activities', val: false},
+//  {name: 'Beds', val: false},
+//  {name: 'Takes Donations', val: false},
+//  {name: 'Clothes', val: false},
+//  {name: 'Interview Help', val: false}
+// ]

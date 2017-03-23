@@ -33,11 +33,8 @@ var OrganizationSchema = new mongoose.Schema({
       },
   password: {type: String, required: true, minlength: 5, trim: true},
 
-  services:[{type: String, minlength: 2, trim: true}],
-  days: { day: [{type: String, minlength: 2, trim: true}],
-          startTime:[{type: String, trim: true}],
-          endTime:[{type: String, trim: true}],
-        }
+  services: [{}],
+  days: [{}],
 
 }, {timestamps: true});
 

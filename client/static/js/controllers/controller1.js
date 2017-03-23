@@ -7,9 +7,9 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
 
 
 
-
   if($cookies.getObject('loggedUser')){
     $scope.organization = $cookies.getObject('loggedUser')
+    console.log($scope.organization);
   }
 
   $scope.logout = function(){
@@ -22,7 +22,9 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
 // =============== Google Maps ===============
   NgMap.getMap().then(function(map) {
    // Try HTML5 geolocation.
+
    if (navigator.geolocation) {
+    var infowindow = new google.maps.InfoWindow({map: map});
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
         lat: position.coords.latitude,
