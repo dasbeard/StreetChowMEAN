@@ -9,7 +9,6 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
 
   if($cookies.getObject('loggedUser')){
     $scope.organization = $cookies.getObject('loggedUser')
-    console.log($scope.organization);
   }
 
   $scope.logout = function(){
@@ -24,7 +23,7 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
    // Try HTML5 geolocation.
 
    if (navigator.geolocation) {
-    var infowindow = new google.maps.InfoWindow({map: map});
+    // var infowindow = new google.maps.InfoWindow({map: map});
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
         lat: position.coords.latitude,
@@ -133,13 +132,6 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
          }, i * 100);
        }
      }
-
-
-
-
-
-
-
 
 
     //  // ========== End Markers ==========

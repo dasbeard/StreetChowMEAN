@@ -15,7 +15,6 @@ module.exports = (function(){
   return {
 
   addDay: function(req,res){
-    console.log(req.body);
     Organization.findOne({_id: req.body.user}, function(err, oneUser){
       if (err){
         console.log('===== Error ====='.red);
@@ -45,16 +44,56 @@ module.exports = (function(){
         console.log('==== Error When saving new day ===='.red);
         console.log(err);
       } else {
-        var toSendBack = {'days': oneUser.days, 'services': oneUser.services};
+        var toSendBack = {days: oneUser.days, services: oneUser.services, otherServices: oneUser.otherServices};
         res.json(toSendBack);
       }
     })
-  },
+  }, // End getDayService
+
+
+  updateServices: function(req,res){
+    // console.log(req.body);
+    Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      if (err){
+        console.log('==== Error updating services ===='.red);
+        console.log(err);
+      } else {
+        oneUser.services = req.body;
+        oneUser.save(function(err){
+          if (err){
+            console.log('==== Error saving services ===='.red);
+            console.log(err);
+          } else {
+            res.json(true);
+          }
+        })
+      }
+    })
+  }, // End updateServices
+
+
+  updateOtherService: function(req,res){
+    Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      if (err){
+        console.log('==== Error When finding user ===='.red);
+        console.log(err);
+      } else {
+        oneUser.otherServices = req.body.service;
+        oneUser.save(function(err){
+          if (err){
+            console.log('==== Error When updating Other Services ===='.red);
+            console.log(err);
+          } else {
+            res.json(true);
+          }
+        })
+      }
+    });
+  }, // End addOtherService
 
 
 
   removeDay: function(req,res){
-    console.log(req.body);
     Organization.findOne({_id: req.body.id}, function(err, oneUser){
       if (err){
         console.log('==== Error When finding user ===='.red);
@@ -77,155 +116,143 @@ module.exports = (function(){
 
 
 
-    // ============== Get all info from DB for API ==============
-    apiTest: function(req,res){
-      Organization.find({}, function(err, data){
-        if (err){
-          console.log('===== Error ====='.red);
-          console.log(err);
-        } else {
-          res.json(data);
-        }
-      });
-    }, // End API Test
-
-
-
-    findLocal: function (req,res){
-      console.log(req.body);
-      var toSearch = (req.body.street1 + ', ' + req.body.city);
-      geocoder.geocode(toSearch, function(err, output){
-        if (err){
-          console.log('===== Error ====='.red);
-          console.log(err);
-        } else {
-          if (output.length > 0){
-          console.log('the output'.cyan);
-          console.log(output.length);
-          console.log(output);
-          res.json(output);
-          } else {
-            console.log('Nope'.red);
-            res.json(false)
-          }
-        }
-      });
-
-
-
-
-    }, // End findLocal
-
-
-    getAll: function(req,res){
-      Organization.find(({}),function(err, allOrgs){
-        if (err){
-          console.log('===== ERROR ====='.red);
-          console.log(err);
-        } else {
-          var sendBack = [];
-          for (var i = 0; i<allOrgs.length; i++){
-            sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
-                        organization: allOrgs[i].organization,
-                        description: allOrgs[i].description,
-                        latitude: allOrgs[i].latitude,
-                        longitude: allOrgs[i].longitude,
-                        _id: allOrgs[i]._id
-                      }
-            );
-          }
-          res.json(sendBack);
-        };
-      });
-    },
-
-
-
-    regCheck: function(req,res){
-      var checkObj = req.body;
-      console.log('in regCheck'.cyan);
-      console.log(checkObj);
-      if (checkNewReg(checkObj)){
-    // ======== Query DB to find instance ========
-        Organization.findOne({formattedAddress: checkObj.formattedAddress}, function(err, oneUser){
-          if (err){
-            console.log('===== Error ====='.red);
-            console.log(err);
-          } else if (oneUser){
-            // All Good
-            console.log('Already in system'.red);
-            res.json(false);
-          } else {
-            console.log('All Good'.cyan);
-            res.json(true);
-          }
-        });
+  // ============== Get all info from DB for API ==============
+  apiTest: function(req,res){
+    Organization.find({}, function(err, data){
+      if (err){
+        console.log('===== Error ====='.red);
+        console.log(err);
       } else {
-        res.json({error: checkNewReg(checkObj)});
+        res.json(data);
       }
-    }, // End regCheck
+    });
+  }, // End API Test
 
 
-    reg: function(req,res){
-    // ===== Validations =====
-      console.log('In the reg method'.yellow);
-      console.log(req.body);
-        var validatedObj = req.body;
-        if (validateLocation(validatedObj)){
-          var myPhone = intParsing(req.body.phone);
-          var myZip = intParsing(req.body.zip);
+
+  findLocal: function (req,res){
+    console.log(req.body);
+    var toSearch = (req.body.street1 + ', ' + req.body.city);
+    geocoder.geocode(toSearch, function(err, output){
+      if (err){
+        console.log('===== Error ====='.red);
+        console.log(err);
+      } else {
+        if (output.length > 0){
+        console.log('the output'.cyan);
+        console.log(output.length);
+        console.log(output);
+        res.json(output);
         } else {
-          res.json({error: validateLocation(validatedObj)});
+          console.log('Nope'.red);
+          res.json(false)
         }
-    // ===== Creating and Saving new Organization =====
-      Organization.findOne({formattedAddress: req.body.formattedAddress}, function(err, oneUser){
+      }
+    });
+  }, // End findLocal
+
+
+  getAll: function(req,res){
+    Organization.find(({}),function(err, allOrgs){
+      if (err){
+        console.log('===== ERROR ====='.red);
+        console.log(err);
+      } else {
+        var sendBack = [];
+        for (var i = 0; i<allOrgs.length; i++){
+          sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
+                      organization: allOrgs[i].organization,
+                      description: allOrgs[i].description,
+                      latitude: allOrgs[i].latitude,
+                      longitude: allOrgs[i].longitude,
+                      _id: allOrgs[i]._id
+                    }
+          );
+        }
+        res.json(sendBack);
+      };
+    });
+  },
+
+
+
+  regCheck: function(req,res){
+    var checkObj = req.body;
+    console.log('in regCheck'.cyan);
+    console.log(checkObj);
+    if (checkNewReg(checkObj)){
+  // ======== Query DB to find instance ========
+      Organization.findOne({formattedAddress: checkObj.formattedAddress}, function(err, oneUser){
         if (err){
-          console.log('==== Error ===='.red);
+          console.log('===== Error ====='.red);
+          console.log(err);
+        } else if (oneUser){
+          // All Good
+          console.log('Already in system'.red);
+          res.json(false);
         } else {
-          // Email already in the system
-          if (oneUser){
-          console.log('==== User Found in System'.yellow);
-          res.json({error: "This email is already registered to an account. Please Login to continue"});
-          } else {
-            // No Email Found
-            console.log('=== New User ready to be created ==='.yellow);
+          console.log('All Good'.cyan);
+          res.json(true);
+        }
+      });
+    } else {
+      res.json({error: checkNewReg(checkObj)});
+    }
+  }, // End regCheck
 
-            // Encrypting password
-            var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
 
-            // Create User object
+  reg: function(req,res){
+  // ===== Validations =====
+    console.log('In the reg method'.yellow);
+    console.log(req.body);
+      var validatedObj = req.body;
+      if (validateLocation(validatedObj)){
+        var myPhone = intParsing(req.body.phone);
+        var myZip = intParsing(req.body.zip);
+      } else {
+        res.json({error: validateLocation(validatedObj)});
+      }
+  // ===== Creating and Saving new Organization =====
+    Organization.findOne({formattedAddress: req.body.formattedAddress}, function(err, oneUser){
+      if (err){
+        console.log('==== Error ===='.red);
+      } else {
+        // Email already in the system
+        if (oneUser){
+        console.log('==== User Found in System'.yellow);
+        res.json({error: "This email is already registered to an account. Please Login to continue"});
+        } else {
+          // No Email Found
+          console.log('=== New User ready to be created ==='.yellow);
+
+          // Encrypting password
+          var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
+
+          // Create User object
 
 // ============= WITHOUT LAT AND LONG!! -- 3/12/17 =============
 
-            var newOrganization = new Organization({
-              organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: myZip, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw, services: [{name: 'Jobs', val: false},
-               {name: 'Education', val: false},
-               {name: 'Childcare', val: false},
-               {name: 'Recreational', val: false},
-               {name: 'Beds', val: false},
-               {name: 'Donations', val: false},
-               {name: 'Clothes', val: false},
-               {name: 'Interview', val: false}
-              ]
-            })
-            newOrganization.save(function(err){
-              if (err){
-                console.log('==== Error When saving new organization ===='.red);
-                console.log(err);
-              } else {
-                console.log('==== Successfuly Registered ===='.yellow);
+          var newOrganization = new Organization({
+            organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: myZip, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw,
+          })
+          newOrganization.save(function(err){
+            if (err){
+              console.log('==== Error When saving new organization ===='.red);
+              console.log(err);
+            } else {
+              console.log('==== Successfuly Registered ===='.yellow);
 
-                var toSendBack = {id: newOrganization._id,
-                  formattedAddress: newOrganization.formattedAddress,
-                  organization: newOrganization.organization,
-                };
-                res.json(toSendBack)
-              }
-            });
-          }
+              var toSendBack = {id: newOrganization._id,
+                formattedAddress: newOrganization.formattedAddress,
+                organization: newOrganization.organization,
+              };
+              res.json(toSendBack)
+            }
+          });
         }
-      });
-    },  // End Reg Method
+      }
+    });
+  },  // End Reg Method
 
 
 

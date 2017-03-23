@@ -33,7 +33,8 @@ var OrganizationSchema = new mongoose.Schema({
       },
   password: {type: String, required: true, minlength: 5, trim: true},
 
-  services: [{}],
+  services: {},
+  otherServices: {type: String, trim: true},
   days: [{}],
 
 }, {timestamps: true});

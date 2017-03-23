@@ -11,59 +11,60 @@ app.controller('locationController', function($scope, logRegFactory, $location, 
     $cookies.remove('locations');
     $cookies.remove('orgName');
     $location.url('/logReg')
-  }
+  };
 
 
   // Register New Organization Method
-    $scope.regOrganization = function (){
-      $scope.error = "";
-      $scope.user = {};
+  $scope.regOrganization = function (){
+    $scope.error = "";
+    $scope.user = {};
 
-      if($scope.reg){
-        var reg = $scope.reg;
+    if($scope.reg){
+      var reg = $scope.reg;
 
-        if (regValidation(reg) != true){
-          $scope.error = regValidation(reg);
-        } else {
-    // Call Factory method to register
-          $scope.reg.organization = $scope.orgName;
-          $scope.reg.formattedAddress = $scope.myTemp.formattedAddress;
-          $scope.reg.streetNumber = $scope.myTemp.streetNumber;
-          $scope.reg.streetName = $scope.myTemp.streetName;
-          $scope.reg.city = $scope.myTemp.city;
-          $scope.reg.zipcode = $scope.myTemp.zipcode;
-          $scope.reg.state = $scope.myTemp.administrativeLevels.level1short;
-          $scope.reg.latitude = $scope.myTemp.latitude;
-          $scope.reg.longitude = $scope.myTemp.longitude;
-
-          logRegFactory.register($scope.reg, function(output){
-            console.log(output.data);
-            console.log("Back from factory --> finished registering");
-            $scope.user = output.data;
-
-            if (output.data.error){
-              $scop.error = output.data.error;
-            } else {
-              // Store User info in cookie
-              $cookies.putObject("loggedUser", output.data);
-              $scope.user = $cookies.getObject("loggedUser");
-              $cookies.remove('myTemp');
-              $cookies.remove('locations');
-              $cookies.remove('orgName');
-              // Redirect User
-              $location.url('/');
-            }
-          });
-          // Clear Register Inputs
-          $scope.reg = {};
-      // ==================================
-
-        }
+      if (regValidation(reg) != true){
+        $scope.error = regValidation(reg);
       } else {
-        $scope.error = 'Please enter in the required information to continue';
+  // Call Factory method to register
+        $scope.reg.organization = $scope.orgName;
+        $scope.reg.formattedAddress = $scope.myTemp.formattedAddress;
+        $scope.reg.streetNumber = $scope.myTemp.streetNumber;
+        $scope.reg.streetName = $scope.myTemp.streetName;
+        $scope.reg.city = $scope.myTemp.city;
+        $scope.reg.zipcode = $scope.myTemp.zipcode;
+        $scope.reg.state = $scope.myTemp.administrativeLevels.level1short;
+        $scope.reg.latitude = $scope.myTemp.latitude;
+        $scope.reg.longitude = $scope.myTemp.longitude;
+
+        logRegFactory.register($scope.reg, function(output){
+          console.log(output.data);
+          console.log("Back from factory --> finished registering");
+          $scope.user = output.data;
+
+          if (output.data.error){
+            $scop.error = output.data.error;
+          } else {
+            // Store User info in cookie
+            $cookies.putObject("loggedUser", output.data);
+            $scope.user = $cookies.getObject("loggedUser");
+            $cookies.remove('myTemp');
+            $cookies.remove('locations');
+            $cookies.remove('orgName');
+            // Redirect User
+            console.log('dfsafdsa');
+            $location.url('/food');
+          }
+          $scope.reg = {};
+        });
+        // Clear Register Inputs
+    // ==================================
+
       }
-    $cookies.remove('myTemp');
-    } // End regOrganization Method
+    } else {
+      $scope.error = 'Please enter in the required information to continue';
+    }
+  $cookies.remove('myTemp');
+  } // End regOrganization Method
 
 
 }); // End Controller

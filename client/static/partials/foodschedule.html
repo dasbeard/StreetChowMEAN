@@ -68,7 +68,7 @@
     <td>{{ d.day }}</td>
     <td>{{ d.start }}</td>
     <td>{{ d.end }}</td>
-    <td><button ng-click = "deleteDay($index)"> Delete this shit</button></td>
+    <td><button ng-click = "deleteDay($index)">Remove</button></td>
   </tr>
 </table>
 
@@ -81,31 +81,23 @@
 
   <h1>services</h1>
 
-<label ng-repeat='service in services'>{{service.name}}
-  <input type="checkbox" ng-checked='service.val'>
-</label>
-
-
-
-  <!-- <label>Jobs: <input type="checkbox" value='jobs' ng-model='services.jobs'></label>
-  <label>Education: <input type="checkbox" ng-model='services.education'></label>
-  <label>Childcare: <input type="checkbox" ng-model='services.childcare'></label>
-  <label>Recreational Activities: <input type="checkbox" ng-model='services.recActivities'></label>
-  <label>Beds: <input type="checkbox" ng-model='services.beds'></label>
-  <label>Takes Donations: <input type="checkbox" ng-model='services.donations'></label>
-  <label>Clothes: <input type="checkbox" ng-model='services.clothes'></label>
-  <label>Interview Help: <input type="checkbox" ng-model='services.interviewHelp'></label> -->
-
-
-
+<label>Beds: <input type="checkbox" ng-model='services.beds' ng-true-value="true" ng-false-value="false" ng-checked='services.beds'></label>
+<label>Clothes: <input type="checkbox" ng-model='services.clothes' ng-true-value="true" ng-false-value="false"></label>
+<label>Education: <input type="checkbox" ng-model='services.education' ng-true-value="true" ng-false-value="false"></label>
+<label>Interview Help: <input type="checkbox" ng-model='services.interviewHelp' ng-true-value="true" ng-false-value="false"></label>
+<label>Jobs: <input type="checkbox" ng-model='services.jobs' ng-true-value="true" ng-false-value="false"></label>
+<label>Childcare: <input type="checkbox" ng-model='services.childcare' ng-true-value="true" ng-false-value="false"></label>
+<label>Recreational Activities: <input type="checkbox" ng-model='services.recActivities' ng-true-value="true" ng-false-value="false"></label>
+<label>Takes Donations: <input type="checkbox" ng-model='services.donations' ng-true-value="true" ng-false-value="false"></label>
 
   <button type="button" ng-click = 'updateServices()'>Save Services</button>
+</div>
 
 
-  <!-- <div class="other"> -->
-<!-- <label>Other: <input type="text" name="" value="" ng-model='newService'></label>
-<button type="button" name="button" ng-click = 'addNewService()'>Add New Service</button> -->
-<!-- </div> -->
+<div class="other">
+  <label>Other Services: <input type="text" ng-model='otherServices' value="otherServices"></label>
+
+  <button type="button" name="button" ng-click = 'addOtherService()'>Add New Service</button>
 </div>
 
 

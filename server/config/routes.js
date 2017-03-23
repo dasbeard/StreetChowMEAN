@@ -39,22 +39,16 @@ module.exports = function(app){
     organizations.removeDay(req,res)
   });
 
+  app.post('/updateServices', function(req,res){
+    organizations.updateServices(req,res)
+  });
+
+  app.post('/otherServices', function(req,res){
+    organizations.updateOtherService(req,res)
+  });
 
   app.get('/apiTest', function(req,res){
     organizations.apiTest(req,res)
   });
-
-
-// =========================================================================
-// ============================ Wall Routes ================================
-// =========================================================================
-// app.get('/messages/all', function(req,res){
-//   messages.getAllMessages(req, res);
-// });
-//
-// app.post('/messages/new', function(req,res){
-//   messages.addMessage(req,res);
-// });
-
 
 }; // End Routes

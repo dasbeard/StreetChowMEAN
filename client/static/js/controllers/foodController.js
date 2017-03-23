@@ -2,11 +2,7 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   $scope.days = [{}];
   $scope.user = $cookies.getObject('loggedUser');
 
-  console.log($scope.user);
-
   getData();
-
-
 
   $scope.addDay = function(){
     $scope.newDayTime = { 'user': $scope.user.id,
@@ -14,7 +10,6 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
                           'start': $scope.days.start + $scope.days.start2,
                           'end': $scope.days.end + $scope.days.end2
                         };
-                        console.log($scope.newDayTime);
     foodFactory.addDay($scope.newDayTime, function(output){
       if (output.data){
         getData();
@@ -27,15 +22,20 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
   function getData (){
     foodFactory.getDayService($scope.user, function(output){
-      console.log(output.data);
-      $scope.days = output.data.days;
-      $scope.services = output.data.services;
-
+      if (output.data.days){
+        $scope.days = output.data.days;
+      }
+      if (output.data.services){
+        $scope.services = output.data.services;
+      }
+      if (output.data.otherServices){
+        $scope.otherServices = output.data.otherServices;
+      }
     });
-  };
+
+  }; // End getData
 
   $scope.deleteDay = function(idx){
-    console.log(idx);
     $scope.toRemove = {id: $scope.user.id, index: idx},
     foodFactory.destroy($scope.toRemove, function(output){
       if (output.data){
@@ -44,71 +44,87 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
         $scope.error = 'Problem removing day'
       }
     });
-  };
+  }; // End deleteDay
 
   $scope.updateServices = function(){
-    var myServices = [{}];
+    var myServices = {};
+
     if ($scope.services){
-      if ($scope.services.Jobs == true){
-        myServices.push({name: 'Jobs', val: true});
+      if ($scope.services.beds == true){
+        myServices.beds = true;
       } else {
-        myServices.push({name: 'Jobs', val: false});
+        myServices.beds = false;
       }
-      if ($scope.services.Education == true){
-        myServices.push({name: 'Education', val: true});
-      }
-      //  else {
-      //   myServices.push({name: 'Education', val: false});
-      // }
-      if ($scope.services.Childcare == true){
-        myServices.push({name: 'Childcare', val: true});
+      if ($scope.services.cloths == true){
+        myServices.cloths = true;
       } else {
-        myServices.push({name: 'Childcare', val: false});
+        myServices.cloths = false;
       }
-      if ($scope.services.Recreational == true){
-        myServices.push({name: 'Recreational', val: true});
+      if ($scope.services.education == true){
+        myServices.education = true;
       } else {
-        myServices.push({name: 'Recreational', val: false});
+        myServices.education = false;
       }
-      if ($scope.services.Beds == true){
-        myServices.push({name: 'Beds', val: true});
+      if ($scope.services.interviewHelp == true){
+        myServices.interviewHelp = true;
       } else {
-        myServices.push({name: 'Beds', val: false});
+        myServices.interviewHelp = false;
       }
-      if ($scope.services.Donations == true){
-        myServices.push({name: 'Donations', val: true});
+      if ($scope.services.jobs == true){
+        myServices.jobs = true;
       } else {
-        myServices.push({name: 'Donations', val: false});
+        myServices.jobs = false;
       }
-      if ($scope.services.Clothes == true){
-        myServices.push({name: 'Clothes', val: true});
+      if ($scope.services.childcare == true){
+        myServices.childcare = true;
       } else {
-        myServices.push({name: 'Clothes', val: false});
+        myServices.childcare = false;
       }
-      if ($scope.services.Interview == true){
-        myServices.push({name: 'Interview', val: true});
+      if ($scope.services.recActivities == true){
+        myServices.recActivities = true;
       } else {
-        myServices.push({name: 'Interview', val: false});
+        myServices.recActivities = false;
       }
-    } // End If
-    console.log(myServices);
-  }
+      if ($scope.services.donations == true){
+        myServices.donations = true;
+      } else {
+        myServices.donations = false;
+      }
+    } else {
+      myServices.beds = false;
+      myServices.cloths = false;
+      myServices.education = false;
+      myServices.interviewHelp = false;
+      myServices.jobs = false;
+      myServices.childcare = false;
+      myServices.recActivities = false;
+      myServices.donations = false;
+    }
+    myServices.id = $scope.user.id;
+    foodFactory.updateServices(myServices, function(output){
+      if (output.data){
+        getData();
+      } else {
+        $scope.error = 'Problem updating service';
+      }
+    });
+  }; // End updateServices
 
 
 
+  $scope.addOtherService = function(){
+    var updateServices = {id: $scope.user.id, service: $scope.otherServices};
 
-// $scope.addNewService = function(data){
-//   console.log($scope.newService);
-//   servicesFactory.add($scope.newService, function(data){
-//     $scope.services = data
-//   });
-//     $scope.newService = {};
-// }
-// $scope.get(addDay(data))
-// .then(function(response){
-//   $scope.days = response.data.days
-//   $scope.startTime = response.data.startTime
-//   $scope.endTime = response.data.endTime
-// });
+    foodFactory.addOtherService(updateServices, function(output){
+      if (output.data){
+        getData();
+      } else {
+        $scope.error = 'Problem updating other services';
+      }
+    });
+  }; // End addOtherService
+
+
+
 
 });
