@@ -4,15 +4,79 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const NodeGeocoder = require('node-geocoder');
+const distance = require('google-distance');
+// distance.key = ('AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM');
 
 var options = {
   provider: 'google'
 };
 var geocoder = NodeGeocoder(options)
+
+
 var Organization = mongoose.model('Organization');
 
 module.exports = (function(){
   return {
+
+
+    // ============== Get all info from DB for API Using Distance Matrix ==============
+    apiTest2: function(req,res){
+
+      Organization.find(({}), function(err, allLocations){
+        if (err){
+          console.log('==== Error When finding user ===='.red);
+          console.log(err);
+        } else {
+          // console.log(allLocations);
+          var sendBack = [];
+          var origins = req.params.location
+          var destinations = [];
+
+      // Need to make sure that all locations are less than 25 per google api
+      // if (allLocations.length > 2){
+      //   console.log('greater than 2');
+      //   console.log(allLocations.length);
+      // }
+          for (var i=0; i<allLocations.length;i++){
+            destinations.push(allLocations[i].latitude + ',' + allLocations[i].longitude);
+          }
+          distance.get({origin: req.params.location, destinations}, function(err, data) {
+              if (err){
+                return console.log(err)
+              } else {
+                // console.log(data);
+                for (var i=0; i<data.length; i++){
+                  if (data[i].distanceValue < 16500){
+                    console.log('=================================='.red);
+                    console.log(data[i]);
+                    console.log(destinations[i]);
+                    console.log('=================================='.yellow);
+                    console.log(allLocations[i]);
+                    sendBack.push(allLocations[i]);
+
+                  }
+                }
+                console.log('=================================='.cyan);
+                console.log(sendBack);
+                console.log('=================================='.cyan);
+
+                res.json(sendBack)
+              }
+          });
+
+        }
+      });
+    }, // End apiTest2
+
+
+
+
+
+
+
+
+
+
 
   addDay: function(req,res){
     Organization.findOne({_id: req.body.user}, function(err, oneUser){
@@ -112,10 +176,6 @@ module.exports = (function(){
     })
   },
 
-
-
-
-
   // ============== Get all info from DB for API ==============
   apiTest: function(req,res){
     Organization.find({}, function(err, data){
@@ -205,10 +265,12 @@ module.exports = (function(){
   // ===== Validations =====
     console.log('In the reg method'.yellow);
     console.log(req.body);
+    var myPhone;
+    var myZip;
       var validatedObj = req.body;
       if (validateLocation(validatedObj)){
-        var myPhone = intParsing(req.body.phone);
-        var myZip = intParsing(req.body.zip);
+        myPhone = intParsing(req.body.phone);
+        // myZip = intParsing(req.body.zip);
       } else {
         res.json({error: validateLocation(validatedObj)});
       }
@@ -224,16 +286,11 @@ module.exports = (function(){
         } else {
           // No Email Found
           console.log('=== New User ready to be created ==='.yellow);
-
-          // Encrypting password
+    // Encrypting password
           var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
-
-          // Create User object
-
-// ============= WITHOUT LAT AND LONG!! -- 3/12/17 =============
-
+    // Create User object
           var newOrganization = new Organization({
-            organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: myZip, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw,
+            organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: req.body.zipcode, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw,
           })
           newOrganization.save(function(err){
             if (err){
@@ -373,3 +430,17 @@ if (!emailRegex.test(orgObj.email)){
   }
   return true;
 }; // End Validate Location
+
+
+
+
+
+// ===== Sleep Function =====
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+};

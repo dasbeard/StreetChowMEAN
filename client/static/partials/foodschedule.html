@@ -68,7 +68,7 @@
     <td>{{ d.day }}</td>
     <td>{{ d.start }}</td>
     <td>{{ d.end }}</td>
-    <td><button ng-click = "deleteDay($index)">Remove</button></td>
+    <td><button  ng-click = "deleteDay($index)">Remove</button></td>
   </tr>
 </table>
 
@@ -76,12 +76,51 @@
 
 
 
+
 <div class="services">
+  <h1>Services</h1>
+
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Beds: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.beds' ng-true-value="true" ng-false-value="false" ></label>
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Clothes: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.clothes' ng-true-value="true" ng-false-value="false"></label>
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Education: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.education' ng-true-value="true" ng-false-value="false"></label>
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Interview Help: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.interviewHelp' ng-true-value="true" ng-false-value="false"></label>
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Jobs: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.jobs' ng-true-value="true" ng-false-value="false"></label>
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Childcare: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.childcare' ng-true-value="true" ng-false-value="false"></label>
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Recreational Activities: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.recActivities' ng-true-value="true" ng-false-value="false"></label>
+<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Takes Donations: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.donations' ng-true-value="true" ng-false-value="false"></label>
 
 
-  <h1>services</h1>
 
-<label>Beds: <input type="checkbox" ng-model='services.beds' ng-true-value="true" ng-false-value="false" ng-checked='services.beds'></label>
+  <button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateServices()'>Update Services</button>
+</div>
+
+
+
+
+<div class="mdl-textfield mdl-js-textfield">
+  <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ng-model='otherServices' value="otherServices"></textarea>
+  <label class="mdl-textfield__label" for="sample5">Other Services: </label>
+
+  <!-- <div class="mdl-layout-spacer"></div> -->
+
+  <button class="mdl-button mdl-js-button mdl-button--raised" type="button" name="button" ng-click = 'addOtherService()'>Add New Service</button>
+</div>
+
+
+<div class="mdl-layout-spacer"></div>
+
+<a href="#!/reg"><button class="mdl-button mdl-js-button mdl-button--raised">
+Edit Organization</button></a>
+
+
+
+<!-- <div class="other">
+<label>Other Services: <input type="text" ng-model='otherServices' value="otherServices"></label>
+
+</div> -->
+
+<!--
+<label>Beds: <input type="checkbox" ng-model='services.beds' ng-true-value="true" ng-false-value="false" ></label>
 <label>Clothes: <input type="checkbox" ng-model='services.clothes' ng-true-value="true" ng-false-value="false"></label>
 <label>Education: <input type="checkbox" ng-model='services.education' ng-true-value="true" ng-false-value="false"></label>
 <label>Interview Help: <input type="checkbox" ng-model='services.interviewHelp' ng-true-value="true" ng-false-value="false"></label>
@@ -91,15 +130,4 @@
 <label>Takes Donations: <input type="checkbox" ng-model='services.donations' ng-true-value="true" ng-false-value="false"></label>
 
   <button type="button" ng-click = 'updateServices()'>Save Services</button>
-</div>
-
-
-<div class="other">
-  <label>Other Services: <input type="text" ng-model='otherServices' value="otherServices"></label>
-
-  <button type="button" name="button" ng-click = 'addOtherService()'>Add New Service</button>
-</div>
-
-
-
-<a href="#!/reg">Edit Organization</a>
+</div> -->

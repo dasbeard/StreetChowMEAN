@@ -12,6 +12,7 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
   }
 
   $scope.logout = function(){
+    console.log('button clicked');
     $cookies.remove('loggedUser');
     $location.url('/logout');
   } // End Logout

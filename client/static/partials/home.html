@@ -1,8 +1,11 @@
-<p ng-click='logout()'>Logout</p>
+<div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
 
-<h1>Home Page</h1>
-<h2>{{organization.organization}}</h2>
-<h2>{{error}}</h2>
+  <h4>Welcome</h4>
+  <h1>{{organization.organization}}</h1>
+  <h2>{{error}}</h2>
+</div>
 
+<div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
 
   <ng-map id="myMap" center="41,-87" zoom="3"></ng-map>
+</div>

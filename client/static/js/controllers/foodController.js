@@ -55,10 +55,10 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       } else {
         myServices.beds = false;
       }
-      if ($scope.services.cloths == true){
-        myServices.cloths = true;
+      if ($scope.services.clothes == true){
+        myServices.clothes = true;
       } else {
-        myServices.cloths = false;
+        myServices.clothes = false;
       }
       if ($scope.services.education == true){
         myServices.education = true;
@@ -92,7 +92,7 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       }
     } else {
       myServices.beds = false;
-      myServices.cloths = false;
+      myServices.clothes = false;
       myServices.education = false;
       myServices.interviewHelp = false;
       myServices.jobs = false;

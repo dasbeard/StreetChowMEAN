@@ -4,6 +4,7 @@
 app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
   $scope.user = {};
   $scope.foundLocations = $cookies.getObject('locations');
+  
 
 // Validate before changing pages
   $scope.continueReg = function (){
