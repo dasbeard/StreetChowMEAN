@@ -38,6 +38,9 @@ module.exports = function(app){
   app.post('/removeDay', function(req,res){
     organizations.removeDay(req,res)
   });
+  app.post('/getShow', function(req,res){
+    organizations.getShow(req,res)
+  });
 
   app.post('/updateServices', function(req,res){
     organizations.updateServices(req,res)

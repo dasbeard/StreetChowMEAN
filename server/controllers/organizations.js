@@ -176,6 +176,31 @@ module.exports = (function(){
 
 
 
+  getShow: function(req,res){
+    Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      if (err){
+        console.log('not working');
+      } else {
+        var sendBack = {formattedAddress: oneUser.formattedAddress,
+          organization: oneUser.organization,
+          website: oneUser.website,
+          phone: oneUser.phone,
+          description: oneUser.description,
+          email: oneUser.email,
+          services: oneUser.services,
+          otherServices: oneUser.otherServices,
+          days: oneUser.days
+        };
+        console.log(sendBack);
+        res.json(sendBack);
+      }
+    });
+  }, // End get show
+
+
+
+
+
   regCheck: function(req,res){
     var checkObj = req.body;
     console.log('in regCheck'.cyan);

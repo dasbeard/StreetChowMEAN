@@ -1,4 +1,4 @@
-app.controller('foodController', function($scope, foodFactory, $location, $cookies, $http){
+app.controller('foodController', function($scope, foodFactory, $location, $cookies){
   $scope.days = [{}];
   $scope.user = $cookies.getObject('loggedUser');
 
