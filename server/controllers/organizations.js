@@ -141,6 +141,23 @@ module.exports = (function(){
 
 
 
+    getShow: function(req,res){
+      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        if (err){
+          console.log('not working');
+        } else {
+          var sendBack = {formattedAddress: organization.formattedAddress,
+                      organization: organization.organization,
+                      website: organization.website,
+                      phone: organization.phone,
+                      description: organization.description,
+                    }
+        }
+      });
+},
+
+
+
     regCheck: function(req,res){
       var checkObj = req.body;
       console.log('in regCheck'.cyan);

@@ -1,0 +1,23 @@
+
+{{organization.name}}
+{{organization.formattedAddress}}
+{{orgnaization.website}}
+{{orgnaization.phone}}
+
+
+<ng-repeat = 'showinfo'>
+
+  <table>
+
+    <thead>
+      <th>days</th>
+      <th>start time</th>
+      <th>end time</th>
+      <th>Action</th>
+    </thead>
+    <tr ng-repeat="d in days">
+      <td>{{ d.day }}</td>
+      <td>{{ d.start }}</td>
+      <td>{{ d.end }}</td>
+    </tr>
+  </table>
