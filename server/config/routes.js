@@ -50,8 +50,16 @@ module.exports = function(app){
     organizations.updateOtherService(req,res)
   });
 
+  app.post('/getShow', function(req,res){
+    organizations.getShow(req,res)
+  });
+
   app.get('/apiTest', function(req,res){
     organizations.apiTest(req,res)
+  });
+
+  app.get('/apiTest2/:location', function(req,res){
+    organizations.apiTest2(req,res)
   });
 
 }; // End Routes

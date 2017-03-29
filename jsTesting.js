@@ -70,3 +70,41 @@ secondFunction()
 //  {name: 'Clothes', val: false},
 //  {name: 'Interview Help', val: false}
 // ]
+
+
+
+// getShow: function(req,res){
+//        Organization.findOne({_id: req.body.id}, function(err, oneUser){
+//          if (err){
+//            console.log('not working');
+//          } else {
+//            var sendBack = {formattedAddress: organization.formattedAddress,
+//                        organization: organization.organization,
+//                        website: organization.website,
+//                        phone: organization.phone,
+//                        description: organization.description,
+//                      }
+//          }
+//        });
+//      };
+
+
+
+
+
+// app.controller('showController', function($scope, showFactory, $location, $cookies){
+//
+//   // need to get the organization ID from the restful route and pass that into the function. Then you can extract all the data from the $scope.organization object.
+//
+//   getData (){
+//     showpageFactory.getservices(<organization_Id>, function(output){
+//       console.log(output.data);
+//       if (output.data){
+//         $scope.organization = output.data;
+//       } else {
+//         $scope.error = 'Something went wrong';
+//       }
+//     });
+//   };
+//
+// });

@@ -5,7 +5,14 @@
   <meta charset="utf-8">
   <title>Street Chow</title>
   <link rel="shortcut icon" type="image/gif" href="assets/favicon.ico"/>
+
+  <link rel="stylesheet" href="css/mdl/material.min.css">
+  <script src="css/mdl/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
   <link rel="stylesheet" href="css/style.css">
+
   <script type="text/javascript" src='angular/angular.min.js'></script>
   <script type="text/javascript" src='angular-route/angular-route.min.js'></script>
   <script type="text/javascript" src='angular-cookies/angular-cookies.min.js'></script>
@@ -26,14 +33,39 @@
   <script type="text/javascript" src='js/controllers/foodController.js'></script>
   <script type="text/javascript" src='js/controllers/showPageController.js'></script>
 
-
-
-
-
 <body>
-    <a href="#!/">Home</a> <a href="#!/logReg">Log/Reg</a>
-    <a href="#!/food">Services</a><br><a href="#!/showpage">Details</a>
-    <div ng-view=""></div>
 
- </body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title"><h1>Street Chow</h1></span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="#!/">Home</a>
+          <a class="mdl-navigation__link" href="#!/logReg">Log/Reg</a>
+          <a class="mdl-navigation__link" href="#!/food">Services</a>
+          <a class="mdl-navigation__link" href="#!/showPage">Show Page</a>
+        </nav>
+      </div>
+    </header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+
+        <div ng-view=""></div>
+
+      </div>
+    </main>
+  </div>
+
+
+</body>
 </html>
+
+
+
+
+<!-- <a href="#!/">Home</a> <a href="#!/logReg">Log/Reg</a> -->
+<!-- <a href="#!/food">Services</a> -->
+<!-- <div ng-view=""></div> -->
