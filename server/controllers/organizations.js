@@ -71,7 +71,17 @@ module.exports = (function(){
 
 
 
-
+  getShow: function(req,res){
+    Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      if (err){
+        console.log("===== Error =======");
+        console.log(err);
+      } else {
+        var sendBack = { formattedAddress: oneUser.formattedAddress, organization: oneUser.organization, website: oneUser.website, phone: oneUser.phone, description: oneUser.description, email: oneUser.email, services: oneUser.services, otherServices: oneUser.otherServices, days: oneUser.days};
+        res.json(sendBack);
+      }
+    })
+  }, // End getShow
 
 
 
