@@ -1,9 +1,31 @@
+.mainBackground{
+  background-image: url('../assets/mochaGrunge_@2X.png');
+}
+
 #myMap{
-  height: 450px;
+  height: 650px;
+}
+
+.homePage{
+  margin: 2%;
 }
 
 .home-title {
   text-align: center;
   margin-top: 1px;
   margin-bottom: 1px;
+}
+
+.orgList {
+  outline: solid black 1px;
+  height: 650px;
+  vertical-align: top;
+}
+
+.homeTable{
+  font-size: 1.5em;
+}
+
+.homeName{
+  width: 30%;
 }

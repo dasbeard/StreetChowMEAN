@@ -24,7 +24,7 @@ app.config(function($routeProvider){
       templateUrl: 'static/partials/multiLocal.html',
       controller: 'logReg'
     })
-    .when('/showpage', {
+    .when('/showPage', {
       templateUrl: 'static/partials/showpage.html',
       controller: 'showPageController'
     })

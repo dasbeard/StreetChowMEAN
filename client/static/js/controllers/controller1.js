@@ -3,19 +3,15 @@
 // =========================== Controller 1 ================================
 // =========================================================================
 app.controller('controller1', function($scope, $location, logRegFactory, $cookies, NgMap){
+  $scope.organization = $cookies.getObject('loggedUser')
+  $scope.position = 'nope';
 
 
-
-
-  if($cookies.getObject('loggedUser')){
-    $scope.organization = $cookies.getObject('loggedUser')
-  }
-
-  $scope.logout = function(){
-    console.log('button clicked');
-    $cookies.remove('loggedUser');
-    $location.url('/logout');
-  } // End Logout
+  // $scope.logout = function(){
+  //   console.log('button clicked');
+  //   $cookies.remove('loggedUser');
+  //   window.location.replace('/');
+  // } // End Logout
 
 
 
@@ -31,6 +27,8 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
         lng: position.coords.longitude,
         zoom: 8
       };
+
+
       var userLocationIcon = "assets/locationPinSmall.png";
       var userLocation = new google.maps.Marker({
         position: pos,
@@ -40,6 +38,10 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
       });
       map.setCenter(pos);
       map.setZoom(12);
+
+      getNearby(pos);
+
+
     },
       function() {
       handleLocationError(true, infowindow, map.getCenter());
@@ -54,55 +56,56 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
     map.setContent(browserHasGeolocation ?
       'Error: The Geolocation service failed.' :
       'Error: Your browser doesn\'t support geolocation.');
-    }
+  }
 
 
+  logRegFactory.getAll(function(output){
 
-// // ========== Build Markers Here ==========
-//   var marker = new google.maps.Marker({
-//     position: {lat: 34.194779, lng: -118.443614},
-//     map: map,
-//     animation: google.maps.Animation.DROP,
-//   });
-// // ========== End Markers ==========
-    logRegFactory.getAll(function(output){
+  // Need Error checking
 
-    // Need Error checking
-        var orgNames =[];
-        // var orgDescrips = [];
-        for (var i=0; i<output.data.length; i++){
-          orgNames.push(output.data[i].organization);
-          // orgNames.push(output.data[i].description);
+      var orgNames =[];
+      // var orgDescrips = [];
+      for (var i=0; i<output.data.length; i++){
+        orgNames.push(output.data[i].organization);
+        // orgNames.push(output.data[i].description);
 
-        };
+      };
 
+      $scope.nearbyOrgs = output.data;
+      // console.log($scope.nearbyOrgs);
 
-        for (var i=0; i<output.data.length; i++){
-          var marker = new google.maps.Marker({
-            position: {lat: output.data[i].latitude, lng: output.data[i].longitude},
-            map: map,
-            clickable: true,
-            animation: google.maps.Animation.DROP,
-          });
-          attachOrgName(marker, orgNames[i]);
+      for (var i=0; i<output.data.length; i++){
+        var marker = new google.maps.Marker({
+          position: {lat: output.data[i].latitude, lng: output.data[i].longitude},
+          map: map,
+          clickable: true,
+          animation: google.maps.Animation.DROP,
+        });
+        attachOrgName(marker, orgNames[i]);
 
-        } // End For Loop
+      } // End For Loop
 
 
-        function attachOrgName(marker, orgName) {
-          var infowindow = new google.maps.InfoWindow({
-            content: orgName
-          });
+      function attachOrgName(marker, orgName) {
+        var infowindow = new google.maps.InfoWindow({
+          content: orgName
+        });
 
-          marker.addListener('click', function() {
-            infowindow.open(marker.get('map'), marker);
-          });
-        }
+        marker.addListener('click', function() {
+          infowindow.open(marker.get('map'), marker);
+        });
+      }
+
+  }); // End getAll
 
 
+  function getNearby(pos){
+    logRegFactory.getNearby(pos, function(output){
+      // console.log(output.data);
+      $scope.nearbyLocations = output.data;
+    });
+  };
 
-
-    }); // End getAll
 
 
 

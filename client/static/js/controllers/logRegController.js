@@ -4,7 +4,14 @@
 app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
   $scope.user = {};
   $scope.foundLocations = $cookies.getObject('locations');
-  
+
+  $scope.logout = function(){
+    console.log('button clicked');
+    $cookies.remove('loggedUser');
+    $location.url('/logout');
+  } // End Logout
+
+
 
 // Validate before changing pages
   $scope.continueReg = function (){
@@ -91,7 +98,8 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
           } else {
             $cookies.putObject("loggedUser", output.data);
             $scope.user = $cookies.getObject('loggedUser');
-            $location.url('/');
+            // $location.url('/');
+            window.location.replace('/');
           }
         })
       $location.url('/logReg');

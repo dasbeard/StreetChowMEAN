@@ -1,11 +1,29 @@
-<div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+  <div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
 
-  <h4>Welcome</h4>
-  <h1>{{organization.organization}}</h1>
-  <h2>{{error}}</h2>
-</div>
+    <h4 ng-show='organization'>Welcome</h4>
+    <h1>{{organization.organization}}</h1>
+    <h2>{{error}}</h2>
+  </div>
 
-<div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+  <div class="mdl-grid homePage">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
-  <ng-map id="myMap" center="41,-87" zoom="3"></ng-map>
-</div>
+      <ng-map id="myMap" center="41,-87" zoom="3"></ng-map>
+
+    </div>
+
+    <div class="orgList mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+      <h2>Near By Places</h2>
+
+      <table class="homeTable">
+        <tr ng-repeat='place in nearbyLocations'>
+          <td class="homeName">{{place.organization}}</td>
+          <td>{{place.formattedAddress}}</td>
+        </tr>
+
+
+      </table>
+
+    </div>
+
+  </div>

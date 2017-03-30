@@ -31,6 +31,10 @@ module.exports = function(app){
     organizations.addDay(req,res)
   });
 
+  app.post('/getNearby', function(req, res){
+    organizations.getNearbyWeb(req,res)
+  });
+
   app.post('/getDayService', function(req,res){
     organizations.getDayService(req,res)
   });

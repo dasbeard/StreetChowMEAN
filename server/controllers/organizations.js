@@ -19,6 +19,54 @@ module.exports = (function(){
   return {
 
 
+
+  getNearbyWeb: function(req,res){
+    console.log(req.body);
+    Organization.find(({}), function(err, nearbyOrgs){
+      if (err){
+        console.log('==== Error When finding user ===='.red);
+        console.log(err);
+      } else {
+        var sendBack = [];
+        var lat = req.body.lat;
+        var long = req.body.lng;
+        var origin = lat + ',' + long;
+        var destinations = [];
+      }
+
+      // Need to make sure that all locations are less than 25 per google api
+      // if (allLocations.length > 2){
+      //   console.log('greater than 2');
+      //   console.log(allLocations.length);
+      // }
+          for (var i=0; i<nearbyOrgs.length;i++){
+            destinations.push(nearbyOrgs[i].latitude + ',' + nearbyOrgs[i].longitude);
+          }
+          distance.get({origin: origin, destinations}, function(err, data) {
+              if (err){
+                return console.log(err)
+              } else {
+                // console.log(data);
+                for (var i=0; i<data.length; i++){
+                  if (data[i].distanceValue < 16500){
+                    sendBack.push(nearbyOrgs[i]);
+
+                  }
+                }
+                res.json(sendBack)
+              }
+          });
+
+
+    })
+
+
+  },
+
+
+
+
+
     // ============== Get all info from DB for API Using Distance Matrix ==============
     apiTest2: function(req,res){
 

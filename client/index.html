@@ -27,15 +27,20 @@
   <script type="text/javascript" src='js/factories/showPageFactory.js'></script>
 
 
-   <script type="text/javascript" src='js/controllers/controller1.js'></script>
+  <script type="text/javascript" src='js/controllers/controller1.js'></script>
   <script type="text/javascript" src='js/controllers/logRegController.js'></script>
   <script type="text/javascript" src='js/controllers/locationController.js'></script>
   <script type="text/javascript" src='js/controllers/foodController.js'></script>
   <script type="text/javascript" src='js/controllers/showPageController.js'></script>
+  <script type="text/javascript" src='js/controllers/logOutController.js'></script>
 
-<body>
 
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+
+
+<body class="mainBackground">
+
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller='logOutController'>
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
@@ -44,9 +49,11 @@
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="#!/">Home</a>
-          <a class="mdl-navigation__link" href="#!/logReg">Log/Reg</a>
-          <a class="mdl-navigation__link" href="#!/food">Services</a>
-          <a class="mdl-navigation__link" href="#!/showPage">Show Page</a>
+          <a class="mdl-navigation__link" href="#!/food/">Services</a>
+          <a class="mdl-navigation__link" href="#!/showPage/">Show Page</a>
+          <a class="mdl-navigation__link" ng-show='!organization' href="#!/logReg/">Log/Reg</a>
+          <a class="mdl-navigation__link" href='' ng-show='organization'ng-click='logout()'>Logout</a>
+
         </nav>
       </div>
     </header>
@@ -62,10 +69,3 @@
 
 </body>
 </html>
-
-
-
-
-<!-- <a href="#!/">Home</a> <a href="#!/logReg">Log/Reg</a> -->
-<!-- <a href="#!/food">Services</a> -->
-<!-- <div ng-view=""></div> -->

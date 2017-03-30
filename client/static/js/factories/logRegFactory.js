@@ -11,6 +11,14 @@ app.factory('logRegFactory', function ($http){
     });
   } // End findAddress
 
+  factory.getNearby = function(input, callback){
+    $http.post('/getNearby', input).then(function(output){
+      // console.log(output);
+      callback(output)
+    });
+  }
+
+
 
   //Check if user is registered already or not
   factory.newRegCheck = function(input, callback){
