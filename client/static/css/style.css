@@ -61,11 +61,13 @@
 }
 
 .showPageServices {
+  text-align: center;
   /*outline: 1px solid black;*/
 }
 
 .showPageDays td {
   width: 5%;
+  text-align: center;
 }
 
 

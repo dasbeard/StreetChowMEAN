@@ -38,19 +38,4 @@ app.controller('showPageController', function($scope, $location, showPageFactory
 
 
 
-
-// setTimeout(function(){
-//
-//   var marker = new google.maps.Marker({
-//     position: {lat: $scope.thisOrg.latitude, lng: $scope.thisOrg.longitude},
-//     map: map,
-//     // clickable: true,
-//     animation: google.maps.Animation.DROP,
-//   });
-//
-//
-// }, 1000);
-
-
-
 }); //End Controller

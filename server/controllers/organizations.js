@@ -134,7 +134,7 @@ module.exports = (function(){
         console.log("===== Error =======");
         console.log(err);
       } else {
-        var sendBack = { formattedAddress: oneUser.formattedAddress, organization: oneUser.organization, website: oneUser.website, phone: oneUser.phone, description: oneUser.description, email: oneUser.email, services: oneUser.services, otherServices: oneUser.otherServices, days: oneUser.days};
+        var sendBack = { formattedAddress: oneUser.formattedAddress, organization: oneUser.organization, website: oneUser.website, phone: oneUser.phone, description: oneUser.description, email: oneUser.email, services: oneUser.services, otherServices: oneUser.otherServices, days: oneUser.days, latitude: oneUser.latitude, longitude: oneUser.longitude};
         res.json(sendBack);
       }
     })

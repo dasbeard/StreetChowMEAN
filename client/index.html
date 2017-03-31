@@ -52,8 +52,8 @@
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="#!/">Home</a>
-          <a class="mdl-navigation__link" href="#!/food">Services</a>
-          <a class="mdl-navigation__link" href="#!/myShowPage">My Page</a>
+          <!-- <a class="mdl-navigation__link" href="#!/food">Services</a> -->
+          <a class="mdl-navigation__link" ng-show='organization' href="#!/myShowPage">My Page</a>
           <!-- <a class="mdl-navigation__link" href="#!/showPage">Show Page</a> -->
           <a class="mdl-navigation__link" ng-show='!organization' href="#!/logReg/">Log/Reg</a>
           <a class="mdl-navigation__link" href='' ng-show='organization'ng-click='logout()'>Logout</a>
