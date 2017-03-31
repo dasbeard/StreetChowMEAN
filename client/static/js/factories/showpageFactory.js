@@ -1,11 +1,16 @@
+// =========================================================================
+// ============================ Wall Factory ===============================
+// =========================================================================
 app.factory('showPageFactory', function($http){
   var factory = {};
 
-  factory.getShow = function(input, callback){
-     $http.post('/getShow', input).then(function(output){
-       callback(output);
-     });
-   };
+  factory.getInfo = function(input, callback){
+    $http.post('/getOrg', input).then(function(output){
+      callback(output.data);
+    });
+  }
 
-    return factory;
-});
+
+return factory;
+
+}); // End showPageFactory Factory

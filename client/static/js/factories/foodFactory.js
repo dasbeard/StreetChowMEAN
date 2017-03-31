@@ -20,11 +20,6 @@ app.factory('foodFactory', function ($http){
     });
   };
 
-  factory.addOtherService = function(input, callback){
-    $http.post('/otherServices', input).then(function(output){
-      callback(output);
-    });
-  };
 
 
   factory.destroy = function(idx, callback){

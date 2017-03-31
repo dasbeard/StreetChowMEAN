@@ -1,0 +1,42 @@
+
+<h2>{{organization.organization}}</h2>
+<h4>{{organization.formattedAddress}}</h4>
+<p>{{organization.website}}</p>
+<p>{{organization.phone}}</p>
+<p>{{organization.email}}</p>
+
+<!-- {{organization.services}} -->
+<p>{{organization.description}}</p>
+
+<p>{{organization.services.otherServices}}</p>
+
+
+<div class="services">
+
+
+  <h1>services</h1>
+
+<label>Beds: <input type="checkbox" ng-model='organization.services.beds' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+<label>Clothes: <input type="checkbox" ng-model='organization.services.clothes' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+<label>Education: <input type="checkbox" ng-model='organization.services.education' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+<label>Interview Help: <input type="checkbox" ng-model='organization.services.interviewHelp' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+<label>Jobs: <input type="checkbox" ng-model='organization.services.jobs' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+<label>Childcare: <input type="checkbox" ng-model='organization.services.childcare' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+<label>Recreational Activities: <input type="checkbox" ng-model='organization.services.recActivities' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+<label>Takes Donations: <input type="checkbox" ng-model='organization.services.donations' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+
+</div>
+
+  <table>
+    <thead>
+      <th>days</th>
+      <th>start time</th>
+      <th>end time</th>
+      <th>Action</th>
+    </thead>
+    <tr ng-repeat="d in organization.days">
+      <td>{{ d.day }}</td>
+      <td>{{ d.start }}</td>
+      <td>{{ d.end }}</td>
+    </tr>
+  </table>

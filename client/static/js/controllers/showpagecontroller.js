@@ -1,13 +1,56 @@
-app.controller('showPageController', function($scope, showPageFactory, $location, $cookies){
-  $scope.user = $cookies.getObject('loggedUser');
+// =========================================================================
+// =========================== Controller 1 ================================
+// =========================================================================
+app.controller('showPageController', function($scope, $location, showPageFactory, $cookies, $routeParams, $window, NgMap){
+  $scope.org = $routeParams;
 
-  showPageFactory.getShow($scope.user, function(output){
-    if (output.data){
-      $scope.organization = output.data;
+  showPageFactory.getInfo ($scope.org, function(output){
+    if(!output){
+      console.log('Someing went wrong');
     } else {
-      $scope.error = 'Something went wrong';
+      console.log(output);
+      $scope.thisOrg = output;
+      $scope.latLong = output.latitude + ',' + output.longitude
     }
-  })
+  });
 
 
-}); // End controller
+
+  $scope.linkModelFunc = function (){
+    var site = 'http://'
+    site += $scope.thisOrg.website
+    $window.open(site);
+  }
+
+
+  NgMap.getMap().then(function(map) {
+      var marker = new google.maps.Marker({
+        position: {lat: $scope.thisOrg.latitude, lng: $scope.thisOrg.longitude},
+        map: map,
+        animation: google.maps.Animation.DROP,
+      })
+
+  });
+
+
+
+
+
+
+
+
+// setTimeout(function(){
+//
+//   var marker = new google.maps.Marker({
+//     position: {lat: $scope.thisOrg.latitude, lng: $scope.thisOrg.longitude},
+//     map: map,
+//     // clickable: true,
+//     animation: google.maps.Animation.DROP,
+//   });
+//
+//
+// }, 1000);
+
+
+
+}); //End Controller

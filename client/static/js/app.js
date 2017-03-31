@@ -24,8 +24,12 @@ app.config(function($routeProvider){
       templateUrl: 'static/partials/multiLocal.html',
       controller: 'logReg'
     })
-    .when('/showPage', {
-      templateUrl: 'static/partials/showpage.html',
+    .when('/myShowPage', {
+      templateUrl: 'static/partials/myShowpage.html',
+      controller: 'myShowPageController'
+    })
+    .when('/showPage/:id', {
+      templateUrl: 'static/partials/showPage.html',
       controller: 'showPageController'
     })
     .otherwise({

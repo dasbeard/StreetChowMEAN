@@ -1,4 +1,3 @@
-// var ngmap = require('ngmap');
 // =========================================================================
 // =========================== Controller 1 ================================
 // =========================================================================
@@ -101,15 +100,9 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
 
   function getNearby(pos){
     logRegFactory.getNearby(pos, function(output){
-      // console.log(output.data);
       $scope.nearbyLocations = output.data;
     });
   };
-
-
-
-
-
 
 
     //  var contentString = '<div id="content">'+

@@ -108,3 +108,52 @@ secondFunction()
 //   };
 //
 // });
+
+
+
+
+
+
+
+
+
+
+
+$scope.addDay = function(){
+
+  if(!$scope.days){
+    $scope.error = 'Please enter a day to add';
+  } else{
+
+  }
+
+
+
+}
+
+
+// function validateNewDay(date){
+//   var flag = true;
+//   if (!date){
+//     flag = false;
+//     $scope.error = 'Please enter a day to add';
+//   } else {
+//     if (!date.day){
+//       flag = false;
+//       $scope.error = 'Please enter a Day';
+//     } else if (!date.start){
+//       flag = false;
+//       $scope.error = 'Please enter a Start Time';
+//     } else if (!date.start2) {
+//       flag = false;
+//       $scope.error = 'Please enter a Start Time am/pm';
+//     } else if(!date.end) {
+//       flag = false;
+//       $scope.error = 'Please enter a End Time';
+//     } else if (!date.end2) {
+//       flag = false;
+//       $scope.error = 'Please enter a End Time am/pm';
+//     }
+//   }
+//   return flag;
+// } // End validateNewDay

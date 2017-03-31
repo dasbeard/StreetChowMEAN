@@ -2,22 +2,62 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   $scope.days = [{}];
   $scope.user = $cookies.getObject('loggedUser');
 
+
+  $scope.daySelect = [
+    {code: 'Monday', name: "Monday"},
+    {code: 'Tuesday', name: "Tuesday"},
+    {code: 'Wednesday', name: 'Wednesday'},
+    {code: 'Thursday', name: 'Thursday'},
+    {code: 'Friday', name: 'Friday'},
+    {code: 'Saturday', name: 'Saturday'},
+    {code: 'Sunday', name: 'Sunday'},
+  ];
+
+  $scope.timeSelect = [
+    {code: '1', name: '1'},
+    {code: '2', name: '2'},
+    {code: '3', name: '3'},
+    {code: '4', name: '4'},
+    {code: '5', name: '5'},
+    {code: '6', name: '6'},
+    {code: '7', name: '7'},
+    {code: '8', name: '8'},
+    {code: '9', name: '9'},
+    {code: '10', name: '10'},
+    {code: '11', name: '11'},
+    {code: '12', name: '12'},
+  ];
+
+  $scope.period = [
+    {code: 'am', name: 'am'},
+    {code: 'pm', name: 'pm'},
+  ]
+
   getData();
 
   $scope.addDay = function(){
-    $scope.newDayTime = { 'user': $scope.user.id,
-                          'day': $scope.days.day,
-                          'start': $scope.days.start + $scope.days.start2,
-                          'end': $scope.days.end + $scope.days.end2
-                        };
-    foodFactory.addDay($scope.newDayTime, function(output){
-      if (output.data){
-        getData();
-      } else {
-        $scope.error = 'Problem saving day'
-      }
-    })
+  // Validate Info is present
+    if (validateNewDay($scope.days) == true){
+
+      $scope.newDayTime = { 'user': $scope.user.id,
+                            'day': $scope.days.day,
+                            'start': $scope.days.start + $scope.days.start2,
+                            'end': $scope.days.end + $scope.days.end2
+                          };
+      foodFactory.addDay($scope.newDayTime, function(output){
+        if (output.data){
+          getData();
+          $scope.error = '';
+        } else {
+          $scope.error = 'Problem saving day'
+        }
+      })
+    } else {
+      $scope.error = validateNewDay($scope.days);
+    }
   }; // End addDay
+
+
 
 
   function getData (){
@@ -28,11 +68,7 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       if (output.data.services){
         $scope.services = output.data.services;
       }
-      if (output.data.otherServices){
-        $scope.otherServices = output.data.otherServices;
-      }
     });
-
   }; // End getData
 
   $scope.deleteDay = function(idx){
@@ -90,6 +126,13 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       } else {
         myServices.donations = false;
       }
+      if ($scope.services.otherServices){
+        myServices.otherServices = $scope.services.otherServices;
+      } else {
+        myServices.otherServices = '';
+      }
+
+
     } else {
       myServices.beds = false;
       myServices.clothes = false;
@@ -99,11 +142,17 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       myServices.childcare = false;
       myServices.recActivities = false;
       myServices.donations = false;
+      myServices.otherServices = '';
     }
     myServices.id = $scope.user.id;
+
     foodFactory.updateServices(myServices, function(output){
       if (output.data){
         getData();
+        var snackbarContainer = document.querySelector('#demo-toast-example');
+          'use strict';
+          var data = {message: output.data.message};
+          snackbarContainer.MaterialSnackbar.showSnackbar(data);
       } else {
         $scope.error = 'Problem updating service';
       }
@@ -112,19 +161,28 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
 
 
-  $scope.addOtherService = function(){
-    var updateServices = {id: $scope.user.id, service: $scope.otherServices};
-
-    foodFactory.addOtherService(updateServices, function(output){
-      if (output.data){
-        getData();
-      } else {
-        $scope.error = 'Problem updating other services';
-      }
-    });
-  }; // End addOtherService
-
-
-
 
 });
+
+
+// ========== Helper Functions ==========
+
+function validateNewDay(date){
+  var flag = true;
+  if (!date){
+    flag =  'Please enter a day to add';
+  } else {
+    if (!date.day){
+      flag = 'Please enter a Day';
+    } else if (!date.start){
+      flag = 'Please enter a Start Time';
+    } else if (!date.start2) {
+      flag = 'Please enter a Start Time am/pm';
+    } else if(!date.end) {
+      flag = 'Please enter a End Time';
+    } else if (!date.end2) {
+      flag = 'Please enter a End Time am/pm';
+    }
+  }
+  return flag;
+} // End validateNewDay

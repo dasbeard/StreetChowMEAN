@@ -1,4 +1,7 @@
 app.controller('logOutController', function($scope, $location, logRegFactory, $cookies){
+  $scope.organization = $cookies.getObject('loggedUser')
+  
+
   $scope.logout = function(){
     console.log('button clicked');
     $cookies.remove('loggedUser');

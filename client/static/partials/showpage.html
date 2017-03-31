@@ -1,42 +1,61 @@
 
-{{organization.organization}}
-{{organization.formattedAddress}}
-{{organization.website}}
-{{organization.phone}}
-{{organization.email}}
+<h1 class="showPageHeader">{{thisOrg.organization}}</h1>
 
-<!-- {{organization.services}} -->
-{{organization.description}}
+<div class="mdl-grid">
+  <div class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <h4>{{thisOrg.formattedAddress}}</h4>
 
-{{organization.otherServices}}
+    <p><a  href="{{thisOrg.website}}" title="Habitat Conservation Plan" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+    <p>{{thisOrg.phone}}</p>
+    <p>{{thisOrg.email}}</p>
+    <h4>Description:  </h4>
+    <p>{{thisOrg.description}}</p>
+    <h4>Other Services: </h4>
+    <p> {{thisOrg.services.otherServices}}</p>
 
 
-<div class="services">
+  </div>
+  <div class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+
+    <ng-map class='showMap' center="{{latLong}}" zoom="12"></ng-map>
 
 
-  <h1>services</h1>
-
-<label>Beds: <input type="checkbox" ng-model='organization.services.beds' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-<label>Clothes: <input type="checkbox" ng-model='organization.services.clothes' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-<label>Education: <input type="checkbox" ng-model='organization.services.education' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-<label>Interview Help: <input type="checkbox" ng-model='organization.services.interviewHelp' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-<label>Jobs: <input type="checkbox" ng-model='organization.services.jobs' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-<label>Childcare: <input type="checkbox" ng-model='organization.services.childcare' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-<label>Recreational Activities: <input type="checkbox" ng-model='organization.services.recActivities' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-<label>Takes Donations: <input type="checkbox" ng-model='organization.services.donations' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
-
+  </div>
 </div>
 
-  <table>
-    <thead>
-      <th>days</th>
-      <th>start time</th>
-      <th>end time</th>
-      <th>Action</th>
-    </thead>
-    <tr ng-repeat="d in organization.days">
-      <td>{{ d.day }}</td>
-      <td>{{ d.start }}</td>
-      <td>{{ d.end }}</td>
-    </tr>
-  </table>
+<div class="showPageServices mdl-grid">
+  <div class="services mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <h1>Services Available</h1>
+
+    <table>
+      <tr>
+        <td><label>Beds: <input type="checkbox" ng-model='thisOrg.services.beds' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label>Clothes: <input type="checkbox" ng-model='thisOrg.services.clothes' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label>Education: <input type="checkbox" ng-model='thisOrg.services.education' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label>Interview Help: <input type="checkbox" ng-model='thisOrg.services.interviewHelp' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+      </tr>
+      <tr>
+        <td><label>Jobs: <input type="checkbox" ng-model='thisOrg.services.jobs' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label>Childcare: <input type="checkbox" ng-model='thisOrg.services.childcare' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label>Recreational Activities: <input type="checkbox" ng-model='thisOrg.services.recActivities' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label>Takes Donations: <input type="checkbox" ng-model='thisOrg.services.donations' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+      </tr>
+    </table>
+
+  </div>
+
+      <div class="otherServices mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+        <h1>Days Serving Food</h1>
+
+        <table class="showPageDays">
+          <tr ng-repeat="d in thisOrg.days">
+            <td>{{ d.day }}</td>
+            <td>{{ d.start }}</td>
+            <td>{{ d.end }}</td>
+          </tr>
+        </table>
+      </div>
+  </div>
+
+
+</div>

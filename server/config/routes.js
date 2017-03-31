@@ -23,6 +23,10 @@ module.exports = function(app){
     organizations.findLocal(req,res)
   });
 
+  app.post('/getOrg', function(req,res){
+    organizations.getOrg(req,res)
+  });
+
   app.get('/getAll', function(req,res){
     organizations.getAll(req,res)
   });
@@ -50,9 +54,9 @@ module.exports = function(app){
     organizations.updateServices(req,res)
   });
 
-  app.post('/otherServices', function(req,res){
-    organizations.updateOtherService(req,res)
-  });
+  // app.post('/otherServices', function(req,res){
+  //   organizations.updateOtherService(req,res)
+  // });
 
   app.post('/getShow', function(req,res){
     organizations.getShow(req,res)

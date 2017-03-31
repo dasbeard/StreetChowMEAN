@@ -5,10 +5,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const NodeGeocoder = require('node-geocoder');
 const distance = require('google-distance');
-// distance.key = ('AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM');
+distance.key = ('AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM');
 
 var options = {
-  provider: 'google'
+  provider: 'google',
+  apiKey: 'AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM'
 };
 var geocoder = NodeGeocoder(options)
 
@@ -20,8 +21,24 @@ module.exports = (function(){
 
 
 
+  getOrg: function(req,res){
+    Organization.findOne({_id: req.body.id}, function(err, oneUser){
+      if (err){
+        console.log('==== Error When finding user ===='.red);
+        console.log(err);
+      } else {
+        var sendBack = { formattedAddress: oneUser.formattedAddress, organization: oneUser.organization, website: oneUser.website, phone: oneUser.phone, description: oneUser.description, email: oneUser.email, services: oneUser.services, otherServices: oneUser.otherServices, days: oneUser.days, latitude: oneUser.latitude, longitude: oneUser.longitude};
+        res.json(sendBack);
+      }
+    });
+  }, // End getOrg
+
+
+
+
+
   getNearbyWeb: function(req,res){
-    console.log(req.body);
+    // console.log(req.body);
     Organization.find(({}), function(err, nearbyOrgs){
       if (err){
         console.log('==== Error When finding user ===='.red);
@@ -35,10 +52,8 @@ module.exports = (function(){
       }
 
       // Need to make sure that all locations are less than 25 per google api
-      // if (allLocations.length > 2){
-      //   console.log('greater than 2');
-      //   console.log(allLocations.length);
-      // }
+
+
           for (var i=0; i<nearbyOrgs.length;i++){
             destinations.push(nearbyOrgs[i].latitude + ',' + nearbyOrgs[i].longitude);
           }
@@ -56,65 +71,59 @@ module.exports = (function(){
                 res.json(sendBack)
               }
           });
-
-
     })
-
-
   },
 
 
 
+  // ============== Get all info from DB for API Using Distance Matrix ==============
+  apiTest2: function(req,res){
 
+    Organization.find(({}), function(err, allLocations){
+      if (err){
+        console.log('==== Error When finding user ===='.red);
+        console.log(err);
+      } else {
+        // console.log(allLocations);
+        var sendBack = [];
+        var origins = req.params.location
+        var destinations = [];
 
-    // ============== Get all info from DB for API Using Distance Matrix ==============
-    apiTest2: function(req,res){
-
-      Organization.find(({}), function(err, allLocations){
-        if (err){
-          console.log('==== Error When finding user ===='.red);
-          console.log(err);
-        } else {
-          // console.log(allLocations);
-          var sendBack = [];
-          var origins = req.params.location
-          var destinations = [];
-
-      // Need to make sure that all locations are less than 25 per google api
-      // if (allLocations.length > 2){
-      //   console.log('greater than 2');
-      //   console.log(allLocations.length);
-      // }
-          for (var i=0; i<allLocations.length;i++){
-            destinations.push(allLocations[i].latitude + ',' + allLocations[i].longitude);
-          }
-          distance.get({origin: req.params.location, destinations}, function(err, data) {
-              if (err){
-                return console.log(err)
-              } else {
-                // console.log(data);
-                for (var i=0; i<data.length; i++){
-                  if (data[i].distanceValue < 16500){
-                    console.log('=================================='.red);
-                    console.log(data[i]);
-                    console.log(destinations[i]);
-                    console.log('=================================='.yellow);
-                    console.log(allLocations[i]);
-                    sendBack.push(allLocations[i]);
-
-                  }
-                }
-                console.log('=================================='.cyan);
-                console.log(sendBack);
-                console.log('=================================='.cyan);
-
-                res.json(sendBack)
-              }
-          });
-
+    // Need to make sure that all locations are less than 25 per google api
+    // if (allLocations.length > 2){
+    //   console.log('greater than 2');
+    //   console.log(allLocations.length);
+    // }
+        for (var i=0; i<allLocations.length;i++){
+          destinations.push(allLocations[i].latitude + ',' + allLocations[i].longitude);
         }
-      });
-    }, // End apiTest2
+        distance.get({origin: req.params.location, destinations}, function(err, data) {
+            if (err){
+              return console.log(err)
+            } else {
+              // console.log(data);
+              for (var i=0; i<data.length; i++){
+                if (data[i].distanceValue < 16500){
+                  console.log('=================================='.red);
+                  console.log(data[i]);
+                  console.log(destinations[i]);
+                  console.log('=================================='.yellow);
+                  console.log(allLocations[i]);
+                  sendBack.push(allLocations[i]);
+
+                }
+              }
+              console.log('=================================='.cyan);
+              console.log(sendBack);
+              console.log('=================================='.cyan);
+
+              res.json(sendBack)
+            }
+        });
+
+      }
+    });
+  }, // End apiTest2
 
 
 
@@ -130,8 +139,6 @@ module.exports = (function(){
       }
     })
   }, // End getShow
-
-
 
 
 
@@ -174,7 +181,6 @@ module.exports = (function(){
 
 
   updateServices: function(req,res){
-    // console.log(req.body);
     Organization.findOne({_id: req.body.id}, function(err, oneUser){
       if (err){
         console.log('==== Error updating services ===='.red);
@@ -186,33 +192,12 @@ module.exports = (function(){
             console.log('==== Error saving services ===='.red);
             console.log(err);
           } else {
-            res.json(true);
+            res.json({message: 'Services Saved'});
           }
         })
       }
     })
   }, // End updateServices
-
-
-  updateOtherService: function(req,res){
-    Organization.findOne({_id: req.body.id}, function(err, oneUser){
-      if (err){
-        console.log('==== Error When finding user ===='.red);
-        console.log(err);
-      } else {
-        oneUser.otherServices = req.body.service;
-        oneUser.save(function(err){
-          if (err){
-            console.log('==== Error When updating Other Services ===='.red);
-            console.log(err);
-          } else {
-            res.json(true);
-          }
-        })
-      }
-    });
-  }, // End addOtherService
-
 
 
   removeDay: function(req,res){
@@ -294,31 +279,6 @@ module.exports = (function(){
 
 
 
-  getShow: function(req,res){
-    Organization.findOne({_id: req.body.id}, function(err, oneUser){
-      if (err){
-        console.log('not working');
-      } else {
-        var sendBack = {formattedAddress: oneUser.formattedAddress,
-          organization: oneUser.organization,
-          website: oneUser.website,
-          phone: oneUser.phone,
-          description: oneUser.description,
-          email: oneUser.email,
-          services: oneUser.services,
-          otherServices: oneUser.otherServices,
-          days: oneUser.days
-        };
-        console.log(sendBack);
-        res.json(sendBack);
-      }
-    });
-  }, // End get show
-
-
-
-
-
   regCheck: function(req,res){
     var checkObj = req.body;
     console.log('in regCheck'.cyan);
@@ -350,48 +310,62 @@ module.exports = (function(){
     console.log(req.body);
     var myPhone;
     var myZip;
-      var validatedObj = req.body;
-      if (validateLocation(validatedObj)){
-        myPhone = intParsing(req.body.phone);
-        // myZip = intParsing(req.body.zip);
-      } else {
-        res.json({error: validateLocation(validatedObj)});
-      }
-  // ===== Creating and Saving new Organization =====
-    Organization.findOne({formattedAddress: req.body.formattedAddress}, function(err, oneUser){
+    var validatedObj = req.body;
+    if (validateLocation(validatedObj)){
+      myPhone = intParsing(req.body.phone);
+      // myZip = intParsing(req.body.zip);
+    } else {
+      res.json({error: validateLocation(validatedObj)});
+    }
+  // ========= Check if email is already registered =========
+    Organization.findOne({email: req.body.email}, function(err, oneUser){
       if (err){
-        console.log('==== Error ===='.red);
+        console.log('===== Error ====='.red);
+        console.log(err);
+      } else if (oneUser) {
+        res.json({error: "This E-Mail is already registered to an account. Please Login to continue"})
       } else {
-        // Email already in the system
-        if (oneUser){
-        console.log('==== User Found in System'.yellow);
-        res.json({error: "This email is already registered to an account. Please Login to continue"});
-        } else {
-          // No Email Found
-          console.log('=== New User ready to be created ==='.yellow);
-    // Encrypting password
-          var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
-    // Create User object
-          var newOrganization = new Organization({
-            organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: req.body.zipcode, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw,
-          })
-          newOrganization.save(function(err){
-            if (err){
-              console.log('==== Error When saving new organization ===='.red);
-              console.log(err);
-            } else {
-              console.log('==== Successfuly Registered ===='.yellow);
 
-              var toSendBack = {id: newOrganization._id,
-                formattedAddress: newOrganization.formattedAddress,
-                organization: newOrganization.organization,
-              };
-              res.json(toSendBack)
+  // ===== Creating and Saving new Organization =====
+        Organization.findOne({formattedAddress: req.body.formattedAddress}, function(err, oneUser){
+          if (err){
+            console.log('==== Error ===='.red);
+          } else {
+            // Email already in the system
+            if (oneUser){
+            console.log('==== User Found in System'.yellow);
+            res.json({error: "This address is already registered to an account. Please Login to continue"});
+            } else {
+              // No Email Found
+              console.log('=== New User ready to be created ==='.yellow);
+        // Encrypting password
+              var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
+        // Create User object
+              var newOrganization = new Organization({
+                organization: req.body.organization, formattedAddress: req.body.formattedAddress, streetNumber: req.body.streetNumber, streetName: req.body.streetName, city: req.body.city, state: req.body.state, zip: req.body.zipcode, phone: myPhone, website: req.body.website, description: req.body.description, latitude: req.body.latitude, longitude: req.body.longitude, email: req.body.email, password: pw,
+              })
+              newOrganization.save(function(err){
+                if (err){
+                  console.log('==== Error When saving new organization ===='.red);
+                  console.log(err);
+                } else {
+                  console.log('==== Successfuly Registered ===='.yellow);
+
+                  var toSendBack = {id: newOrganization._id,
+                    formattedAddress: newOrganization.formattedAddress,
+                    organization: newOrganization.organization,
+                  };
+                  res.json(toSendBack)
+                }
+              });
             }
-          });
-        }
+          }
+        });
+
       }
     });
+
+
   },  // End Reg Method
 
 

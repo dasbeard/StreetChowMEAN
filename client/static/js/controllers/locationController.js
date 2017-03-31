@@ -42,7 +42,7 @@ app.controller('locationController', function($scope, logRegFactory, $location, 
           $scope.user = output.data;
 
           if (output.data.error){
-            $scop.error = output.data.error;
+            $scope.error = output.data.error;
           } else {
             // Store User info in cookie
             $cookies.putObject("loggedUser", output.data);

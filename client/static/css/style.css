@@ -3,7 +3,7 @@
 }
 
 #myMap{
-  height: 650px;
+  height: 625px;
 }
 
 .homePage{
@@ -17,8 +17,7 @@
 }
 
 .orgList {
-  outline: solid black 1px;
-  height: 650px;
+  height: 625px;
   vertical-align: top;
 }
 
@@ -29,3 +28,48 @@
 .homeName{
   width: 30%;
 }
+
+
+.css-form input.ng-invalid.ng-touched {
+  background-color: #bc0909;
+}
+
+.css-form input.ng-valid.ng-touched {
+  background-color: #43e02f;
+}
+
+.showPageHeader {
+  text-align: center;
+}
+
+.showPageOrgInfo {
+  /*outline: 1px solid black;*/
+  height: 350px;
+}
+
+.showPageInfo p, .showPageInfo h4 {
+  display: inline-block;
+}
+
+.showPageInfo {
+  /*outline: 1px solid black;*/
+  height: 50px;
+}
+
+.showMap {
+  height: 100%;
+}
+
+.showPageServices {
+  /*outline: 1px solid black;*/
+}
+
+.showPageDays td {
+  width: 5%;
+}
+
+
+/*
+.services, .otherServices {
+
+}*/
