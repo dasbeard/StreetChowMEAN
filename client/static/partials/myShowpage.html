@@ -10,8 +10,8 @@
     <p>{{organization.email}}</p>
     <h4>Description:  </h4>
     <p>{{organization.description}}</p>
-    <h4>Other Services: </h4>
-    <p> {{organization.services.otherServices}}</p>
+    <h4 ng-show='organization.services.otherServices'>Other Services: </h4>
+    <p ng-show='organization.services.otherServices'> {{organization.services.otherServices}}</p>
 
 
   </div>
