@@ -21,6 +21,7 @@ app.controller('myShowPageController', function($scope, myShowPageFactory, $loca
       var marker = new google.maps.Marker({
         position: {lat: $scope.organization.latitude, lng: $scope.organization.longitude},
         map: map,
+        clickable: false,
         animation: google.maps.Animation.DROP,
       })
 

@@ -24,38 +24,38 @@
 // console.log(fullPhoneRegex.test(phoneNum));
 
 
-function firstFunction(_callback){
-    // do some asynchronous work
-    // and when the asynchronous stuff is complete
-    console.log('some stuff in one');
-    _callback();
-}
-
-function geocodeAddress(address, callback) {
-  console.log('in function');
-  var geocoder = new google.maps.Geocoder()
-  geocoder.geocode({'address': address}, function(results, status) {
-    console.log('back from api');
-    if (status === 'OK') {
-      return results;
-    } else {
-      return false;
-    }
-  });
-  callback();
-}; // End geocodeAddress
-
-
-
-function secondFunction(){
-    // call first function and pass in a callback function which
-    // first function runs when it has completed
-    geocodeAddress('245 main st, los angeles', function() {
-        console.log('huzzah, I\'m done!');
-    });
-}
-
-secondFunction()
+// function firstFunction(_callback){
+//     // do some asynchronous work
+//     // and when the asynchronous stuff is complete
+//     console.log('some stuff in one');
+//     _callback();
+// }
+//
+// function geocodeAddress(address, callback) {
+//   console.log('in function');
+//   var geocoder = new google.maps.Geocoder()
+//   geocoder.geocode({'address': address}, function(results, status) {
+//     console.log('back from api');
+//     if (status === 'OK') {
+//       return results;
+//     } else {
+//       return false;
+//     }
+//   });
+//   callback();
+// }; // End geocodeAddress
+//
+//
+//
+// function secondFunction(){
+//     // call first function and pass in a callback function which
+//     // first function runs when it has completed
+//     geocodeAddress('245 main st, los angeles', function() {
+//         console.log('huzzah, I\'m done!');
+//     });
+// }
+//
+// secondFunction()
 
 
 
@@ -119,17 +119,17 @@ secondFunction()
 
 
 
-$scope.addDay = function(){
-
-  if(!$scope.days){
-    $scope.error = 'Please enter a day to add';
-  } else{
-
-  }
-
-
-
-}
+// $scope.addDay = function(){
+//
+//   if(!$scope.days){
+//     $scope.error = 'Please enter a day to add';
+//   } else{
+//
+//   }
+//
+//
+//
+// }
 
 
 // function validateNewDay(date){
@@ -157,3 +157,66 @@ $scope.addDay = function(){
 //   }
 //   return flag;
 // } // End validateNewDay
+
+
+
+
+//
+// function phoneDisplay(phoneNumber){
+//   var output = '';
+//   var temp = '' + phoneNumber;
+//   var count = 0;
+//   console.log(phoneNumber);
+//   console.log(temp);
+//   for (var i = 0; i< temp.length; i++){
+//     if (temp.length == 11){
+//       output += temp[i];
+//       output += '(';
+//     }
+//     if (count == 0){
+//       output += temp[i];
+//     } else if (count == 2) {
+//       output += temp[i];
+//       output += ') ';
+//     } else if (count == 6) {
+//       output += '-';
+//       output += temp[i];
+//     } else {
+//       output += temp[i];
+//     }
+//     count ++;
+//   }
+//   console.log(output);
+// }
+//
+// phoneDisplay(91234567890);
+
+
+// var str = "10000000000";
+//
+// // var res = '(' + str.substr(0,3) + ')' + str.substr(3,3) + '-' + str.substr(6);
+//
+// function testing(str){
+//   if (str.length == 10){
+//     return '(' + str.substr(0,3) + ')' + str.substr(3,3) + '-' + str.substr(6);
+//   } else {
+//     return str.substr(0,1) + '(' + str.substr(1,3) + ')' + str.substr(4,3) + '-' + str.substr(7);
+//   }
+// }
+//
+// console.log(testing(str));
+
+
+
+
+// function titleCase(str) {
+//      words = str.toLowerCase().split(' ');
+//
+//      for(var i = 0; i < words.length; i++) {
+//           var letters = words[i].split('');
+//           letters[0] = letters[0].toUpperCase();
+//           words[i] = letters.join('');
+//      }
+//      return words.join(' ');
+// }
+// console.log(titleCase("i'm a little tea pot"));

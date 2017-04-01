@@ -5,6 +5,8 @@ app.controller('locationController', function($scope, logRegFactory, $location, 
   $scope.myTemp = $cookies.getObject('myTemp');
   $scope.orgName = $cookies.get('orgName');
 
+  var test = ($scope.myTemp.administrativeLevels.level2long);
+  console.log(test.toLowerCase());
 
   $scope.cancelReg = function(){
     $cookies.remove('myTemp');
@@ -35,6 +37,10 @@ app.controller('locationController', function($scope, logRegFactory, $location, 
         $scope.reg.state = $scope.myTemp.administrativeLevels.level1short;
         $scope.reg.latitude = $scope.myTemp.latitude;
         $scope.reg.longitude = $scope.myTemp.longitude;
+        // var temp = $scope.myTemp.administrativeLevels.level2long;
+        // var county = temp.toLowerCase();
+        // $scope.reg.county = county;
+
 
         logRegFactory.register($scope.reg, function(output){
           console.log(output.data);

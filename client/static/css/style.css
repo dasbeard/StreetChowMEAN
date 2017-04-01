@@ -2,8 +2,16 @@
   background-image: url('../assets/mochaGrunge_@2X.png');
 }
 
+a{
+  color: black;
+}
+
+.myNav :hover{
+  color: #bfbfbf;
+}
+
 #myMap{
-  height: 625px;
+  height: 550px;
 }
 
 .homePage{
@@ -16,19 +24,108 @@
   margin-bottom: 1px;
 }
 
+.bigBox {
+  height: 550px;
+}
+
 .orgList {
-  height: 625px;
-  vertical-align: top;
+  /*outline: 1px solid red;*/
+  height: 92%;
+  overflow: scroll;
+}
+
+.orgList li:nth-child(odd) {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(112, 112, 112, .6);
+  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
+}
+
+.orgList li{
+  font-size: 1.3em;
+  list-style: none;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  text-align: center;
+}
+
+.orgList li :hover{
+  color: #bfbfbf;
+}
+
+.orgList a{
+  text-decoration: none;
+}
+
+.orgList span{
+  font-weight: bold;
+}
+
+.orgList h2{
+  margin: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.searchbar {
+  display: inline;
+}
+
+.searchbar form {
+  padding-left: 5px;;
+}
+
+.searchResults a {
+  text-decoration: none;
+}
+
+.searchResults li {
+  list-style: none;
+  text-align: center;
+}
+
+.searchResults{
+  /*outline: 1px solid cyan;*/
+  text-align: center;
+  height: 100px;
+  overflow: scroll;
+}
+
+.searchResults span {
+  font-weight: bold;
+}
+
+.searchResults a, .searchResults p {
+  margin: 5px;
+  display: inline-block;
+}
+
+#website {
+  color: blue;
 }
 
 .homeTable{
   font-size: 1.5em;
+  border-collapse: collapse;
+  position: relative;
+}
+
+.homeTable td {
+  padding: 5px;
+}
+
+.homeTable tr:nth-child(even) {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(112, 112, 112, .6);
+  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
 }
 
 .homeName{
   width: 30%;
 }
-
 
 .css-form input.ng-invalid.ng-touched {
   background-color: #bc0909;
@@ -62,16 +159,28 @@
 
 .showPageServices {
   text-align: center;
+}
+
+.showPageServices td {
+  padding: 5px;
+
+}
+
+.showPageDays{
   /*outline: 1px solid black;*/
+  border-collapse: collapse;
 }
 
 .showPageDays td {
   width: 5%;
   text-align: center;
+  padding: 3px;
 }
 
-
-/*
-.services, .otherServices {
-
-}*/
+.showPageDays tr:nth-child(even) {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(112, 112, 112, .6);
+  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
+}

@@ -6,7 +6,7 @@ app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'static/partials/home.html',
-      controller: 'controller1'
+      controller: 'homeController'
     })
     .when('/logReg', {
       templateUrl: 'static/partials/logReg.html',

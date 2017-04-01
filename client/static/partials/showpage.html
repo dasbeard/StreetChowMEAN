@@ -5,9 +5,9 @@
   <div class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
     <h4>{{thisOrg.formattedAddress}}</h4>
 
-    <p><a  href="{{thisOrg.website}}" title="Habitat Conservation Plan" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+    <p><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
     <p>{{thisOrg.phone}}</p>
-    <p>{{thisOrg.email}}</p>
+    <a href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
     <h4>Description:  </h4>
     <p>{{thisOrg.description}}</p>
     <h4 ng-show='thisOrg.services.otherServices'>Other Services: </h4>

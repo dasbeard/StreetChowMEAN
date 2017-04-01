@@ -1,7 +1,7 @@
 // =========================================================================
 // =========================== Controller 1 ================================
 // =========================================================================
-app.controller('controller1', function($scope, $location, logRegFactory, $cookies, NgMap){
+app.controller('homeController', function($scope, $location, logRegFactory, searchFactory, $cookies, $window, NgMap){
   $scope.organization = $cookies.getObject('loggedUser')
   $scope.position = 'nope';
 
@@ -65,7 +65,7 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
       var orgNames =[];
       // var orgDescrips = [];
       for (var i=0; i<output.data.length; i++){
-        orgNames.push(output.data[i].organization);
+        orgNames.push('<a href="#!/showPage/' + output.data[i]._id+ '">' + output.data[i].organization + '<br>' + output.data[i].address + '</a>');
         // orgNames.push(output.data[i].description);
 
       };
@@ -104,45 +104,31 @@ app.controller('controller1', function($scope, $location, logRegFactory, $cookie
     });
   };
 
-
-    //  var contentString = '<div id="content">'+
-    //         '<h1>Test Header</h1>'+
-    //         '<div id="bodyContent">'+
-    //         '<p>Testing Random Location</p> ' +
-    //         '</div>'+
-    //         '</div>';
-
-        // var infowindow = new google.maps.InfoWindow({
-        //   content: '<div id="content">'+
-        //           '<h1>Test Header</h1>'+
-        //           '<div id="bodyContent">'+
-        //           '<p>Testing Random Location</p> ' +
-        //           '</div>'+
-        //           '</div>',
-        // });
-
-
-     function drop() {
-       for (var i =0; i < markerArray.length; i++) {
-         setTimeout(function() {
-           addMarkerMethod();
-         }, i * 100);
-       }
-     }
-
-
-    //  // ========== End Markers ==========
-    //  marker.addListener('click', function() {
-    //    infowindow.open(map, marker);
-    //  });
-
+  function drop() {
+    for (var i =0; i < markerArray.length; i++) {
+      setTimeout(function() {
+        addMarkerMethod();
+      }, i * 100);
+    }
+  }
 
   }); // End NgMap Method
 
 
 
+  $scope.searchByCity = function(){
+    searchFactory.citySearch($scope.searchBy, function(output){
+      $scope.searchedCity = output.data;
+    });
+  }
 
 
+  $scope.linkModelFunc = function (linkedSite){
+    console.log(linkedSite);
+    var site = 'http://'
+    site += linkedSite;
+    $window.open(site);
+  }
 
 
 

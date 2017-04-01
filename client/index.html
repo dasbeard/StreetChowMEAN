@@ -6,7 +6,9 @@
   <title>Street Chow</title>
   <link rel="shortcut icon" type="image/gif" href="assets/favicon.ico"/>
 
-  <link rel="stylesheet" href="css/mdl/material.min.css">
+  <!-- <link rel="stylesheet" href="css/mdl/material.min.css"> -->
+  <link rel="stylesheet" href="css/material.copy.min.css">
+
   <script src="css/mdl/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
@@ -22,13 +24,13 @@
   <script type="text/javascript" src='js/app.js'></script>
 
   <script type="text/javascript" src='js/factories/logRegFactory.js'></script>
-  <script type="text/javascript" src='js/factories/factory1.js'></script>
+  <script type="text/javascript" src='js/factories/searchFactory.js'></script>
   <script type="text/javascript" src='js/factories/foodFactory.js'></script>
   <script type="text/javascript" src='js/factories/myShowPageFactory.js'></script>
   <script type="text/javascript" src='js/factories/showPageFactory.js'></script>
 
 
-  <script type="text/javascript" src='js/controllers/controller1.js'></script>
+  <script type="text/javascript" src='js/controllers/homeController.js'></script>
   <script type="text/javascript" src='js/controllers/logRegController.js'></script>
   <script type="text/javascript" src='js/controllers/locationController.js'></script>
   <script type="text/javascript" src='js/controllers/foodController.js'></script>
@@ -50,7 +52,7 @@
         <span class="mdl-layout-title"><h1>Street Chow</h1></span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
-        <nav class="mdl-navigation">
+        <nav class="myNav mdl-navigation">
           <a class="mdl-navigation__link" href="#!/">Home</a>
           <!-- <a class="mdl-navigation__link" href="#!/food">Services</a> -->
           <a class="mdl-navigation__link" ng-show='organization' href="#!/myShowPage">My Page</a>

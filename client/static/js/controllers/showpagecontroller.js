@@ -10,6 +10,7 @@ app.controller('showPageController', function($scope, $location, showPageFactory
     } else {
       console.log(output);
       $scope.thisOrg = output;
+      $scope.thisOrg.phone = phoneDisplay(output.phone)
       $scope.latLong = output.latitude + ',' + output.longitude
     }
   });
@@ -27,15 +28,22 @@ app.controller('showPageController', function($scope, $location, showPageFactory
       var marker = new google.maps.Marker({
         position: {lat: $scope.thisOrg.latitude, lng: $scope.thisOrg.longitude},
         map: map,
+        clickable: false,
         animation: google.maps.Animation.DROP,
       })
-
   });
 
 
 
 
 
-
-
 }); //End Controller
+
+
+function phoneDisplay(str){
+  if (str.length == 10){
+    return '(' + str.substr(0,3) + ')' + str.substr(3,3) + '-' + str.substr(6);
+  } else {
+    return str.substr(0,1) + '(' + str.substr(1,3) + ')' + str.substr(4,3) + '-' + str.substr(7);
+  }
+};

@@ -1,31 +1,112 @@
-  <div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+<div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
 
-    <h4 ng-show='organization'>Welcome</h4>
-    <h1>{{organization.organization}}</h1>
-    <h2>{{error}}</h2>
+  <h4 ng-show='organization'>Welcome</h4>
+  <h1>{{organization.organization}}</h1>
+  <h2>{{error}}</h2>
+</div>
+
+<div class="mdl-grid homePage">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+
+    <ng-map id="myMap" center="41,-97" zoom="3"></ng-map>
+
   </div>
 
-  <div class="mdl-grid homePage">
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-
-      <ng-map id="myMap" center="41,-97" zoom="3"></ng-map>
-
-    </div>
-
-    <div class="orgList mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-      <h2>Near By Places</h2>
+<div class="bigBox  mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
 
+  <div class="orgList">
 
-      <table class="homeTable">
+      <!-- <table class="homeTable">
+        <h2>Near By Places</h2>
         <tr ng-repeat='place in nearbyLocations'>
           <td class="homeName"> <a href="#!/showPage/{{place._id}}"> {{place.organization}} </a> </td>
           <td>{{place.formattedAddress}}</td>
         </tr>
+      </table> -->
+      <h2>Near By Places</h2>
+      <!-- <ul> -->
+        <li ng-repeat='place in nearbyLocations'>
+          <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+        </li>
+      <!-- </ul> -->
 
-
-      </table>
-
-    </div>
 
   </div>
+
+  <div class="searchbar mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <form ng-submit='searchByCity()'>
+      <label> Search City:
+        <input type="text" ng-model='searchBy.city' required>
+      </label>
+      <label>State:
+        <select ng-model='searchBy.state'>
+        	<option value="AL">AL</option>
+        	<option value="AK">AK</option>
+        	<option value="AZ">AZ</option>
+        	<option value="AR">AR</option>
+        	<option value="CA">CA</option>
+        	<option value="CO">CO</option>
+        	<option value="CT">CT</option>
+        	<option value="DE">DE</option>
+        	<option value="FL">FL</option>
+        	<option value="GA">GA</option>
+        	<option value="HI">HI</option>
+        	<option value="ID">ID</option>
+        	<option value="IL">IL</option>
+        	<option value="IN">IN</option>
+        	<option value="IA">IA</option>
+        	<option value="KS">KS</option>
+        	<option value="KY">KY</option>
+        	<option value="LA">LA</option>
+        	<option value="ME">ME</option>
+        	<option value="MD">MD</option>
+        	<option value="MA">MA</option>
+        	<option value="MI">MI</option>
+        	<option value="MN">MN</option>
+        	<option value="MS">MS</option>
+        	<option value="MO">MO</option>
+        	<option value="MT">MT</option>
+        	<option value="NE">NE</option>
+        	<option value="NV">NV</option>
+        	<option value="NH">NH</option>
+        	<option value="NJ">NJ</option>
+        	<option value="NM">NM</option>
+        	<option value="NY">NY</option>
+        	<option value="NC">NC</option>
+        	<option value="ND">ND</option>
+        	<option value="OH">OH</option>
+        	<option value="OK">OK</option>
+        	<option value="OR">OR</option>
+        	<option value="PA">PA</option>
+        	<option value="RI">RI</option>
+        	<option value="SC">SC</option>
+        	<option value="SD">SD</option>
+        	<option value="TN">TN</option>
+        	<option value="TX">TX</option>
+        	<option value="UT">UT</option>
+        	<option value="VT">VT</option>
+        	<option value="VA">VA</option>
+        	<option value="WA">WA</option>
+        	<option value="WV">WV</option>
+        	<option value="WI">WI</option>
+        	<option value="WY">WY</option>
+        </select>
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+
+</div>
+
+<div class="Spacer mdl-cell mdl-cell--2-col mdl-cell--0-col-tablet"></div>
+
+<div class="searchResults mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+
+  <li ng-repeat='place in searchedCity'>
+    <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a id='website' ng-show='place.website' href="{{place.website}}" target="_blank" ng-click="linkModelFunc(place.website)">{{place.website}}</a>
+  </li>
+
+</div>
+
+</div>

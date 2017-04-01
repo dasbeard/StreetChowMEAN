@@ -21,6 +21,26 @@ module.exports = (function(){
 
 
 
+  citySearch: function(req,res){
+    var city = titleCase(req.body.city)
+    Organization.find({$and: [{state: req.body.state}, {city: city}]}, function(err, results){
+      if (err){
+        console.log('==== Error finding by state ===='.red);
+        console.log(err);
+      } else {
+        // console.log(results);
+        var sendBack = [];
+        for (var i=0; i<results.length; i++){
+          organization = { formattedAddress: results[i].formattedAddress, organization: results[i].organization, website: results[i].website, _id: results[i]._id}
+          sendBack.push(organization);
+        };
+        res.json(sendBack);
+      }
+    })
+  },
+
+
+
   getOrg: function(req,res){
     Organization.findOne({_id: req.body.id}, function(err, oneUser){
       if (err){
@@ -264,6 +284,8 @@ module.exports = (function(){
         var sendBack = [];
         for (var i = 0; i<allOrgs.length; i++){
           sendBack.push({ formattedAddress: allOrgs[i].formattedAddress,
+                      website: allOrgs[i].website,
+                      address: allOrgs[i].streetNumber + ' ' + allOrgs[i].streetName + ', ' + allOrgs[i].city,
                       organization: allOrgs[i].organization,
                       description: allOrgs[i].description,
                       latitude: allOrgs[i].latitude,
@@ -272,6 +294,7 @@ module.exports = (function(){
                     }
           );
         }
+        // console.log(sendBack);
         res.json(sendBack);
       };
     });
@@ -500,4 +523,16 @@ function sleep(milliseconds) {
       break;
     }
   }
+};
+
+
+function titleCase(str) {
+     words = str.toLowerCase().split(' ');
+
+     for(var i = 0; i < words.length; i++) {
+          var letters = words[i].split('');
+          letters[0] = letters[0].toUpperCase();
+          words[i] = letters.join('');
+     }
+     return words.join(' ');
 };
