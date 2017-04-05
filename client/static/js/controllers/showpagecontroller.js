@@ -3,12 +3,14 @@
 // =========================================================================
 app.controller('showPageController', function($scope, $location, showPageFactory, $cookies, $routeParams, $window, NgMap){
   $scope.org = $routeParams;
-  $scope.organization = $cookies.getObject('loggedUser')
+  $scope.thisOrg = $cookies.getObject('loggedUser')
 
   // console.log($scope.org);
 
-  if ($scope.organization.id == $scope.org.id){
-    $scope.showEdit = true;
+  if ($scope.thisOrg){
+    if ($scope.thisOrg.id == $scope.org.id){
+      $scope.showEdit = true;
+    }
   }
 
 
@@ -20,6 +22,7 @@ app.controller('showPageController', function($scope, $location, showPageFactory
       $scope.thisOrg = output;
       $scope.thisOrg.phone = phoneDisplay(output.phone)
       $scope.latLong = output.latitude + ',' + output.longitude
+      console.log($scope.thisOrg);
       map();
     }
   });

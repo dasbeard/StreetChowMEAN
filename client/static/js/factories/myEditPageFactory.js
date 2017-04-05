@@ -1,4 +1,4 @@
-app.factory('myShowPageFactory', function($http){
+app.factory('myEditPageFactory', function($http){
   var factory = {};
 
   factory.getShow = function(input, callback){

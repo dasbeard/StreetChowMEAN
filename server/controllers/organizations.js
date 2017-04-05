@@ -253,6 +253,7 @@ module.exports = (function(){
           console.log('==== Error When saving new day ===='.red);
           console.log(err);
         } else {
+          console.log(oneUser);
           var toSendBack = {days: oneUser.days, services: oneUser.services, otherServices: oneUser.otherServices};
           res.json(toSendBack);
         }
@@ -261,6 +262,7 @@ module.exports = (function(){
 
 
     updateServices: function(req,res){
+      console.log(req.body);
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
         if (err){
           console.log('==== Error updating services ===='.red);

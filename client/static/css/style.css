@@ -192,8 +192,20 @@ a{
   background-color: #43e02f;
 }
 
-.showPageHeader {
+.showPageHeader{
+  /*width: 100%;*/
   text-align: center;
+  display: inline;
+}
+
+.showPageHeader h1{
+  display: inline;
+  text-align: center;
+}
+
+.showPageHeader a{
+  display: inline;
+  margin-left: 50%;
 }
 
 .showPageOrgInfo {
@@ -214,18 +226,50 @@ a{
   height: 100%;
 }
 
-.showPageServices {
-  text-align: center;
+.showPageServices form{
+  padding-left: 6%;
 }
 
 .showPageServices td {
-  padding: 5px;
-
+  padding-right: 2%;
 }
 
+.showPageServices tr{
+  height: 45px;
+}
+
+.otherServices p{
+  display: inline-block;
+  font-size: 1.3em;
+  list-style: none;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.otherServices li :hover{
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #E8E8E8;
+  font-size: 1.1em;
+}
+
+
+.otherServices li{
+  font-size: 1.3em;
+  list-style: none;
+  margin-bottom: 10px;
+  text-align: center;
+  /*color: red;*/
+}
+
+
+
+
 .showPageDays{
-  /*outline: 1px solid black;*/
   border-collapse: collapse;
+}
+
+.showPageDays tr {
+  height: 2%;
 }
 
 .showPageDays td {
@@ -238,8 +282,8 @@ a{
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  background-color: rgba(112, 112, 112, .6);
-  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
+  background-color: rgba(112, 112, 112, .3);
+  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .3);
 }
 
 

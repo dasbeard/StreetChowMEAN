@@ -1,17 +1,18 @@
+<div class="showPageHeader mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
-<h1 class="showPageHeader">{{thisOrg.organization}}</h1>
+<h1 >{{thisOrg.organization}}</h1><a ng-if='showEdit' href="#!/editPage">Edit My Page</a>
 
-<a ng-if='showEdit' href="#!/myShowPage">Edit My Page</a>
+</div>
 
 <div class="mdl-grid">
   <div class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
     <h4>{{thisOrg.formattedAddress}}</h4>
 
-    <p ng-show='thisOrg.services.website'><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
-    <p ng-show='thisOrg.services.phone'>{{thisOrg.phone}}</p>
-    <a ng-show='thisOrg.services.email' href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
-    <h4 ng-show='thisOrg.services.description'>Description:  </h4>
-    <p ng-show='thisOrg.services.description'>{{thisOrg.description}}</p>
+    <p ng-show='thisOrg.website'><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+    <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
+    <a ng-show='thisOrg.email' href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
+    <h4 ng-show='thisOrg.description'>Description:  </h4>
+    <p ng-show='thisOrg.description'>{{thisOrg.description}}</p>
     <h4 ng-show='thisOrg.services.otherServices'>Other Services: </h4>
     <p ng-show='thisOrg.services.otherServices'> {{thisOrg.services.otherServices}}</p>
 
@@ -29,20 +30,37 @@
   <div class="services mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
     <h1>Services Available</h1>
 
-    <table>
+    <!-- <table>
       <tr>
-        <td><label>Beds: <input type="checkbox" ng-model='thisOrg.services.beds' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
-        <td><label>Clothes: <input type="checkbox" ng-model='thisOrg.services.clothes' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
-        <td><label>Education: <input type="checkbox" ng-model='thisOrg.services.education' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
-        <td><label>Interview Help: <input type="checkbox" ng-model='thisOrg.services.interviewHelp' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Beds <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.beds' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Clothes <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.clothes' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Education <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.education' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Interview Help <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.interviewHelp' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
       </tr>
       <tr>
-        <td><label>Jobs: <input type="checkbox" ng-model='thisOrg.services.jobs' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
-        <td><label>Childcare: <input type="checkbox" ng-model='thisOrg.services.childcare' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
-        <td><label>Recreational Activities: <input type="checkbox" ng-model='thisOrg.services.recActivities' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
-        <td><label>Takes Donations: <input type="checkbox" ng-model='thisOrg.services.donations' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Jobs <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.jobs' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Childcare <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.childcare' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Recreational Activities <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.recActivities' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Takes Donations <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.donations' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
       </tr>
-    </table>
+    </table> -->
+
+
+
+
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Beds: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.beds' ng-true-value="true" ng-false-value="false" ></label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Clothes: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.clothes' ng-true-value="true" ng-false-value="false"></label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Education: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.education' ng-true-value="true" ng-false-value="false"></label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Interview Help: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.interviewHelp' ng-true-value="true" ng-false-value="false"></label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Jobs: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.jobs' ng-true-value="true" ng-false-value="false"></label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Childcare: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.childcare' ng-true-value="true" ng-false-value="false"></label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Recreational Activities: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.recActivities' ng-true-value="true" ng-false-value="false"></label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Takes Donations: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.donations' ng-true-value="true" ng-false-value="false"></label>
+
+
+
+
+
 
   </div>
 

@@ -35,6 +35,9 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
   getData();
 
+
+
+
   $scope.addDay = function(){
   // Validate Info is present
     if (validateNewDay($scope.days) == true){
@@ -57,19 +60,6 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
     }
   }; // End addDay
 
-
-
-
-  function getData (){
-    foodFactory.getDayService($scope.user, function(output){
-      if (output.data.days){
-        $scope.days = output.data.days;
-      }
-      if (output.data.services){
-        $scope.services = output.data.services;
-      }
-    });
-  }; // End getData
 
   $scope.deleteDay = function(idx){
     $scope.toRemove = {id: $scope.user.id, index: idx},
@@ -160,7 +150,16 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   }; // End updateServices
 
 
-
+  function getData (){
+    foodFactory.getDayService($scope.user, function(output){
+      if (output.data.days){
+        $scope.days = output.data.days;
+      }
+      if (output.data.services){
+        $scope.services = output.data.services;
+      }
+    });
+  }; // End getData
 
 });
 
