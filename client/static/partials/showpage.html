@@ -1,15 +1,17 @@
 
 <h1 class="showPageHeader">{{thisOrg.organization}}</h1>
 
+<a ng-if='showEdit' href="#!/myShowPage">Edit My Page</a>
+
 <div class="mdl-grid">
   <div class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
     <h4>{{thisOrg.formattedAddress}}</h4>
 
-    <p><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
-    <p>{{thisOrg.phone}}</p>
-    <a href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
-    <h4>Description:  </h4>
-    <p>{{thisOrg.description}}</p>
+    <p ng-show='thisOrg.services.website'><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+    <p ng-show='thisOrg.services.phone'>{{thisOrg.phone}}</p>
+    <a ng-show='thisOrg.services.email' href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
+    <h4 ng-show='thisOrg.services.description'>Description:  </h4>
+    <p ng-show='thisOrg.services.description'>{{thisOrg.description}}</p>
     <h4 ng-show='thisOrg.services.otherServices'>Other Services: </h4>
     <p ng-show='thisOrg.services.otherServices'> {{thisOrg.services.otherServices}}</p>
 

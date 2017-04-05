@@ -5,6 +5,7 @@ app.controller('myShowPageController', function($scope, myShowPageFactory, $loca
     if (output.data){
       $scope.organization = output.data;
       $scope.latLong = output.data.latitude + ',' + output.data.longitude
+      map();
     } else {
       $scope.error = 'Something went wrong';
     }
@@ -16,16 +17,16 @@ app.controller('myShowPageController', function($scope, myShowPageFactory, $loca
     $window.open(site);
   }
 
-
-  NgMap.getMap().then(function(map) {
-      var marker = new google.maps.Marker({
-        position: {lat: $scope.organization.latitude, lng: $scope.organization.longitude},
-        map: map,
-        clickable: false,
-        animation: google.maps.Animation.DROP,
-      })
-
-  });
+  var map = function(){
+    NgMap.getMap().then(function(map) {
+        var marker = new google.maps.Marker({
+          position: {lat: $scope.organization.latitude, lng: $scope.organization.longitude},
+          map: map,
+          clickable: false,
+          animation: google.maps.Animation.DROP,
+        })
+    });
+  }
 
 
 

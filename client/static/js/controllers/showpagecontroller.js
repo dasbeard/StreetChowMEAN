@@ -3,15 +3,24 @@
 // =========================================================================
 app.controller('showPageController', function($scope, $location, showPageFactory, $cookies, $routeParams, $window, NgMap){
   $scope.org = $routeParams;
+  $scope.organization = $cookies.getObject('loggedUser')
+
+  // console.log($scope.org);
+
+  if ($scope.organization.id == $scope.org.id){
+    $scope.showEdit = true;
+  }
+
 
   showPageFactory.getInfo ($scope.org, function(output){
     if(!output){
       console.log('Someing went wrong');
     } else {
-      console.log(output);
+      // console.log(output);
       $scope.thisOrg = output;
       $scope.thisOrg.phone = phoneDisplay(output.phone)
       $scope.latLong = output.latitude + ',' + output.longitude
+      map();
     }
   });
 
@@ -24,6 +33,7 @@ app.controller('showPageController', function($scope, $location, showPageFactory
   }
 
 
+var map = function (){
   NgMap.getMap().then(function(map) {
       var marker = new google.maps.Marker({
         position: {lat: $scope.thisOrg.latitude, lng: $scope.thisOrg.longitude},
@@ -32,7 +42,7 @@ app.controller('showPageController', function($scope, $location, showPageFactory
         animation: google.maps.Animation.DROP,
       })
   });
-
+}
 
 
 

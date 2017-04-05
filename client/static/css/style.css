@@ -2,16 +2,36 @@
   background-image: url('../assets/mochaGrunge_@2X.png');
 }
 
+.header a{
+  text-decoration: none;
+  color: inherit;
+}
+
 a{
   color: black;
 }
 
 .myNav :hover{
-  color: #bfbfbf;
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #ffffff;
+  font-size: 1.2em;
 }
 
 #myMap{
-  height: 550px;
+  height: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.mapDiv {
+  height: 500px;
+  box-shadow: 8px 8px 8px 2px rgba(112, 112, 112, .7);
+  /*-webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;*/
 }
 
 .homePage{
@@ -24,22 +44,25 @@ a{
   margin-bottom: 1px;
 }
 
+.home-title h4, .home-title h1{
+  margin: 5px;
+}
+
 .bigBox {
-  height: 550px;
+  height: 500px;
+  /*outline: 1px solid green;*/
+
 }
 
 .orgList {
-  /*outline: 1px solid red;*/
-  height: 92%;
-  overflow: scroll;
-}
-
-.orgList li:nth-child(odd) {
+  /*outline: 1px solid cyan;*/
+  height: 89%;
+  overflow-y: auto;
+  background-color: rgba(190, 190, 190, 0.5);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  background-color: rgba(112, 112, 112, .6);
-  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
+  box-shadow: 8px 8px 8px 2px rgba(112, 112, 112, .7);
 }
 
 .orgList li{
@@ -51,7 +74,9 @@ a{
 }
 
 .orgList li :hover{
-  color: #bfbfbf;
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #E8E8E8;
+  font-size: 1.1em;
 }
 
 .orgList a{
@@ -68,12 +93,38 @@ a{
   text-align: center;
 }
 
-.searchbar {
-  display: inline;
+.orgList h5{
+  text-align: center;
 }
 
-.searchbar form {
-  padding-left: 5px;;
+.orgList .centerMe {
+  margin-top: calc(25% - 15px);
+  margin-left: calc(50% - 15px);
+}
+
+
+#searchbar {
+  padding-left: 10%;
+  height: 10%;;
+  width: 100%;
+  margin-left: 0;
+  background-color: rgba(190, 190, 190, 0.5);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 8px 8px 8px 2px rgba(112, 112, 112, .7);
+}
+
+#homeSearchInputs{
+  padding-top: 20px;
+  margin-right: 2%;
+  width: 30%;
+  height: 65px;
+  vertical-align: middle;
+}
+
+#homeSearchInputsBtn{
+  margin-left: 2%;
 }
 
 .searchResults a {
@@ -85,16 +136,22 @@ a{
   text-align: center;
 }
 
+.searchResults li :hover{
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #E8E8E8;
+  font-size: 1.1em;
+}
+
 .searchResults{
-  /*outline: 1px solid cyan;*/
   text-align: center;
   height: 100px;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .searchResults span {
   font-weight: bold;
 }
+
 
 .searchResults a, .searchResults p {
   margin: 5px;
@@ -184,3 +241,21 @@ a{
   background-color: rgba(112, 112, 112, .6);
   box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
 }
+
+
+
+
+
+
+
+
+/*======================== Un-Used ========================*/
+
+/*
+.orgList li:nth-child(odd) {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(112, 112, 112, .6);
+  box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
+}*/

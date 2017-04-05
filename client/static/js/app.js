@@ -1,5 +1,24 @@
 //==================== Creating Angular App ====================
-var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ngMap']);
+var app = angular.module('myApp', ['ngRoute', 'ngCookies', 'ngMap', 'vAccordion', 'ngAnimate']);
+
+app.run(function () {
+    var mdlUpgradeDom = false;
+    setInterval(function() {
+      if (mdlUpgradeDom) {
+        componentHandler.upgradeDom();
+        mdlUpgradeDom = false;
+      }
+    }, 10);
+
+    var observer = new MutationObserver(function () {
+      mdlUpgradeDom = true;
+    });
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+});
+
 
 //==================== Angular Routes ====================
 app.config(function($routeProvider){

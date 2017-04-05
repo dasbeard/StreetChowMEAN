@@ -57,7 +57,6 @@ app.controller('locationController', function($scope, logRegFactory, $location, 
             $cookies.remove('locations');
             $cookies.remove('orgName');
             // Redirect User
-            console.log('dfsafdsa');
             $location.url('/food');
           }
           $scope.reg = {};

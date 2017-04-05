@@ -4,7 +4,7 @@
 app.controller('homeController', function($scope, $location, logRegFactory, searchFactory, $cookies, $window, NgMap){
   $scope.organization = $cookies.getObject('loggedUser')
   $scope.position = 'nope';
-
+  $scope.loading = true;
 
   // $scope.logout = function(){
   //   console.log('button clicked');
@@ -44,6 +44,8 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
     },
       function() {
       handleLocationError(true, infowindow, map.getCenter());
+      var infowindow = new google.maps.InfoWindow;
+
     });
   } else {
     // Browser doesn't support Geolocation
@@ -98,12 +100,6 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
   }); // End getAll
 
 
-  function getNearby(pos){
-    logRegFactory.getNearby(pos, function(output){
-      $scope.nearbyLocations = output.data;
-    });
-  };
-
   function drop() {
     for (var i =0; i < markerArray.length; i++) {
       setTimeout(function() {
@@ -112,19 +108,38 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
     }
   }
 
-  }); // End NgMap Method
+  });
+// ============= End NgMap Method ===============
 
+
+
+function getNearby(pos){
+  logRegFactory.getNearby(pos, function(output){
+    $scope.within2miles = output.data.within2miles;
+    $scope.within5miles = output.data.within5miles;
+    $scope.within10miles = output.data.within10miles;
+    $scope.loading = false;
+  });
+
+};
 
 
   $scope.searchByCity = function(){
+    $scope.noLocations = '';
+    $scope.searchedCity = {};
     searchFactory.citySearch($scope.searchBy, function(output){
-      $scope.searchedCity = output.data;
+      if (output.data.error){
+        $scope.noLocations = "No Locations Found";
+      } else {
+        console.log(output.data);
+        $scope.searchedCity = output.data;
+      }
     });
   }
 
 
   $scope.linkModelFunc = function (linkedSite){
-    console.log(linkedSite);
+    // console.log(linkedSite);
     var site = 'http://'
     site += linkedSite;
     $window.open(site);

@@ -70,4 +70,8 @@ module.exports = function(app){
     organizations.apiTest2(req,res)
   });
 
+  app.get('/apiTest3/:location', function(req,res){
+    organizations.apiTest3(req,res)
+  });
+
 }; // End Routes

@@ -3,6 +3,8 @@
 // =========================================================================
 app.factory('logRegFactory', function ($http){
   var factory = {};
+  var nearbyLocations = {};
+  // console.log(nearbyLocations);
 
 // Find address
   factory.findAddress = function(input, callback){
@@ -13,19 +15,16 @@ app.factory('logRegFactory', function ($http){
 
   factory.getNearby = function(input, callback){
     $http.post('/getNearby', input).then(function(output){
-      // console.log(output);
       callback(output)
     });
   }
-
 
 
   //Check if user is registered already or not
   factory.newRegCheck = function(input, callback){
     console.log(input);
     $http.post('/newRegCheck', input).then(function(output){
-      console.log('Back from server');
-      console.log(output);
+      // console.log('Back from server');
       callback(output);
     });
   } // End newRegCheck
