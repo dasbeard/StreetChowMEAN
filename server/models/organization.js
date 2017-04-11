@@ -20,6 +20,7 @@ var OrganizationSchema = new mongoose.Schema({
   description: {type: String, required: true, minlength: 3, maxlength: 150, trim: true},
   latitude:{type: Number, trim: true},
   longitude:{type: Number, trim: true},
+  hoursOfOperation: {},
   email:{
         type: String,
         required: true,

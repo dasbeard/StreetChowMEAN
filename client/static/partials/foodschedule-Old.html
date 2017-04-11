@@ -1,20 +1,20 @@
 <h2>{{error}}</h2>
 
 <div class="mdl-grid">
-  <div class="servicesHeader mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+  <div class="servicesHeader mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
     <h1>{{user.organization}}</h1>
   </div>
-  <div class="servicesHeader mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+  <div class="servicesHeader mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
     <h5>{{user.formattedAddress}}</h5>
   </div>
 </div>
 
 
 <div class="midLevelHeader mdl-grid">
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
     <p>Description</p>
   </div>
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
     <p>Phone Number</p>
     <p>Website</p>
   </div>
@@ -22,46 +22,7 @@
 
 <!-- Hours of Operation -->
 <section class="midSectionDiv mdl-grid" id="my-table">
-
-
-
-<div class="mdl-cell mdl-cell--5-col mdl-cell--5-col-tablet mdl-cell--4-col-phone">
-  <h4>Hours of Operation</h4>
-    <li class='datesOpen-Input2'>
-      <h6>Monday</h6>
-      <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.close' step='1800'>
-    </li>
-    <li class='datesOpen-Input2'>
-      <h6>Tuesday</h6>
-      <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tues.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tues.close' step='1800'>
-    </li>
-    <li class='datesOpen-Input2'>
-      <h6>Wednesday</h6>
-      <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.close' step='1800'>
-    </li>
-    <li class='datesOpen-Input2'>
-      <h6>Thursday</h6>
-      <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thur.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thur.close' step='1800'>
-    </li>
-    <li class='datesOpen-Input2'>
-      <h6>Friday</h6>
-      <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.close' step='1800'>
-    </li>
-    <li class='datesOpen-Input2'>
-      <h6>Saturday</h6>
-      <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.close' step='1800'>
-    </li>
-    <li class='datesOpen-Input2'>
-      <h6>Sunday</h6>
-      <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.close' step='1800'>
-    </li>
-<li class='datesOpen-Input2'><h5>{{hopError}}</h5></li>
-<li class='datesOpen-Input2'><button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Update Hours Of Operation</button> </li>
-
-</div>
-
-
-  <!-- <div class="datesOpen mdl-cell mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--6-col mdl-cell--stretch">
+  <div class="datesOpen mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop mdl-cell--stretch">
     <h4>Hours of Operation</h4>
     <table class='mdl-data-table mdl-js-data-table mdl-shadow--2dp'>
       <tr>
@@ -214,10 +175,10 @@
 
     </table>
   <button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Update Hours of Operation</button>
-  </div> -->
+  </div>
 
 <!-- Food Served On -->
-  <div class="mdl-cell mdl-cell--7-col mdl-cell--7-col-tablet mdl-cell--4-col-phone">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
     <form class="">
       <h4>Add a day when your serving food:</h4>
 

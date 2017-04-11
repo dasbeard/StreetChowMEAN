@@ -220,3 +220,194 @@
 //      return words.join(' ');
 // }
 // console.log(titleCase("i'm a little tea pot"));
+
+
+
+
+
+
+
+//
+//
+// <div class="datesOpen">
+//
+//   <table>
+//     <tr>
+//       <td>
+//         <h5>Monday</h5>
+//       </td>
+//       <td>
+//         From
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//       <td>
+//         - to -
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//     </tr>
+//     <tr>
+//       <td>
+//         <h5>Tuesday</h5>
+//       </td>
+//       <td>
+//         From
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//       <td>
+//         - to -
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//     </tr>
+//     <tr>
+//       <td>
+//         <h5>Wednesday</h5>
+//       </td>
+//       <td>
+//         From
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//       <td>
+//         - to -
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//     </tr>
+//     <tr>
+//       <td>
+//         <h5>Thursday</h5>
+//       </td>
+//       <td>
+//         From
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//       <td>
+//         - to -
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//     </tr>
+//     <tr>
+//       <td>
+//         <h5>Friday</h5>
+//       </td>
+//       <td>
+//         From
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//       <td>
+//         - to -
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//     </tr>
+//     <tr>
+//       <td>
+//         <h5>Saturday</h5>
+//       </td>
+//       <td>
+//         From
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//       <td>
+//         - to -
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//     </tr>
+//     <tr>
+//       <td>
+//         <h5>Sunday</h5>
+//       </td>
+//       <td>
+//         From
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//       <td>
+//         - to -
+//       </td>
+//       <td>
+//         <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+//           <input class="mdl-textfield__input" type="time">
+//         </div>
+//       </td>
+//     </tr>
+//
+//   </table>
+// </div>
+
+
+
+
+
+
+
+var myObj = { mon: { open: '1970-01-01T20:30:00.000Z',close: '1970-01-01T09:00:00.000Z' }, tues: { open: '1970-01-01T20:30:00.000Z',close: '1970-01-01T09:00:00.000Z' } };
+
+
+// for (var key in myObj) {
+//     // skip loop if the property is from prototype
+//     if (!myObj.hasOwnProperty(key)) continue;
+//     console.log(key);
+//     var obj = myObj[key];
+//     for (var prop in obj) {
+//         // skip loop if the property is from prototype
+//         if(!obj.hasOwnProperty(prop)) continue;
+//
+//
+//         console.log(prop + " = " + obj[prop]);
+//     }
+// }
+
+
+Object.keys(myObj).forEach(key => {
+    console.log(key);          // the name of the current key.
+    console.log(myObj[key]);   // the value of the current key.
+});

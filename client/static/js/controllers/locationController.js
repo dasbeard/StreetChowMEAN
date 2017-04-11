@@ -4,9 +4,29 @@
 app.controller('locationController', function($scope, logRegFactory, $location, $cookies){
   $scope.myTemp = $cookies.getObject('myTemp');
   $scope.orgName = $cookies.get('orgName');
+  $scope.timeSelect = [
+    {code: '1', name: '1'},
+    {code: '2', name: '2'},
+    {code: '3', name: '3'},
+    {code: '4', name: '4'},
+    {code: '5', name: '5'},
+    {code: '6', name: '6'},
+    {code: '7', name: '7'},
+    {code: '8', name: '8'},
+    {code: '9', name: '9'},
+    {code: '10', name: '10'},
+    {code: '11', name: '11'},
+    {code: '12', name: '12'},
+  ];
+
+  $scope.period = [
+    {code: 'am', name: 'am'},
+    {code: 'pm', name: 'pm'},
+  ]
+
 
   var test = ($scope.myTemp.administrativeLevels.level2long);
-  console.log(test.toLowerCase());
+  // console.log(test.toLowerCase());
 
   $scope.cancelReg = function(){
     $cookies.remove('myTemp');

@@ -2,7 +2,6 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   $scope.days = [{}];
   $scope.user = $cookies.getObject('loggedUser');
 
-
   $scope.daySelect = [
     {code: 'Monday', name: "Monday"},
     {code: 'Tuesday', name: "Tuesday"},
@@ -33,8 +32,90 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
     {code: 'pm', name: 'pm'},
   ]
 
+
   getData();
 
+
+  $scope.updateHoursOfOp = function(){
+    var hours={};
+    if ($scope.hoursOfOp){
+      var flag = true;
+      if($scope.hoursOfOp.mon){
+        if (!($scope.hoursOfOp.mon.open && $scope.hoursOfOp.mon.close)){
+          flag = false;
+          $scope.hopError = 'Open and Close time needed for Monday'
+        }else {
+          hours.mon = $scope.hoursOfOp.mon;
+        }
+      }
+      if($scope.hoursOfOp.tues){
+        if (!($scope.hoursOfOp.tues.open && $scope.hoursOfOp.tues.close)){
+          flag = false;
+          $scope.hopError = 'Open and Close time needed for Tuesday'
+        }else {
+          hours.tues= $scope.hoursOfOp.tues;
+        }
+      }
+      if($scope.hoursOfOp.wen){
+        if (!($scope.hoursOfOp.wen.open && $scope.hoursOfOp.wen.close)){
+          flag = false;
+          $scope.hopError = 'Open and Close time needed for Tuesday'
+        }else {
+          hours.wen= $scope.hoursOfOp.wen;
+        }
+      }
+      if($scope.hoursOfOp.thur){
+        if (!($scope.hoursOfOp.thur.open && $scope.hoursOfOp.thur.close)){
+          flag = false;
+          $scope.hopError = 'Open and Close time needed for Tuesday'
+        }else {
+          hours.thur= $scope.hoursOfOp.thur;
+        }
+      }
+      if($scope.hoursOfOp.fri){
+        if (!($scope.hoursOfOp.fri.open && $scope.hoursOfOp.fri.close)){
+          flag = false;
+          $scope.hopError = 'Open and Close time needed for Tuesday'
+        }else {
+          hours.fri= $scope.hoursOfOp.fri;
+        }
+      }
+      if($scope.hoursOfOp.sat){
+        if (!($scope.hoursOfOp.sat.open && $scope.hoursOfOp.sat.close)){
+          flag = false;
+          $scope.hopError = 'Open and Close time needed for Tuesday'
+        }else {
+          hours.sat= $scope.hoursOfOp.sat;
+        }
+      }
+      if($scope.hoursOfOp.sun){
+        if (!($scope.hoursOfOp.sun.open && $scope.hoursOfOp.sun.close)){
+          flag = false;
+          $scope.hopError = 'Open and Close time needed for Tuesday'
+        }else {
+          hours.sun= $scope.hoursOfOp.sun;
+        }
+      }
+
+
+
+
+
+    } // End if hoursOfOp
+    console.log($scope.hoursOfOp);
+    if (flag){
+      var toSend = {};
+      toSend.id = $scope.user.id;
+      toSend.hours = hours;
+
+      foodFactory.updateHoursOfOp(toSend, function(output){
+        // console.log(output.data);
+        if (output.data){
+          getData();
+        }
+      })
+    }
+  };
 
 
 
@@ -152,16 +233,60 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
   function getData (){
     foodFactory.getDayService($scope.user, function(output){
+      // console.log(output.data);
       if (output.data.days){
         $scope.days = output.data.days;
       }
       if (output.data.services){
         $scope.services = output.data.services;
       }
+      if (output.data.hoursOfOp){
+          var hop = output.data.hoursOfOp;
+
+        if (hop.mon){
+          hop.mon.open = new Date(hop.mon.open);
+          hop.mon.close = new Date(hop.mon.close);
+        }
+        if (hop.tues){
+          hop.tues.open = new Date(hop.tues.open);
+          hop.tues.close = new Date(hop.tues.close);
+        }
+        if (hop.wen){
+          hop.wen.open = new Date(hop.wen.open);
+          hop.wen.close = new Date(hop.wen.close);
+        }
+        if (hop.thur){
+          hop.thur.open = new Date(hop.thur.open);
+          hop.thur.close = new Date(hop.thur.close);
+        }
+        if (hop.fri){
+          hop.fri.open = new Date(hop.fri.open);
+          hop.fri.close = new Date(hop.fri.close);
+        }
+        if (hop.sat){
+          hop.sat.open = new Date(hop.sat.open);
+          hop.sat.close = new Date(hop.sat.close);
+        }
+        if (hop.sun){
+          hop.sun.open = new Date(hop.sun.open);
+          hop.sun.close = new Date(hop.sun.close);
+        }
+
+        $scope.hoursOfOp = hop;
+
+        // $scope.hoursOfOp = output.data.hoursOfOp;
+      }
+      console.log($scope.hoursOfOp);
     });
   }; // End getData
 
-});
+
+
+
+
+
+
+}); // End Controller
 
 
 // ========== Helper Functions ==========
@@ -185,3 +310,16 @@ function validateNewDay(date){
   }
   return flag;
 } // End validateNewDay
+
+
+
+
+// ===== Sleep Function =====
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+};

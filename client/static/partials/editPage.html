@@ -6,15 +6,31 @@
 
 <div class="mdl-grid">
   <div class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-    <h4>{{thisOrg.formattedAddress}}</h4>
 
-    <p ng-show='thisOrg.website'><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
-    <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
-    <a ng-show='thisOrg.email' href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
-    <h4 ng-show='thisOrg.description'>Description:  </h4>
-    <p ng-show='thisOrg.description'>{{thisOrg.description}}</p>
-    <h4 ng-show='thisOrg.services.otherServices'>Other Services: </h4>
-    <p ng-show='thisOrg.services.otherServices'> {{thisOrg.services.otherServices}}</p>
+    <!-- <form class="">
+
+      <h4>{{thisOrg.formattedAddress}}</h4>
+      <p ng-show='thisOrg.website'><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+      <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
+      <a ng-show='thisOrg.email' href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
+      <h4 ng-show='thisOrg.description'>Description:  </h4>
+      <p ng-show='thisOrg.description'>{{thisOrg.description}}</p>
+      <h4 ng-show='thisOrg.services.otherServices'>Other Services: </h4>
+      <p ng-show='thisOrg.services.otherServices'> {{thisOrg.services.otherServices}}</p>
+
+    </form> -->
+
+
+
+
+      <h4>{{thisOrg.formattedAddress}}</h4>
+      <p ng-show='thisOrg.website'><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+      <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
+      <a ng-show='thisOrg.email' href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a>
+      <h4 ng-show='thisOrg.description'>Description:  </h4>
+      <p ng-show='thisOrg.description'>{{thisOrg.description}}</p>
+      <h4 ng-show='thisOrg.services.otherServices'>Other Services: </h4>
+      <p ng-show='thisOrg.services.otherServices'> {{thisOrg.services.otherServices}}</p>
 
 
   </div>
@@ -43,6 +59,16 @@
         <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Recreational Activities <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.recActivities' ng-true-value="true" ng-false-value="false" ></label></td>
         <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Takes Donations <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.donations' ng-true-value="true" ng-false-value="false" ></label></td>
       </tr>
+      <tr>
+        <td></td>
+        <td></td>
+
+        <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="button" ng-click = 'updateServices()'>Update Services</button>
+
+
+        {{message}}
+</td>
+      </tr>
     </table>
 
   </div>
@@ -55,6 +81,15 @@
             <td>{{ d.day }}</td>
             <td>{{ d.start }}</td>
             <td>{{ d.end }}</td>
+            <td><button id='removeBtn' class="mdl-snackbar__action mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" ng-click = "deleteDay($index)"> Remove <i class="material-icons">remove</i>
+            </button></td>
+          </tr>
+          <tr id='addSpace'>
+            <td></td>
+            <!-- <td>Add New Day</td> -->
+            <td>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Add New Day<i class="material-icons">add</i></button>
+            </td>
           </tr>
         </table>
       </div>
@@ -62,3 +97,15 @@
 
 
 </div>
+
+
+<!-- <div class="mdl-layout-spacer"></div> -->
+
+
+ <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+
+   <div class="mdl-snackbar__text"></div>
+
+   <button class="mdl-snackbar__action" type="button"></button>
+
+ </div>

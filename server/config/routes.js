@@ -54,6 +54,10 @@ module.exports = function(app){
     organizations.updateServices(req,res)
   });
 
+  app.post('/updateHoursOfOp', function(req,res){
+    organizations.updateHoursOfOp(req,res)
+  });
+
   app.post('/citySearch', function(req,res){
     organizations.citySearch(req,res)
   });

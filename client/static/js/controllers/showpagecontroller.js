@@ -22,7 +22,6 @@ app.controller('showPageController', function($scope, $location, showPageFactory
       $scope.thisOrg = output;
       $scope.thisOrg.phone = phoneDisplay(output.phone)
       $scope.latLong = output.latitude + ',' + output.longitude
-      console.log($scope.thisOrg);
       map();
     }
   });

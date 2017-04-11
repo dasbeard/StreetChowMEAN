@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const NodeGeocoder = require('node-geocoder');
 const distance = require('google-distance');
+const moment = require('moment');
 
 distance.key = ('AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM');
 
@@ -123,91 +124,6 @@ module.exports = (function(){
 
 
 
-
-
-
-
-
-    apiTest3: function(req,res){
-      console.log(req.params);
-      var myLatLng =  req.params.location.split(',');
-      var myLat = parseFloat(myLatLng[0]);
-      var myLng = parseFloat(myLatLng[1]);
-
-      Organization.find(({}), function(err, allLocations){
-        if (err){
-          console.log('==== Error When finding user ===='.red);
-          console.log(err);
-        } else {
-          var sendBack =[];
-          for (var i=0; i<allLocations.length; i++){
-            if(myDistance(myLat, myLng, allLocations[i].latitude, allLocations[i].longitude)<=10){
-              sendBack.push(allLocations[i]);
-            }
-          }
-          res.json(sendBack);
-        }
-      }) // End find All
-
-    }, // End API Test 3
-
-
-
-
-
-
-    // ============== Get all info from DB for API Using Distance Matrix ==============
-    apiTest2: function(req,res){
-
-      Organization.find(({}), function(err, allLocations){
-        if (err){
-          console.log('==== Error When finding user ===='.red);
-          console.log(err);
-        } else {
-          // console.log(allLocations);
-          var sendBack = [];
-          var origins = req.params.location
-          var destinations = [];
-
-      // Need to make sure that all locations are less than 25 per google api
-      // if (allLocations.length > 2){
-      //   console.log('greater than 2');
-      //   console.log(allLocations.length);
-      // }
-          for (var i=0; i<allLocations.length;i++){
-            destinations.push(allLocations[i].latitude + ',' + allLocations[i].longitude);
-          }
-          distance.get({origin: req.params.location, destinations}, function(err, data) {
-              if (err){
-                return console.log(err)
-              } else {
-                // console.log(data);
-                for (var i=0; i<data.length; i++){
-                  if (data[i].distanceValue < 16500){
-                    // console.log('=================================='.red);
-                    // console.log(data[i]);
-                    // console.log(destinations[i]);
-                    // console.log('=================================='.yellow);
-                    // console.log(allLocations[i]);
-                    sendBack.push(allLocations[i]);
-
-                  }
-                }
-                // console.log('=================================='.cyan);
-                // console.log(sendBack);
-                // console.log('=================================='.cyan);
-
-                res.json(sendBack)
-              }
-          });
-
-        }
-      });
-    }, // End apiTest2
-
-
-
-
     getShow: function(req,res){
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
         if (err){
@@ -253,8 +169,8 @@ module.exports = (function(){
           console.log('==== Error When saving new day ===='.red);
           console.log(err);
         } else {
-          console.log(oneUser);
-          var toSendBack = {days: oneUser.days, services: oneUser.services, otherServices: oneUser.otherServices};
+
+          var toSendBack = {days: oneUser.days, services: oneUser.services, hoursOfOp: oneUser.hoursOfOperation};
           res.json(toSendBack);
         }
       })
@@ -301,17 +217,72 @@ module.exports = (function(){
       })
     },
 
-    // ============== Get all info from DB for API ==============
-    apiTest: function(req,res){
-      Organization.find({}, function(err, data){
+
+
+    updateHoursOfOp: function(req,res){
+
+      console.log('===== Updating Hours of Op ====='.cyan);
+      console.log(req.body.hours);
+      console.log('=====  =====  =====  =====  =====  '.cyan);
+
+      Organization.findOne({_id: req.body.id}, function(err,oneUser){
         if (err){
-          console.log('===== Error ====='.red);
+          console.log('==== Error finding organization ===='.red);
           console.log(err);
         } else {
-          res.json(data);
+
+          // ======== Remove date from dateTime ========
+          if (req.body.hours.mon){
+            req.body.hours.mon.open = new Date(req.body.hours.mon.open);
+            req.body.hours.mon.close = new Date(req.body.hours.mon.close);
+          }
+          if (req.body.hours.tues){
+            req.body.hours.tues.open = new Date(req.body.hours.tues.open);
+            req.body.hours.tues.close = new Date(req.body.hours.tues.close);
+          }
+          if (req.body.hours.wen){
+            req.body.hours.wen.open = new Date(req.body.hours.wen.open);
+            req.body.hours.wen.close = new Date(req.body.hours.wen.close);
+          }
+          if (req.body.hours.thur){
+            req.body.hours.thur.open = new Date(req.body.hours.thur.open);
+            req.body.hours.thur.close = new Date(req.body.hours.thur.close);
+          }
+          if (req.body.hours.fri){
+            req.body.hours.fri.open = new Date(req.body.hours.fri.open);
+            req.body.hours.fri.close = new Date(req.body.hours.fri.close);
+          }
+          if (req.body.hours.sat){
+            req.body.hours.sat.open = new Date(req.body.hours.sat.open);
+            req.body.hours.sat.close = new Date(req.body.hours.sat.close);
+          }
+          if (req.body.hours.sun){
+            req.body.hours.sun.open = new Date(req.body.hours.sun.open);
+            req.body.hours.sun.close = new Date(req.body.hours.sun.close);
+          }
+
+          // console.log('=====  =====  =====  =====  =====  '.red);
+
+          oneUser.hoursOfOperation = req.body.hours;
+
+          oneUser.save(function(err){
+            if(err){
+              console.log('===== Error Updating Hours of Operation ====='.red);
+              console.log(err);
+            } else {
+              res.json(true);
+            }
+          }) // End Save
         }
-      });
-    }, // End API Test
+      }) // End Query
+
+
+    }, // End updateHoursOfOp
+
+
+
+
+
 
 
 
@@ -481,7 +452,107 @@ module.exports = (function(){
           }
         }
       });
-    } // End Login Method
+    }, // End Login Method
+
+
+
+
+// ========================================================================
+// ================================ API's =================================
+// ========================================================================
+
+
+
+// ============== Get all info from DB for API ==============
+apiTest: function(req,res){
+  Organization.find({}, function(err, data){
+    if (err){
+      console.log('===== Error ====='.red);
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
+}, // End API Test
+
+
+apiTest3: function(req,res){
+  console.log(req.params);
+  var myLatLng =  req.params.location.split(',');
+  var myLat = parseFloat(myLatLng[0]);
+  var myLng = parseFloat(myLatLng[1]);
+
+  Organization.find(({}), function(err, allLocations){
+    if (err){
+      console.log('==== Error When finding user ===='.red);
+      console.log(err);
+    } else {
+      var sendBack =[];
+      for (var i=0; i<allLocations.length; i++){
+        if(myDistance(myLat, myLng, allLocations[i].latitude, allLocations[i].longitude)<=10){
+          sendBack.push(allLocations[i]);
+        }
+      }
+      res.json(sendBack);
+    }
+  }) // End find All
+
+}, // End API Test 3
+
+
+
+// ============== Get all info from DB for API Using Distance Matrix ==============
+apiTest2: function(req,res){
+
+  Organization.find(({}), function(err, allLocations){
+    if (err){
+      console.log('==== Error When finding user ===='.red);
+      console.log(err);
+    } else {
+      // console.log(allLocations);
+      var sendBack = [];
+      var origins = req.params.location
+      var destinations = [];
+
+  // Need to make sure that all locations are less than 25 per google api
+  // if (allLocations.length > 2){
+  //   console.log('greater than 2');
+  //   console.log(allLocations.length);
+  // }
+      for (var i=0; i<allLocations.length;i++){
+        destinations.push(allLocations[i].latitude + ',' + allLocations[i].longitude);
+      }
+      distance.get({origin: req.params.location, destinations}, function(err, data) {
+          if (err){
+            return console.log(err)
+          } else {
+            // console.log(data);
+            for (var i=0; i<data.length; i++){
+              if (data[i].distanceValue < 16500){
+                sendBack.push(allLocations[i]);
+
+              }
+            }
+            res.json(sendBack)
+          }
+      });
+
+    }
+  });
+}, // End apiTest2
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   } // End Return
