@@ -96,13 +96,7 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
           hours.sun= $scope.hoursOfOp.sun;
         }
       }
-
-
-
-
-
     } // End if hoursOfOp
-    console.log($scope.hoursOfOp);
     if (flag){
       var toSend = {};
       toSend.id = $scope.user.id;
@@ -112,6 +106,8 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
         // console.log(output.data);
         if (output.data){
           getData();
+          snackBar('Hours Updated');
+
         }
       })
     }
@@ -119,27 +115,63 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
 
 
+
+  // $scope.addDay = function(){
+  // // Validate Info is present
+  //   if (validateNewDay($scope.days) == true){
+  //
+  //     $scope.newDayTime = { 'user': $scope.user.id,
+  //                           'day': $scope.days.day,
+  //                           'start': $scope.days.start + $scope.days.start2,
+  //                           'end': $scope.days.end + $scope.days.end2
+  //                         };
+  //     foodFactory.addDay($scope.newDayTime, function(output){
+  //       if (output.data){
+  //         getData();
+  //         $scope.error = '';
+  //       } else {
+  //         $scope.error = 'Problem saving day'
+  //       }
+  //     })
+  //   } else {
+  //     $scope.error = validateNewDay($scope.days);
+  //   }
+  // }; // End addDay
+
+
+
+
   $scope.addDay = function(){
   // Validate Info is present
-    if (validateNewDay($scope.days) == true){
+    console.log($scope.days.new);
+    $scope.days.new.id = $scope.user.id;
+    foodFactory.addDay($scope.days.new, function(output){
+      if (output.data){
+        getData();
+        $scope.error = '';
+      } else {
+        $scope.error = 'Problem saving day'
+      }
+    })
 
-      $scope.newDayTime = { 'user': $scope.user.id,
-                            'day': $scope.days.day,
-                            'start': $scope.days.start + $scope.days.start2,
-                            'end': $scope.days.end + $scope.days.end2
-                          };
-      foodFactory.addDay($scope.newDayTime, function(output){
-        if (output.data){
-          getData();
-          $scope.error = '';
-        } else {
-          $scope.error = 'Problem saving day'
-        }
-      })
-    } else {
-      $scope.error = validateNewDay($scope.days);
-    }
+
+    // if (validateNewDay($scope.days) == true){
+    //
+    //   $scope.newDayTime = { 'user': $scope.user.id,
+    //                         'day': $scope.days.day,
+    //                         'start': $scope.days.start + $scope.days.start2,
+    //                         'end': $scope.days.end + $scope.days.end2
+    //                       };
   }; // End addDay
+
+
+
+
+
+
+
+
+
 
 
   $scope.deleteDay = function(idx){
@@ -220,10 +252,14 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
     foodFactory.updateServices(myServices, function(output){
       if (output.data){
         getData();
-        var snackbarContainer = document.querySelector('#demo-toast-example');
-          'use strict';
-          var data = {message: output.data.message};
-          snackbarContainer.MaterialSnackbar.showSnackbar(data);
+        snackBar(output.data.message);
+
+        // var snackbarContainer = document.querySelector('#demo-toast-example');
+        //   'use strict';
+        //   var data = {message: output.data.message};
+        //   snackbarContainer.MaterialSnackbar.showSnackbar(data);
+
+
       } else {
         $scope.error = 'Problem updating service';
       }
@@ -231,11 +267,22 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   }; // End updateServices
 
 
+
+  var snackBar = function(message){ snackbarContainer = document.querySelector('#demo-toast-example');
+    'use strict';
+    var data = {message: message};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  }
+
+
+
+
   function getData (){
     foodFactory.getDayService($scope.user, function(output){
       // console.log(output.data);
       if (output.data.days){
         $scope.days = output.data.days;
+        console.log($scope.days);
       }
       if (output.data.services){
         $scope.services = output.data.services;
@@ -271,12 +318,10 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
           hop.sun.open = new Date(hop.sun.open);
           hop.sun.close = new Date(hop.sun.close);
         }
-
         $scope.hoursOfOp = hop;
-
         // $scope.hoursOfOp = output.data.hoursOfOp;
       }
-      console.log($scope.hoursOfOp);
+      // console.log($scope.hoursOfOp);
     });
   }; // End getData
 

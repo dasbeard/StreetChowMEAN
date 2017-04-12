@@ -268,6 +268,33 @@ a{
 }
 
 
+.addDayForm button, .addDayForm input, .addDayForm li{
+  display: inline-block;
+  /*display: flex;
+  justify-content: space-between;*/
+}
+
+
+
+.daysServingFood p{
+  display: flex;
+  justify-content: space-between;
+  word-spacing: 10px;
+  margin-bottom: 5px;
+}
+
+.daysServingFood span{
+  width: 20%;
+}
+.daysServingFood button{
+  height: 25px;
+  line-height: 25px;
+}
+
+
+
+
+
 
 
 .showPageDays{

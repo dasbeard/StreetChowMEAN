@@ -20,12 +20,11 @@
   </div>
 </div>
 
-<!-- Hours of Operation -->
 <section class="midSectionDiv mdl-grid" id="my-table">
 
 
-
-<div class="mdl-cell mdl-cell--5-col mdl-cell--5-col-tablet mdl-cell--4-col-phone">
+  <!-- Hours of Operation -->
+<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
   <h4>Hours of Operation</h4>
     <li class='datesOpen-Input2'>
       <h6>Monday</h6>
@@ -57,222 +56,42 @@
     </li>
 <li class='datesOpen-Input2'><h5>{{hopError}}</h5></li>
 <li class='datesOpen-Input2'><button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Update Hours Of Operation</button> </li>
-
 </div>
 
 
-  <!-- <div class="datesOpen mdl-cell mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--6-col mdl-cell--stretch">
-    <h4>Hours of Operation</h4>
-    <table class='mdl-data-table mdl-js-data-table mdl-shadow--2dp'>
-      <tr>
-        <td>
-          <h5>Monday</h5>
-        </td>
-        <td id='hoursText'>
-          From
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.open'>
-          </div>
-        </td>
-        <td id='hoursText'>
-          to
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.close'>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h5>Tuesday</h5>
-        </td>
-        <td id='hoursText'>
-          From
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tue.open'>
-          </div>
-        </td>
-        <td id='hoursText'>
-          to
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time"ng-model='hoursOfOp.tue.close'>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h5>Wednesday</h5>
-        </td>
-        <td id='hoursText'>
-          From
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.open'>
-          </div>
-        </td>
-        <td id='hoursText'>
-          to
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time"ng-model='hoursOfOp.wen.close'>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h5>Thursday</h5>
-        </td>
-        <td id='hoursText'>
-          From
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thurs.open'>
-          </div>
-        </td>
-        <td id='hoursText'>
-          to
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time"ng-model='hoursOfOp.thurs.close'>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h5>Friday</h5>
-        </td>
-        <td id='hoursText'>
-          From
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.open'>
-          </div>
-        </td>
-        <td id='hoursText'>
-          to
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.close'>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h5>Saturday</h5>
-        </td>
-        <td id='hoursText'>
-          From
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.open'>
-          </div>
-        </td>
-        <td id='hoursText'>
-          to
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.close'>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h5>Sunday</h5>
-        </td>
-        <td id='hoursText'>
-          From
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.open'>
-          </div>
-        </td>
-        <td id='hoursText'>
-          to
-        </td>
-        <td>
-          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
-            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.close'>
-          </div>
-        </td>
-      </tr>
-
-    </table>
-  <button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Update Hours of Operation</button>
-  </div> -->
-
 <!-- Food Served On -->
-  <div class="mdl-cell mdl-cell--7-col mdl-cell--7-col-tablet mdl-cell--4-col-phone">
-    <form class="">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+    <form class="addDayForm">
       <h4>Add a day when your serving food:</h4>
+        <li class='datesOpen-Input2'>
+          <select name="days" ng-model='days.new.day' required ng-options='d.code as d.name for d in daySelect'>
+            <option value="">-- Select Day --</option>
+          </select>
+          <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.start' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.end' step='1800'>
+        </li>
 
-      <label>
-        <select name="days" ng-model='days.day' required ng-options='d.code as d.name for d in daySelect'>
-          <option value="">-- Select Day --</option>
-        </select>
-      </label>
-
-      <label>
-        <select ng-model='days.start' required ng-options='t.code as t.name for t in timeSelect'>
-          <option value="">-- Start Time --</option>
-        </select>
-      </label>
-
-      <label>
-        <select ng-model='days.start2' required ng-options='p.code as p.name for p in period'>
-          <option value="">am/pm</option>
-        </select>
-      </label>
-
-      <label>
-        <select ng-model='days.end' required ng-options='t.code as t.name for t in timeSelect'>
-          <option value="">-- End Time --</option>
-        </select>
-      </label>
-
-      <label>
-        <select ng-model='days.end2' required ng-options='p.code as p.name for p in period'>
-          <option value="">am/pm</option>
-        </select>
-      </label>
-
-      <button type="button" name="button" ng-click = 'addDay()'>Add Day</button>
+      <button type="button" name="button" class='mdl-button mdl-js-button mdl-button--raised' ng-click = 'addDay()'>Add Day</button>
     </form>
-    <div>
 
-    <table>
 
-      <thead>
-        <th>days</th>
-        <th>start time</th>
-        <th>end time</th>
-        <th>Action</th>
-      </thead>
-      <tr ng-repeat="d in days">
-        <td>{{ d.day }}</td>
-        <td>{{ d.start }}</td>
-        <td>{{ d.end }}</td>
-        <td><button  ng-click = "deleteDay($index)">Remove</button></td>
-      </tr>
-    </table>
+
+
+
+    <div class="daysServingFood">
+      <p ng-repeat='d in days'><span>{{d.day}}</span>From {{d.start | date:'h:mm a'}} to {{ d.end | date:'h:mm a' }} <button class='mdl-button mdl-js-button mdl-button--raised' ng-click = "deleteDay($index)">Remove</button></p>
 
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
 </section>
 
 <!-- Services -->
