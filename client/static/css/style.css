@@ -10,10 +10,11 @@
 .pageWrapper{
   margin: 2%;
   padding: 0;
-  background-color: rgba(225, 225, 225, 0.6);
+  background-color: rgba(225, 225, 225, 0.7);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
+  /*height: 80vw;*/
 }
 
 
@@ -43,7 +44,10 @@ a{
 
 .mapDiv {
   height: 500px;
-  box-shadow: 8px 8px 8px 2px rgba(112, 112, 112, .7);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 2px rgba(112, 112, 112, .3);
 }
 
 .homePage{
@@ -54,6 +58,8 @@ a{
   text-align: center;
   margin-top: 1px;
   margin-bottom: 1px;
+  background-color: rgba(190, 190, 190, 0.5);
+
 }
 
 .home-title h4, .home-title h1{
@@ -67,15 +73,15 @@ a{
 .orgList {
   height: 89%;
   overflow-y: auto;
-  background-color: rgba(190, 190, 190, 0.1);
+  background-color: rgba(190, 190, 190, 0.5);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  box-shadow: 8px 8px 8px 2px rgba(112, 112, 112, .7);
+  box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
 }
 
 .orgList h5 span{
-  font-size: .5em;
+  font-size: .6em;
   padding-left: 15%;
 }
 
@@ -125,7 +131,7 @@ a{
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  box-shadow: 8px 8px 8px 2px rgba(112, 112, 112, .7);
+  box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
 }
 
 #homeSearchInputs{
@@ -159,6 +165,11 @@ a{
   text-align: center;
   height: 100px;
   overflow-y: auto;
+  background-color: rgba(190, 190, 190, 0.5);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
 }
 
 .searchResults span {
@@ -210,17 +221,34 @@ a{
 .logRegContent{
   display: flex;
   justify-content: space-around;
-  height: 80vh;
+  align-items: center;
+  height: 60vh;
+  /*height: 65%;*/
 }
 
 .logRegContent button{
   margin-left: 85%;
   width: 85%;
+  background-color: lightgrey;
+}
+
+.Login, .Register {
+  background-color: rgba(225, 225, 225, 0.7);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  width: 35%;
+  height: 65%;
+}
+
+
+.Login label, .Register label{
+  color: black;
 }
 
 
 .Login form, .Register form{
-  background-color: lightgrey;
+  /*background-color: lightgrey;*/
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
@@ -229,13 +257,6 @@ a{
 }
 
 
-.Login, .Register {
-  background-color: lightgrey;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  width: 35%;
-}
 
 .Login label, .Register label, .Login input, .Register input {
   text-align: center;
@@ -389,6 +410,15 @@ a{
   padding: 0;
 }
 
+.orgName{
+  padding-top: 15px;
+  font-size: 1.7em;
+}
+
+.orgName label{
+  color: #6b6b6b;
+}
+
 .servicesTextInput{
   margin-top: 0;
 }
@@ -398,7 +428,7 @@ a{
 }
 
 .inputSection label{
-  /*color: black;*/
+  color: #6b6b6b;
 }
 
 .descTextArea{

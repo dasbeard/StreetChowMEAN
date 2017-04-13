@@ -3,7 +3,12 @@
   <h2 class="errorMessage">{{error}}</h2>
 <!-- ===== Top Section ===== -->
     <div class="servicesHeader mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-      <h2>{{user.organization}}</h2>
+      <!-- <h2>{{user.organization}}</h2> -->
+
+      <div class=" mdl-textfield mdl-js-textfield ">
+        <input class="orgName mdl-textfield__input" type="text" id="orgName" ng-model='user.organization' required>
+        <label class="orgName mdl-textfield__label" for="orgName">Organization Name...</label>
+      </div>
       <h6>{{user.formattedAddress}}</h6>
     </div>
 
@@ -83,18 +88,51 @@
               <option value="Saturday">Saturday</option>
               <option value="Sunday">Sunday</option>
             </select>
-            <label class="mdl-selectfield__label" for="myselect">State..</label>
+            <label class="mdl-selectfield__label" for="myselect">Day..</label>
           </div>
 
 
 
           <div id='timeInputs' class="addNew">
-              <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.start' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.end' step='1800'>
+              <!-- <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.start' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.end' step='1800'> -->
             <button type="button" class='mdl-button mdl-js-button mdl-button--raised' ng-click = 'addDay()'>Add Day</button>
           </div>
 
+
+
+
+
+
         </div>
 
+
+        <div class="">
+          <input type="number" min='1' max='12' ng-model='days.new.startHours'>
+          <!-- <input type="number" step='30' min='00.0' max='30' ng-model='days.new.startMin'> -->
+          <select ng-model='days.new.startMin'>
+            <option value=""> -- </option>
+            <option value="00">00</option>
+            <option value="30">30</option>
+          </select>
+          <select ng-model='days.new.startPeriod'>
+            <option value=""> am/pm </option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+          </select>
+          <input type="number" min='1' max='12' ng-model='days.new.endHours'>
+          <select ng-model='days.new.startMin'>
+            <option value=""> -- </option>
+            <option value="00">00</option>
+            <option value="30">30</option>
+          </select>
+
+          <select ng-model='days.new.endPeriod'>
+            <option value=""> am/pm </option>
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+          </select>
+
+        </div>
 
 
 

@@ -1,4 +1,4 @@
-<div class="pageWrapper">
+<!-- <div class="pageWrapper"> -->
 
   <div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
 
@@ -144,7 +144,7 @@
 
     <div class="Spacer mdl-cell mdl-cell--2-col mdl-cell--0-col-tablet"></div>
 
-    <div class="searchResults mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+    <div ng-show='searchedCity' class="searchResults mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
 
       <li ng-repeat='place in searchedCity'>
         <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a id='website' ng-show='place.website' href="{{place.website}}" target="_blank" ng-click="linkModelFunc(place.website)">{{place.website}}</a>
@@ -156,4 +156,4 @@
 
   </div>
 
-</div>
+<!-- </div> -->

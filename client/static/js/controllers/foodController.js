@@ -88,19 +88,39 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   };
 
 
+  // $scope.addDay = function(){
+  // // Validate Info is present
+  //   console.log($scope.days.new);
+  //   $scope.days.new.id = $scope.user.id;
+  //   foodFactory.addDay($scope.days.new, function(output){
+  //     if (output.data){
+  //       getData();
+  //       $scope.error = '';
+  //     } else {
+  //       $scope.error = 'Problem saving day'
+  //     }
+  //   })
+  // }; // End addDay
+
+
+
+
   $scope.addDay = function(){
   // Validate Info is present
     console.log($scope.days.new);
-    $scope.days.new.id = $scope.user.id;
-    foodFactory.addDay($scope.days.new, function(output){
-      if (output.data){
-        getData();
-        $scope.error = '';
-      } else {
-        $scope.error = 'Problem saving day'
-      }
-    })
+    // $scope.days.new.id = $scope.user.id;
+    // foodFactory.addDay($scope.days.new, function(output){
+    //   if (output.data){
+    //     getData();
+    //     $scope.error = '';
+    //   } else {
+    //     $scope.error = 'Problem saving day'
+    //   }
+    // })
   }; // End addDay
+
+
+
 
 
   $scope.deleteDay = function(idx){
