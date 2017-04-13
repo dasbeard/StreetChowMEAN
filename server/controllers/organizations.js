@@ -21,31 +21,6 @@ var Organization = mongoose.model('Organization');
 module.exports = (function(){
   return {
 
-
-
-
-// ===========================================================================================
-    // citySearch: function(req,res){
-    //   var city = titleCase(req.body.city)
-    //   Organization.find({$and: [{state: req.body.state}, {city: city}]}, function(err, results){
-    //     if (err){
-    //       console.log('==== Error finding by state ===='.red);
-    //       console.log(err);
-    //     } else {
-    //       // console.log(results);
-    //       var sendBack = [];
-    //       for (var i=0; i<results.length; i++){
-    //         organization = { formattedAddress: results[i].formattedAddress, organization: results[i].organization, website: results[i].website, _id: results[i]._id}
-    //         sendBack.push(organization);
-    //       };
-    //       res.json(sendBack);
-    //     }
-    //   })
-    // },
-// ===========================================================================================
-
-
-
     citySearch: function(req,res){
       var city = titleCase(req.body.city)
       Organization.find({$and: [{state: req.body.state}, {city: city}]}, function(err, results){
@@ -138,7 +113,6 @@ module.exports = (function(){
 
 
 
-
     addDay: function(req,res){
       // console.log(req.body);
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
@@ -147,17 +121,12 @@ module.exports = (function(){
           console.log(err);
         } else {
           var newDay = {day: req.body.day, start: new Date(req.body.start), end: new Date(req.body.end)};
-          console.log(newDay);
-
-
           oneUser.days.push(newDay);
           oneUser.save(function(err){
             if (err){
               console.log('==== Error When saving new day ===='.red);
               console.log(err);
             } else {
-              // console.log('==== Successfuly Saved New Day ===='.yellow);
-              // var toSendBack = {'days': oneUser.days, 'services': oneUser.services};
               res.json(true);
             }
           })
@@ -166,39 +135,14 @@ module.exports = (function(){
     }, //End addDay
 
 
-
-    // addDay: function(req,res){
-    //   Organization.findOne({_id: req.body.id}, function(err, oneUser){
-    //     if (err){
-    //       console.log('===== Error ====='.red);
-    //       console.log(err);
-    //     } else {
-    //       // console.log('The User'.cyan);
-    //       // console.log(req.body);
-    //       oneUser.days.push(req.body);
-    //       oneUser.save(function(err){
-    //         if (err){
-    //           console.log('==== Error When saving new day ===='.red);
-    //           console.log(err);
-    //         } else {
-    //           // console.log('==== Successfuly Saved New Day ===='.yellow);
-    //           var toSendBack = {'days': oneUser.days, 'services': oneUser.services};
-    //           res.json(toSendBack);
-    //         }
-    //       })
-    //     }
-    //   })
-    // }, //End addDay
-
-
     getDayService: function(req, res){
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
         if (err){
           console.log('==== Error When saving new day ===='.red);
           console.log(err);
         } else {
-
-          var toSendBack = {days: oneUser.days, services: oneUser.services, hoursOfOp: oneUser.hoursOfOperation};
+          var orgInfo = {phone: oneUser.phone, website: oneUser.website, description: oneUser.description};
+          var toSendBack = {days: oneUser.days, services: oneUser.services, hoursOfOp: oneUser.hoursOfOperation, org: orgInfo };
           res.json(toSendBack);
         }
       })
@@ -306,10 +250,6 @@ module.exports = (function(){
 
 
     }, // End updateHoursOfOp
-
-
-
-
 
 
 

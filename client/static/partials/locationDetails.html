@@ -1,22 +1,24 @@
+<div class="pageWrapper">
 
-<div class="preBuilt">
-      <h1>{{orgName}}</h1>
-      <h3>Located at: {{myTemp.formattedAddress}}</h3>
+  <div class="preBuilt">
+        <h1>{{orgName}}</h1>
+        <h3>Located at: {{myTemp.formattedAddress}}</h3>
+  </div>
+
+  <h4>Please enter the remaining information about your organization</h4>
+  <h2>{{error}}</h2>
+
+  <div class="register">
+    <label>Email: <input type="email" placeholder='you@email.com' ng-model='reg.email'></label>
+    <label>Phone Number: <input type="text" placeholder='(123)555-555' ng-model='reg.phone'></label>
+    <label>Website: <input type="text" placeholder='yoursite.com' ng-model='reg.website'></label>
+  <!-- Change to a text area and add a character counter counting down from 150 -->
+    <label>Description <br>  (max 150 characters): <input type="text" placeholder='Short description about your organization' ng-model='reg.description'></label>
+
+    <label>Password: <input type="password" ng-model='reg.password'></label>
+    <label>Confirm Password: <input type="password" ng-model='reg.password_conf'></label>
+    <button type="button" name="button" ng-click="regOrganization()">Register</button>
+  </div>
+
+  <button ng-click='cancelReg()'>Cancel</button>
 </div>
-
-<h4>Please enter the remaining information about your organization</h4>
-<h2>{{error}}</h2>
-
-<div class="register">
-  <label>Email: <input type="email" placeholder='you@email.com' ng-model='reg.email'></label>
-  <label>Phone Number: <input type="text" placeholder='(123)555-555' ng-model='reg.phone'></label>
-  <label>Website: <input type="text" placeholder='yoursite.com' ng-model='reg.website'></label>
-<!-- Change to a text area and add a character counter counting down from 150 -->
-  <label>Description <br>  (max 150 characters): <input type="text" placeholder='Short description about your organization' ng-model='reg.description'></label>
-
-  <label>Password: <input type="password" ng-model='reg.password'></label>
-  <label>Confirm Password: <input type="password" ng-model='reg.password_conf'></label>
-  <button type="button" name="button" ng-click="regOrganization()">Register</button>
-</div>
-
-<button ng-click='cancelReg()'>Cancel</button>

@@ -1,12 +1,15 @@
-<h2>{{error}}</h2>
+<div class="pageWrapper">
 
-<div class="multiLocations">
-  <table>
-    <tr ng-repeat='place in foundLocations'>
-      <td>{{place.formattedAddress}}</td>
-      <td><button ng-click= 'selectedAddress(place)'>Select Address</button></td>
-    </tr>
-  </table>
+  <h2>{{error}}</h2>
+
+  <div class="multiLocations">
+    <table>
+      <tr ng-repeat='place in foundLocations'>
+        <td>{{place.formattedAddress}}</td>
+        <td><button ng-click= 'selectedAddress(place)'>Select Address</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <button ng-click='cancelReg()'>Cancel</button>
 </div>
-
-<button ng-click='cancelReg()'>Cancel</button>

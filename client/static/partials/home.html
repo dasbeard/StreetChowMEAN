@@ -1,217 +1,159 @@
-<div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+<div class="pageWrapper">
 
-  <h4 ng-show='organization'>Welcome</h4>
-  <h1>{{organization.organization}}</h1>
-  <h2>{{error}}</h2>
-</div>
+  <div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
 
-<div class="mdl-grid homePage">
-  <div class="mapDiv mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-
-    <ng-map id="myMap" center="41,-97" zoom="3"></ng-map>
-
+    <h4 ng-show='organization'>Welcome</h4>
+    <h1>{{organization.organization}}</h1>
+    <h2>{{error}}</h2>
   </div>
 
-<div class="bigBox  mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+  <div class="mdl-grid homePage">
+    <div class="mapDiv mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
-  <div class="orgList">
-    <div class="showOrgList" ng-hide='loading'>
-
-      <h2>Near By Places</h2>
-      <v-accordion class="vAccordion--default" multiple >
-
-        <v-pane expanded>
-          <v-pane-header>
-            <h5>Within 2 miles</h5>
-          </v-pane-header>
-
-          <v-pane-content>
-            <li ng-repeat='place in within2miles'>
-              <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
-            </li>
-          </v-pane-content>
-        </v-pane>
-
-        <v-pane>
-          <v-pane-header>
-            <h5>Within 5 miles</h5>
-          </v-pane-header>
-
-          <v-pane-content>
-            <li ng-repeat='place in within5miles'>
-              <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
-            </li>
-          </v-pane-content>
-        </v-pane>
-
-        <v-pane>
-          <v-pane-header>
-            <h5>Within 10 miles</h5>
-          </v-pane-header>
-
-          <v-pane-content>
-            <li ng-repeat='place in within10miles'>
-              <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
-            </li>
-          </v-pane-content>
-        </v-pane>
-
-      </v-accordion>
+      <ng-map id="myMap" center="41,-97" zoom="3"></ng-map>
 
     </div>
 
+    <div class="bigBox  mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+
+      <div class="orgList">
+        <div ng-hide='loading'>
+
+          <h2>Near By Places</h2>
+          <v-accordion class="vAccordion--default" multiple >
+
+            <v-pane expanded>
+              <v-pane-header>
+                <h5>Within 2 miles <span>{{within2miles.length}} locations</span></h5>
+              </v-pane-header>
+
+              <v-pane-content>
+                <li ng-repeat='place in within2miles'>
+                  <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+                </li>
+              </v-pane-content>
+            </v-pane>
+
+            <v-pane>
+              <v-pane-header>
+                <h5>Within 5 miles <span>{{within5miles.length}} locations</h5>
+              </v-pane-header>
+
+              <v-pane-content>
+                <li ng-repeat='place in within5miles'>
+                  <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+                </li>
+              </v-pane-content>
+            </v-pane>
+
+            <v-pane>
+              <v-pane-header>
+                <h5>Within 10 miles <span>{{within10miles.length}} locations</h5>
+              </v-pane-header>
+
+              <v-pane-content>
+                <li ng-repeat='place in within10miles'>
+                  <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+                </li>
+              </v-pane-content>
+            </v-pane>
+
+          </v-accordion>
+
+        </div>
 
 
 
+            <div class="centerMe mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" ng-show='loading'></div>
+
+      </div>
+
+      <div id='searchbar'  class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+        <form>
+
+          <div id='homeSearchInputs' class="mdl-textfield mdl-js-textfield ">
+            <input class='myInputCity mdl-textfield__input' id='searchCity' type="text" ng-model='searchBy.city' required>
+            <label class="mdl-textfield__label" for="searchCity">Search City.. </label>
+          </div>
+
+          <div id='homeSearchInputs' class="mdl-selectfield mdl-js-selectfield">
+            <select class="mdl-selectfield__select" ng-model='searchBy.state' required>
+              <option value=""></option>
+              <option value="AL">AL</option>
+              <option value="AK">AK</option>
+              <option value="AZ">AZ</option>
+              <option value="AR">AR</option>
+              <option value="CA">CA</option>
+              <option value="CO">CO</option>
+              <option value="CT">CT</option>
+              <option value="DE">DE</option>
+              <option value="FL">FL</option>
+              <option value="GA">GA</option>
+              <option value="HI">HI</option>
+              <option value="ID">ID</option>
+              <option value="IL">IL</option>
+              <option value="IN">IN</option>
+              <option value="IA">IA</option>
+              <option value="KS">KS</option>
+              <option value="KY">KY</option>
+              <option value="LA">LA</option>
+              <option value="ME">ME</option>
+              <option value="MD">MD</option>
+              <option value="MA">MA</option>
+              <option value="MI">MI</option>
+              <option value="MN">MN</option>
+              <option value="MS">MS</option>
+              <option value="MO">MO</option>
+              <option value="MT">MT</option>
+              <option value="NE">NE</option>
+              <option value="NV">NV</option>
+              <option value="NH">NH</option>
+              <option value="NJ">NJ</option>
+              <option value="NM">NM</option>
+              <option value="NY">NY</option>
+              <option value="NC">NC</option>
+              <option value="ND">ND</option>
+              <option value="OH">OH</option>
+              <option value="OK">OK</option>
+              <option value="OR">OR</option>
+              <option value="PA">PA</option>
+              <option value="RI">RI</option>
+              <option value="SC">SC</option>
+              <option value="SD">SD</option>
+              <option value="TN">TN</option>
+              <option value="TX">TX</option>
+              <option value="UT">UT</option>
+              <option value="VT">VT</option>
+              <option value="VA">VA</option>
+              <option value="WA">WA</option>
+              <option value="WV">WV</option>
+              <option value="WI">WI</option>
+              <option value="WY">WY</option>
+            </select>
+            <label class="mdl-selectfield__label" for="myselect">State..</label>
+          </div>
+
+          <button id='homeSearchInputsBtn' type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click='searchByCity()'> Search</form>
+
+        </form>
+      </div>
+
+    </div>
+    <!-- End big Box -->
 
 
+    <div class="Spacer mdl-cell mdl-cell--2-col mdl-cell--0-col-tablet"></div>
 
-        <div class="centerMe mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" ng-show='loading'></div>
+    <div class="searchResults mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+
+      <li ng-repeat='place in searchedCity'>
+        <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a id='website' ng-show='place.website' href="{{place.website}}" target="_blank" ng-click="linkModelFunc(place.website)">{{place.website}}</a>
+      </li>
+
+      <h4>{{noLocations}}</h4>
+
+    </div>
 
   </div>
 
-  <div id='searchbar'  class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-    <form ng-submit='searchByCity()'>
-
-      <div id='homeSearchInputs' class="mdl-textfield mdl-js-textfield ">
-        <input class='myInputCity mdl-textfield__input' id='searchCity' type="text" ng-model='searchBy.city' required>
-        <label class="mdl-textfield__label" for="searchCity">Search City.. </label>
-      </div>
-
-      <div id='homeSearchInputs' class="mdl-selectfield mdl-js-selectfield">
-        <select class="mdl-selectfield__select" ng-model='searchBy.state' required>
-          <option value=""></option>
-          <option value="AL">AL</option>
-          <option value="AK">AK</option>
-          <option value="AZ">AZ</option>
-          <option value="AR">AR</option>
-          <option value="CA">CA</option>
-          <option value="CO">CO</option>
-          <option value="CT">CT</option>
-          <option value="DE">DE</option>
-          <option value="FL">FL</option>
-          <option value="GA">GA</option>
-          <option value="HI">HI</option>
-          <option value="ID">ID</option>
-          <option value="IL">IL</option>
-          <option value="IN">IN</option>
-          <option value="IA">IA</option>
-          <option value="KS">KS</option>
-          <option value="KY">KY</option>
-          <option value="LA">LA</option>
-          <option value="ME">ME</option>
-          <option value="MD">MD</option>
-          <option value="MA">MA</option>
-          <option value="MI">MI</option>
-          <option value="MN">MN</option>
-          <option value="MS">MS</option>
-          <option value="MO">MO</option>
-          <option value="MT">MT</option>
-          <option value="NE">NE</option>
-          <option value="NV">NV</option>
-          <option value="NH">NH</option>
-          <option value="NJ">NJ</option>
-          <option value="NM">NM</option>
-          <option value="NY">NY</option>
-          <option value="NC">NC</option>
-          <option value="ND">ND</option>
-          <option value="OH">OH</option>
-          <option value="OK">OK</option>
-          <option value="OR">OR</option>
-          <option value="PA">PA</option>
-          <option value="RI">RI</option>
-          <option value="SC">SC</option>
-          <option value="SD">SD</option>
-          <option value="TN">TN</option>
-          <option value="TX">TX</option>
-          <option value="UT">UT</option>
-          <option value="VT">VT</option>
-          <option value="VA">VA</option>
-          <option value="WA">WA</option>
-          <option value="WV">WV</option>
-          <option value="WI">WI</option>
-          <option value="WY">WY</option>
-        </select>
-        <label class="mdl-selectfield__label" for="myselect">State..</label>
-      </div>
-
-      <input id='homeSearchInputsBtn' class=" mdl-button mdl-js-button mdl-js-ripple-effect" type="submit" value="Submit" />
-
-    </form>
-  </div>
-
 </div>
-<!-- End big Box -->
-
-
-<div class="Spacer mdl-cell mdl-cell--2-col mdl-cell--0-col-tablet"></div>
-
-<div class="searchResults mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
-
-  <li ng-repeat='place in searchedCity'>
-    <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a id='website' ng-show='place.website' href="{{place.website}}" target="_blank" ng-click="linkModelFunc(place.website)">{{place.website}}</a>
-  </li>
-
-  <h4>{{noLocations}}</h4>
-
-</div>
-
-</div>
-
-
-
-
-
-<!-- <select class="mdl-selectfield__select" id='searchState' ng-model='searchBy.state'>
-  <option value=""></option>
-  <option value="AL">AL</option>
-  <option value="AK">AK</option>
-  <option value="AZ">AZ</option>
-  <option value="AR">AR</option>
-  <option value="CA">CA</option>
-  <option value="CO">CO</option>
-  <option value="CT">CT</option>
-  <option value="DE">DE</option>
-  <option value="FL">FL</option>
-  <option value="GA">GA</option>
-  <option value="HI">HI</option>
-  <option value="ID">ID</option>
-  <option value="IL">IL</option>
-  <option value="IN">IN</option>
-  <option value="IA">IA</option>
-  <option value="KS">KS</option>
-  <option value="KY">KY</option>
-  <option value="LA">LA</option>
-  <option value="ME">ME</option>
-  <option value="MD">MD</option>
-  <option value="MA">MA</option>
-  <option value="MI">MI</option>
-  <option value="MN">MN</option>
-  <option value="MS">MS</option>
-  <option value="MO">MO</option>
-  <option value="MT">MT</option>
-  <option value="NE">NE</option>
-  <option value="NV">NV</option>
-  <option value="NH">NH</option>
-  <option value="NJ">NJ</option>
-  <option value="NM">NM</option>
-  <option value="NY">NY</option>
-  <option value="NC">NC</option>
-  <option value="ND">ND</option>
-  <option value="OH">OH</option>
-  <option value="OK">OK</option>
-  <option value="OR">OR</option>
-  <option value="PA">PA</option>
-  <option value="RI">RI</option>
-  <option value="SC">SC</option>
-  <option value="SD">SD</option>
-  <option value="TN">TN</option>
-  <option value="TX">TX</option>
-  <option value="UT">UT</option>
-  <option value="VT">VT</option>
-  <option value="VA">VA</option>
-  <option value="WA">WA</option>
-  <option value="WV">WV</option>
-  <option value="WI">WI</option>
-  <option value="WY">WY</option>
-</select> -->
