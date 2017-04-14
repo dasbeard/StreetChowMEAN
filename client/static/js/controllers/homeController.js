@@ -6,58 +6,34 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
   $scope.position = 'nope';
   $scope.loading = true;
 
-  // $scope.logout = function(){
-  //   console.log('button clicked');
-  //   $cookies.remove('loggedUser');
-  //   window.location.replace('/');
-  // } // End Logout
+
+  $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM";
+  // var map, marker;
 
 
+  getLocation();
+
+  function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  function showPosition(position) {
+      var userLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
+      // console.log("Latitude: " + position.coords.latitude +
+      // "<br>Longitude: " + position.coords.longitude);
+  // }
 
 // =============== Google Maps ===============
-  NgMap.getMap().then(function(map) {
-   // Try HTML5 geolocation.
+    NgMap.getMap().then(function(map) {
 
-   if (navigator.geolocation) {
-    // var infowindow = new google.maps.InfoWindow({map: map});
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        zoom: 8
-      };
+        map.setCenter(userLocation);
+        map.setZoom(12);
 
-
-      var userLocationIcon = "assets/locationPinSmall.png";
-      var userLocation = new google.maps.Marker({
-        position: pos,
-        animation: google.maps.Animation.DROP,
-        map: map,
-        icon: userLocationIcon
-      });
-      map.setCenter(pos);
-      map.setZoom(12);
-
-      getNearby(pos);
-
-
-    },
-      function() {
-      handleLocationError(true, infowindow, map.getCenter());
-      var infowindow = new google.maps.InfoWindow;
-
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infowindow, map.getCenter());
-  }
-
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    map.setPosition(pos);
-    map.setContent(browserHasGeolocation ?
-      'Error: The Geolocation service failed.' :
-      'Error: Your browser doesn\'t support geolocation.');
-  }
+        getNearby(userLocation);
 
 
   logRegFactory.getAll(function(output){
@@ -110,7 +86,7 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
 
   });
 // ============= End NgMap Method ===============
-
+}
 
 
 function getNearby(pos){

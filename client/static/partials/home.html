@@ -8,7 +8,7 @@
   </div>
 
   <div class="mdl-grid homePage">
-    <div class="mapDiv mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <div map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="mapDiv mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
       <ng-map id="myMap" center="41,-97" zoom="3"></ng-map>
 
