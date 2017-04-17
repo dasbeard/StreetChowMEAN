@@ -16,64 +16,64 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
   function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
+
     } else {
         console.log("Geolocation is not supported by this browser.");
+        $window.confirm("Geolocation is not supported by this browser.");
+
     }
   }
 
   function showPosition(position) {
       var userLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
-      // console.log("Latitude: " + position.coords.latitude +
-      // "<br>Longitude: " + position.coords.longitude);
-  // }
+      // console.log(userLocation);
 
-// =============== Google Maps ===============
+
+          // =============== Google Maps ===============
     NgMap.getMap().then(function(map) {
 
         map.setCenter(userLocation);
-        map.setZoom(12);
-
+        map.setZoom(13);
         getNearby(userLocation);
 
 
-  logRegFactory.getAll(function(output){
 
-  // Need Error checking
+      logRegFactory.getAll(function(output){
+        // Need Error checking
 
-      var orgNames =[];
-      // var orgDescrips = [];
-      for (var i=0; i<output.data.length; i++){
-        orgNames.push('<a href="#!/showPage/' + output.data[i]._id+ '">' + output.data[i].organization + '<br>' + output.data[i].address + '</a>');
-        // orgNames.push(output.data[i].description);
+        var orgNames =[];
+        // var orgDescrips = [];
+        for (var i=0; i<output.data.length; i++){
+          orgNames.push('<a href="#!/showPage/' + output.data[i]._id+ '">' + output.data[i].organization + '<br>' + output.data[i].address + '</a>');
+          // orgNames.push(output.data[i].description);
+        };
 
-      };
+        $scope.nearbyOrgs = output.data;
+        // console.log($scope.nearbyOrgs);
 
-      $scope.nearbyOrgs = output.data;
-      // console.log($scope.nearbyOrgs);
+        for (var i=0; i<output.data.length; i++){
+          var marker = new google.maps.Marker({
+            position: {lat: output.data[i].latitude, lng: output.data[i].longitude},
+            map: map,
+            clickable: true,
+            animation: google.maps.Animation.DROP,
+          });
+          attachOrgName(marker, orgNames[i]);
 
-      for (var i=0; i<output.data.length; i++){
-        var marker = new google.maps.Marker({
-          position: {lat: output.data[i].latitude, lng: output.data[i].longitude},
-          map: map,
-          clickable: true,
-          animation: google.maps.Animation.DROP,
-        });
-        attachOrgName(marker, orgNames[i]);
-
-      } // End For Loop
+        } // End For Loop
 
 
-      function attachOrgName(marker, orgName) {
-        var infowindow = new google.maps.InfoWindow({
-          content: orgName
-        });
+        function attachOrgName(marker, orgName) {
+          var infowindow = new google.maps.InfoWindow({
+            content: orgName
+          });
 
-        marker.addListener('click', function() {
-          infowindow.open(marker.get('map'), marker);
-        });
-      }
+          marker.addListener('click', function() {
+            infowindow.open(marker.get('map'), marker);
+          });
+        }
 
-  }); // End getAll
+      }); // End getAll
 
 
   function drop() {
@@ -133,6 +133,16 @@ function getNearby(pos){
 
 
 // =============== Random unUsed functions ===============
+
+
+// ========== Drop pin on user location ==========
+// var userLocationIcon = "assets/locationPinSmall.png";
+// var userLocation = new google.maps.Marker({
+//   position: pos,
+//   animation: google.maps.Animation.DROP,
+//   map: map,
+//   icon: userLocationIcon
+// });
 
 
 //  =========== Check if user is logged in ==========
