@@ -10,7 +10,7 @@
 .pageWrapper{
   margin: 2%;
   padding: 0;
-  background-color: rgba(225, 225, 225, 0.7);
+  background-color: rgba(225, 225, 225, 0.85);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
@@ -436,9 +436,38 @@ a{
 }
 
 .hoursOfOperation {
-  text-align: center;
+  padding: 0 4%;
 }
 
+.hopDays{
+  display: flex;
+  justify-content: space-between;
+  /*height: 65px;*/
+}
+
+.hopDays h6 {
+  line-height: 60px;
+  height: 60px;
+  margin: 0 10px;
+}
+
+.hopDays label, .hopDays select{
+  text-align: center;
+  font-size: .8em;
+}
+
+.hopDayDiv {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 60px;
+}
+
+.mdl-selectfield__select .ng-empty{
+  background-color: red;
+  height: 0px;
+}
+
+/*
 .datesOpen-Input2 {
   list-style: none;
 }
@@ -459,7 +488,7 @@ a{
 .datesOpen-Input2 p{
   margin: 0 5px;
   display: inline-block;
-}
+}*/
 
 .addNewWrapper{
   width: 100%;
@@ -472,6 +501,15 @@ a{
   text-align: center;
 }
 
+#addNewDay {
+  padding: 0 4%;
+}
+
+.addNew button{
+  height: 25px;
+  line-height: 25px;
+}
+
 .addNew p{
   margin: 0;
   margin-right: 10px;
@@ -479,7 +517,12 @@ a{
 }
 
 #addDayInputs{
-  width: 25%;}
+  display: flex;
+  justify-content: space-around;
+}
+#addDayInputs label{
+  font-size: .75em
+}
 
 #timeInputs {
   width: 75%;
@@ -491,41 +534,47 @@ a{
   line-height: 25px;
 }
 
-.daysServingFood li{
+.displayDays li{
   list-style: none;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  height: 25px;
+  margin-bottom: 2%;
 }
 
-.daysServingFood h6{
+.displayDays h6{
   display: inline-block;
-  width: 115px;
+  width: 110px;
   margin: 0;
   padding: .5%;
+  line-height: 25px;
+  height: 25px;
 }
 
-.daysServingFood p{
+.displayDays p{
   display: inline-block;
-  margin: 0 2%;
+  height: 25px;
+  line-height: 25px;
+  margin-right: 1%;
   width: 50%;
   display: flex;
   justify-content: space-between;
 }
 
-.daysServingFood button{
+.displayDays button{
   margin-right: 0;
   height: 25px;
   line-height: 25px;
 }
 
-.daysServingFood span{
+.displayDays span{
   width: 80px;
   text-align: right;
   margin-right: 8%;
 }
 
-.daysServingFood :hover{
+.displayDays :hover{
   text-shadow: 5px 5px 10px #5A5858;
   color: #E8E8E8;
 }

@@ -389,7 +389,7 @@
 
 
 
-var myObj = { mon: { open: '1970-01-01T20:30:00.000Z',close: '1970-01-01T09:00:00.000Z' }, tues: { open: '1970-01-01T20:30:00.000Z',close: '1970-01-01T09:00:00.000Z' } };
+// var myObj = { mon: { open: '1970-01-01T20:30:00.000Z',close: '1970-01-01T09:00:00.000Z' }, tues: { open: '1970-01-01T20:30:00.000Z',close: '1970-01-01T09:00:00.000Z' } };
 
 
 // for (var key in myObj) {
@@ -407,7 +407,609 @@ var myObj = { mon: { open: '1970-01-01T20:30:00.000Z',close: '1970-01-01T09:00:0
 // }
 
 
-Object.keys(myObj).forEach(key => {
-    console.log(key);          // the name of the current key.
-    console.log(myObj[key]);   // the value of the current key.
-});
+// Object.keys(myObj).forEach(key => {
+//     console.log(key);          // the name of the current key.
+//     console.log(myObj[key]);   // the value of the current key.
+// });
+
+
+
+
+//
+// <!-- <div class="hopDays">
+//   <h6>Monday</h6>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select id='monOpen' class="mdl-selectfield__select" ng-model='hoursOfOp.mon.openTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label" for='monOpen'>From..</label>
+//   </div>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.mon.openPeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.mon.closeTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.mon.closePeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+// </div>
+//
+// <div class="hopDays">
+//   <h6>Tuesday</h6>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.tues.openTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">From..</label>
+//   </div>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.tues.openPeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.tues.closeTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="hopDayDiv mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.tues.closePeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+// </div>
+//
+// <div class="hopDays">
+//   <h6>Wednesday</h6>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.wen.openTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">From..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.wen.openPeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.wen.closeTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.wen.closePeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+// </div>
+//
+// <div class="hopDays">
+//   <h6>Thursday</h6>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.thurs.openTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">From..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.thurs.openPeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.thurs.closeTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.thurs.closePeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+// </div>
+//
+// <div class="hopDays">
+//   <h6>Friday</h6>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.fri.openTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.fri.openPeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.fri.closeTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.fri.closePeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+// </div>
+//
+// <div class="hopDays">
+//   <h6>Saturday</h6>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sat.openTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">From..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sat.openPeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sat.closeTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sat.closePeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+// </div>
+//
+// <div class="hopDays">
+//   <h6>Sunday</h6>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sun.openTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">From..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sun.openPeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sun.closeTime'>
+//       <option value=""></option>
+//       <option value="1:00">1:00</option>
+//       <option value="1:30">1:30</option>
+//       <option value="2:00">2:00</option>
+//       <option value="2:30">2:30</option>
+//       <option value="3:00">3:00</option>
+//       <option value="3:30">3:30</option>
+//       <option value="4:00">4:00</option>
+//       <option value="4:30">4:30</option>
+//       <option value="5:00">5:00</option>
+//       <option value="5:30">5:30</option>
+//       <option value="6:00">6:00</option>
+//       <option value="6:30">6:30</option>
+//       <option value="7:00">7:00</option>
+//       <option value="7:30">7:30</option>
+//       <option value="8:00">8:00</option>
+//       <option value="8:30">8:30</option>
+//       <option value="9:00">9:00</option>
+//       <option value="9:30">9:30</option>
+//       <option value="10:00">10:00</option>
+//       <option value="10:30">10:30</option>
+//       <option value="11:00">11:00</option>
+//       <option value="11:30">11:30</option>
+//       <option value="12:00">12:00</option>
+//       <option value="12:30">12:30</option>
+//     </select>
+//     <label class="mdl-selectfield__label">To..</label>
+//   </div>
+//   <div class="mdl-selectfield mdl-js-selectfield">
+//     <select class="mdl-selectfield__select" ng-model='hoursOfOp.sun.closePeriod'>
+//       <option value=""></option>
+//       <option value="am">am</option>
+//       <option value="pm">pm</option>
+//     </select>
+//     <label class="mdl-selectfield__label">am/pm..</label>
+//   </div>
+// </div>
+//
+//
+//
+//
+//   <!-- <div class="hoursOfOperation mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+//     <h4>Hours of Operation</h4>
+//       <li class='datesOpen-Input2'>
+//         <h6>Monday</h6>
+//         <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.close' step='1800'>
+//       </li>
+//       <li class='datesOpen-Input2'>
+//         <h6>Tuesday</h6>
+//         <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tues.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tues.close' step='1800'>
+//       </li>
+//       <li class='datesOpen-Input2'>
+//         <h6>Wednesday</h6>
+//         <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.close' step='1800'>
+//       </li>
+//       <li class='datesOpen-Input2'>
+//         <h6>Thursday</h6>
+//         <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thur.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thur.close' step='1800'>
+//       </li>
+//       <li class='datesOpen-Input2'>
+//         <h6>Friday</h6>
+//         <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.close' step='1800'>
+//       </li>
+//       <li class='datesOpen-Input2'>
+//         <h6>Saturday</h6>
+//         <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.close' step='1800'>
+//       </li>
+//       <li class='datesOpen-Input2'>
+//         <h6>Sunday</h6>
+//         <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.close' step='1800'>
+//       </li>
+//
+//       <li class='datesOpen-Input2'><h5>{{hopError}}</h5></li>
+//       <li class='datesOpen-Input2'><button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Update Hours Of Operation</button> </li>
+//   </div> -->

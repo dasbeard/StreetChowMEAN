@@ -8,33 +8,46 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
 
 
   $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM";
-  // var map, marker;
 
 
-  getLocation();
+      // =============== Google Maps ===============
+        NgMap.getMap().then(function(map) {
+         // Try HTML5 geolocation.
 
-  function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+         if (navigator.geolocation) {
+          // var infowindow = new google.maps.InfoWindow({map: map});
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+              zoom: 8
+            };
+            var userLocationIcon = "assets/locationPinSmall.png";
+            var userLocation = new google.maps.Marker({
+              position: pos,
+              animation: google.maps.Animation.DROP,
+              map: map,
+              icon: userLocationIcon
+            });
+            map.setCenter(pos);
+            map.setZoom(12);
 
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-        $window.confirm("Geolocation is not supported by this browser.");
+            getNearby(pos);
+          },
+            function() {
+            handleLocationError(true, infowindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infowindow, map.getCenter());
+        }
 
-    }
-  }
-
-  function showPosition(position) {
-      var userLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
-      // console.log(userLocation);
-
-
-          // =============== Google Maps ===============
-    NgMap.getMap().then(function(map) {
-
-        map.setCenter(userLocation);
-        map.setZoom(13);
-        getNearby(userLocation);
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          map.setPosition(pos);
+          map.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+          };
 
 
 
@@ -76,17 +89,17 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
       }); // End getAll
 
 
-  function drop() {
-    for (var i =0; i < markerArray.length; i++) {
-      setTimeout(function() {
-        addMarkerMethod();
-      }, i * 100);
+    function drop() {
+      for (var i =0; i < markerArray.length; i++) {
+        setTimeout(function() {
+          addMarkerMethod();
+        }, i * 100);
+      }
     }
-  }
 
   });
 // ============= End NgMap Method ===============
-}
+// } // End of getLocation
 
 
 function getNearby(pos){
@@ -133,7 +146,6 @@ function getNearby(pos){
 
 
 // =============== Random unUsed functions ===============
-
 
 // ========== Drop pin on user location ==========
 // var userLocationIcon = "assets/locationPinSmall.png";

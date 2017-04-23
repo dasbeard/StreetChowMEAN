@@ -46,6 +46,11 @@ module.exports = function(app){
   app.post('/removeDay', function(req,res){
     organizations.removeDay(req,res)
   });
+
+  app.post('/removeHOPDay', function(req,res){
+    organizations.removeHOPDay(req,res)
+  });
+
   app.post('/getShow', function(req,res){
     organizations.getShow(req,res)
   });
@@ -56,6 +61,10 @@ module.exports = function(app){
 
   app.post('/updateHoursOfOp', function(req,res){
     organizations.updateHoursOfOp(req,res)
+  });
+
+  app.post('/updateHoursOfOp2', function(req,res){
+    organizations.updateHoursOfOp2(req,res)
   });
 
   app.post('/citySearch', function(req,res){

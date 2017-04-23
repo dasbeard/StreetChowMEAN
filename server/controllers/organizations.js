@@ -120,7 +120,8 @@ module.exports = (function(){
           console.log('===== Error ====='.red);
           console.log(err);
         } else {
-          var newDay = {day: req.body.day, start: new Date(req.body.start), end: new Date(req.body.end)};
+          var newDay = {day: req.body.day, startTime: req.body.startTime, startPeriod: req.body.startPeriod, endTime: req.body.endTime, endPeriod: req.body.endPeriod};
+          // console.log(newDay);
           oneUser.days.push(newDay);
           oneUser.save(function(err){
             if (err){
@@ -170,6 +171,35 @@ module.exports = (function(){
     }, // End updateServices
 
 
+
+    updateHoursOfOp2: function(req,res){
+      console.log(req.body);
+      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        if (err){
+          console.log('===== Error ====='.red);
+          console.log(err);
+        } else {
+          var newDay = {day: req.body.day, startTime: req.body.startTime, startPeriod: req.body.startPeriod, endTime: req.body.endTime, endPeriod: req.body.endPeriod};
+          // console.log(newDay);
+          oneUser.hoursOfOperation.push(newDay);
+          oneUser.save(function(err){
+            if (err){
+              console.log('==== Error When saving new day ===='.red);
+              console.log(err);
+            } else {
+              res.json(true);
+            }
+          })
+        }
+      })
+    }, //End updateHoursOfOp2
+
+
+
+
+
+
+
     removeDay: function(req,res){
       Organization.findOne({_id: req.body.id}, function(err, oneUser){
         if (err){
@@ -177,6 +207,27 @@ module.exports = (function(){
           console.log(err);
         } else {
           oneUser.days.splice(req.body.index,1)
+          oneUser.save(function(err){
+            if (err){
+              console.log('==== Error When removing day ===='.red);
+              console.log(err);
+            } else {
+              res.json(true);
+            }
+          })
+        }
+      })
+    },
+
+
+
+    removeHOPDay: function(req,res){
+      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        if (err){
+          console.log('==== Error When finding user ===='.red);
+          console.log(err);
+        } else {
+          oneUser.hoursOfOperation.splice(req.body.index,1)
           oneUser.save(function(err){
             if (err){
               console.log('==== Error When removing day ===='.red);

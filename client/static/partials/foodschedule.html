@@ -36,108 +36,235 @@
 
 
 <!-- ===== Hours of Operation ===== -->
-  <div class="hoursOfOperation mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-    <h4>Hours of Operation</h4>
-      <li class='datesOpen-Input2'>
-        <h6>Monday</h6>
-        <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.close' step='1800'>
-      </li>
-      <li class='datesOpen-Input2'>
-        <h6>Tuesday</h6>
-        <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tues.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tues.close' step='1800'>
-      </li>
-      <li class='datesOpen-Input2'>
-        <h6>Wednesday</h6>
-        <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.close' step='1800'>
-      </li>
-      <li class='datesOpen-Input2'>
-        <h6>Thursday</h6>
-        <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thur.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thur.close' step='1800'>
-      </li>
-      <li class='datesOpen-Input2'>
-        <h6>Friday</h6>
-        <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.close' step='1800'>
-      </li>
-      <li class='datesOpen-Input2'>
-        <h6>Saturday</h6>
-        <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.close' step='1800'>
-      </li>
-      <li class='datesOpen-Input2'>
-        <h6>Sunday</h6>
-        <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.open' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.close' step='1800'>
-      </li>
+<div class="hoursOfOperation mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+  <h4>Hours of Operation</h4>
+  <div class="addNewWrapper">
+    <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+      <select class="mdl-selectfield__select" ng-model='newHOPDay.day' required>
+        <option value=""></option>
+        <option value="Monday">Mon</option>
+        <option value="Tuesday">Tues</option>
+        <option value="Wednesday">Wen</option>
+        <option value="Thursday">Thurs</option>
+        <option value="Friday">Fri</option>
+        <option value="Saturday">Sat</option>
+        <option value="Sunday">Sun</option>
+      </select>
+      <label class="mdl-selectfield__label" for="myselect">Day..</label>
+    </div>
 
-      <li class='datesOpen-Input2'><h5>{{hopError}}</h5></li>
-      <li class='datesOpen-Input2'><button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Update Hours Of Operation</button> </li>
+      <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+        <select class="mdl-selectfield__select" ng-model='newHOPDay.startTime' required>
+          <option value=""></option>
+          <option value="1:00">1:00</option>
+          <option value="1:30">1:30</option>
+          <option value="2:00">2:00</option>
+          <option value="2:30">2:30</option>
+          <option value="3:00">3:00</option>
+          <option value="3:30">3:30</option>
+          <option value="4:00">4:00</option>
+          <option value="4:30">4:30</option>
+          <option value="5:00">5:00</option>
+          <option value="5:30">5:30</option>
+          <option value="6:00">6:00</option>
+          <option value="6:30">6:30</option>
+          <option value="7:00">7:00</option>
+          <option value="7:30">7:30</option>
+          <option value="8:00">8:00</option>
+          <option value="8:30">8:30</option>
+          <option value="9:00">9:00</option>
+          <option value="9:30">9:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+        </select>
+        <label class="mdl-selectfield__label">Time..</label>
+      </div>
+
+      <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+        <select class="mdl-selectfield__select" ng-model='newHOPDay.startPeriod' required>
+          <option value=""></option>
+          <option value="am">am</option>
+          <option value="pm">pm</option>
+        </select>
+        <label class="mdl-selectfield__label">am/pm..</label>
+      </div>
+
+      <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+        <select class="mdl-selectfield__select" ng-model='newHOPDay.endTime' required>
+          <option value=""></option>
+          <option value="1:00">1:00</option>
+          <option value="1:30">1:30</option>
+          <option value="2:00">2:00</option>
+          <option value="2:30">2:30</option>
+          <option value="3:00">3:00</option>
+          <option value="3:30">3:30</option>
+          <option value="4:00">4:00</option>
+          <option value="4:30">4:30</option>
+          <option value="5:00">5:00</option>
+          <option value="5:30">5:30</option>
+          <option value="6:00">6:00</option>
+          <option value="6:30">6:30</option>
+          <option value="7:00">7:00</option>
+          <option value="7:30">7:30</option>
+          <option value="8:00">8:00</option>
+          <option value="8:30">8:30</option>
+          <option value="9:00">9:00</option>
+          <option value="9:30">9:30</option>
+          <option value="10:00">10:00</option>
+          <option value="10:30">10:30</option>
+          <option value="11:00">11:00</option>
+          <option value="11:30">11:30</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+        </select>
+        <label class="mdl-selectfield__label">Time..</label>
+      </div>
+
+      <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+        <select class="mdl-selectfield__select" ng-model='newHOPDay.endPeriod' required>
+          <option value=""></option>
+          <option value="am">am</option>
+          <option value="pm">pm</option>
+        </select>
+        <label class="mdl-selectfield__label">am/pm..</label>
+      </div>
   </div>
+
+
+
+  <!-- mdl-button--fab mdl-button--mini-fab">
+    <i class="material-icons">add</i> -->
+
+
+  <div class="addNew">
+    <button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Add</button>
+  </div>
+
+
+  <div class="displayDays">
+    <li ng-repeat='d in hoursOfOp'><h6>{{d.day}}</h6><p>From <span>{{d.startTime}}{{d.startPeriod}}</span> to <span>{{ d.endTime}}{{d.endPeriod}}</span> </p> <button class='mdl-button mdl-js-button mdl-button--raised' ng-click = "deleteHOPDay($index)">Remove</button></li>
+
+  </div>
+</div>
+
 <!-- ===== End Hours of Operation ===== -->
 
 
 <!-- ===== Food Served On ===== -->
     <div id ='addNewDay' class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-      <h4>Add a day when your serving food</h4>
+      <h4>Add a day when you are serving food</h4>
         <div class="addNewWrapper">
+
           <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
-            <select class="mdl-selectfield__select" ng-model='days.new.day' required>
+            <select class="mdl-selectfield__select" ng-model='newDay.day' required>
               <option value=""></option>
-              <option value="Monday">Monday</option>
-              <option value="Tuesday">Tuesday</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-              <option value="Saturday">Saturday</option>
-              <option value="Sunday">Sunday</option>
+              <option value="Monday">Mon</option>
+              <option value="Tuesday">Tues</option>
+              <option value="Wednesday">Wen</option>
+              <option value="Thursday">Thurs</option>
+              <option value="Friday">Fri</option>
+              <option value="Saturday">Sat</option>
+              <option value="Sunday">Sun</option>
             </select>
             <label class="mdl-selectfield__label" for="myselect">Day..</label>
           </div>
 
+            <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+              <select class="mdl-selectfield__select" ng-model='newDay.startTime' required>
+                <option value=""></option>
+                <option value="1:00">1:00</option>
+                <option value="1:30">1:30</option>
+                <option value="2:00">2:00</option>
+                <option value="2:30">2:30</option>
+                <option value="3:00">3:00</option>
+                <option value="3:30">3:30</option>
+                <option value="4:00">4:00</option>
+                <option value="4:30">4:30</option>
+                <option value="5:00">5:00</option>
+                <option value="5:30">5:30</option>
+                <option value="6:00">6:00</option>
+                <option value="6:30">6:30</option>
+                <option value="7:00">7:00</option>
+                <option value="7:30">7:30</option>
+                <option value="8:00">8:00</option>
+                <option value="8:30">8:30</option>
+                <option value="9:00">9:00</option>
+                <option value="9:30">9:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+              </select>
+              <label class="mdl-selectfield__label">Time..</label>
+            </div>
 
+            <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+              <select class="mdl-selectfield__select" ng-model='newDay.startPeriod' required>
+                <option value=""></option>
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+              <label class="mdl-selectfield__label">am/pm..</label>
+            </div>
 
-          <div id='timeInputs' class="addNew">
-              <!-- <p>From</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.start' step='1800'> <p>to</p> <input class="mdl-textfield__input" type="time" ng-model='days.new.end' step='1800'> -->
-            <button type="button" class='mdl-button mdl-js-button mdl-button--raised' ng-click = 'addDay()'>Add Day</button>
+            <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+              <select class="mdl-selectfield__select" ng-model='newDay.endTime' required>
+                <option value=""></option>
+                <option value="1:00">1:00</option>
+                <option value="1:30">1:30</option>
+                <option value="2:00">2:00</option>
+                <option value="2:30">2:30</option>
+                <option value="3:00">3:00</option>
+                <option value="3:30">3:30</option>
+                <option value="4:00">4:00</option>
+                <option value="4:30">4:30</option>
+                <option value="5:00">5:00</option>
+                <option value="5:30">5:30</option>
+                <option value="6:00">6:00</option>
+                <option value="6:30">6:30</option>
+                <option value="7:00">7:00</option>
+                <option value="7:30">7:30</option>
+                <option value="8:00">8:00</option>
+                <option value="8:30">8:30</option>
+                <option value="9:00">9:00</option>
+                <option value="9:30">9:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+              </select>
+              <label class="mdl-selectfield__label">Time..</label>
+            </div>
+
+            <div id='addDayInputs' class="addNew mdl-selectfield mdl-js-selectfield">
+              <select class="mdl-selectfield__select" ng-model='newDay.endPeriod' required>
+                <option value=""></option>
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+              <label class="mdl-selectfield__label">am/pm..</label>
+            </div>
+
+          <div id='addDayInputs' class="addNew">
+            <button type="button" class='mdl-button mdl-js-button mdl-button--raised' ng-click = 'addDay()'>Add</button>
           </div>
 
-
-
-
-
-
-        </div>
-
-
-        <div class="">
-          <input type="number" min='1' max='12' ng-model='days.new.startHours'>
-          <!-- <input type="number" step='30' min='00.0' max='30' ng-model='days.new.startMin'> -->
-          <select ng-model='days.new.startMin'>
-            <option value=""> -- </option>
-            <option value="00">00</option>
-            <option value="30">30</option>
-          </select>
-          <select ng-model='days.new.startPeriod'>
-            <option value=""> am/pm </option>
-            <option value="am">am</option>
-            <option value="pm">pm</option>
-          </select>
-          <input type="number" min='1' max='12' ng-model='days.new.endHours'>
-          <select ng-model='days.new.startMin'>
-            <option value=""> -- </option>
-            <option value="00">00</option>
-            <option value="30">30</option>
-          </select>
-
-          <select ng-model='days.new.endPeriod'>
-            <option value=""> am/pm </option>
-            <option value="am">am</option>
-            <option value="pm">pm</option>
-          </select>
-
         </div>
 
 
 
-      <div class="daysServingFood">
-        <li ng-repeat='d in days'><h6>{{d.day}}</h6><p>From <span>{{d.start | date:'h:mm a'}}</span> to <span>{{ d.end | date:'h:mm a' }}</span> </p> <button class='mdl-button mdl-js-button mdl-button--raised' ng-click = "deleteDay($index)">Remove</button></li>
+
+
+      <div class="displayDays">
+        <li ng-repeat='d in days'><h6>{{d.day}}</h6><p>From <span>{{d.startTime}}{{d.startPeriod}}</span> to <span>{{ d.endTime}}{{d.endPeriod}}</span> </p> <button class='mdl-button mdl-js-button mdl-button--raised' ng-click = "deleteDay($index)">Remove</button></li>
 
       </div>
     </div>

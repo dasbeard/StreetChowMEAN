@@ -26,9 +26,22 @@ app.factory('foodFactory', function ($http){
     });
   };
 
+  factory.updateHoursOfOp2 = function(input, callback){
+    console.log(input);
+    $http.post('/updateHoursOfOp2', input).then(function(output){
+      callback(output);
+    });
+  };
+
 
   factory.destroy = function(idx, callback){
     $http.post('/removeDay', idx).then(function(output){
+      callback(output);
+    })
+  };
+
+  factory.destroyHOP = function(idx, callback){
+    $http.post('/removeHOPDay', idx).then(function(output){
       callback(output);
     })
   };
