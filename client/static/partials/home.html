@@ -1,14 +1,14 @@
 <!-- <div class="pageWrapper"> -->
+<h2 class='errorMessage'>{{error}}</h2>
 
-  <div class="home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+  <div class="pageWrapper home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet" ng-show='organization'>
 
-    <h4 ng-show='organization'>Welcome</h4>
+    <h4>Welcome</h4>
     <h1>{{organization.organization}}</h1>
-    <h2>{{error}}</h2>
   </div>
 
   <div class="mdl-grid homePage">
-    <div map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="mapDiv mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <div map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="mapDiv pageWrapper mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
       <ng-map id="myMap" center="41,-97" zoom="3"></ng-map>
 
@@ -16,7 +16,7 @@
 
     <div class="bigBox  mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
-      <div class="orgList">
+      <div class="orgList pageWrapper">
         <div ng-hide='loading'>
 
           <h2>Near By Places</h2>
@@ -62,17 +62,15 @@
 
         </div>
 
-
-
-            <div class="centerMe mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" ng-show='loading'></div>
+        <div class="centerMe mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" ng-show='loading'></div>
 
       </div>
 
-      <div id='searchbar'  class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+      <div id='searchbar'  class="pageWrapper mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
         <form>
 
           <div id='homeSearchInputs' class="mdl-textfield mdl-js-textfield ">
-            <input class='myInputCity mdl-textfield__input' id='searchCity' type="text" ng-model='searchBy.city' required>
+            <input class='myInputCity mdl-textfield__input' id='searchCity' type="text" ng-model='searchBy.city'>
             <label class="mdl-textfield__label" for="searchCity">Search City.. </label>
           </div>
 
@@ -144,7 +142,7 @@
 
     <div class="Spacer mdl-cell mdl-cell--2-col mdl-cell--0-col-tablet"></div>
 
-    <div ng-show='searchedCity' class="searchResults mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+    <div ng-show='searchedCity' class="searchResults pageWrapper mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
 
       <li ng-repeat='place in searchedCity'>
         <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a id='website' ng-show='place.website' href="{{place.website}}" target="_blank" ng-click="linkModelFunc(place.website)">{{place.website}}</a>

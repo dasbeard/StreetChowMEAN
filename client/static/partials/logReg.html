@@ -1,25 +1,19 @@
-<!-- <div class="pageWrapper"> -->
+<h2 class='errorMessage'>{{error}}</h2>
 
-  <div class="logRegHeader ">
-
-    <!-- <h1>Login or Register</h1> -->
-    <h2>{{error}}</h2>
-
-  </div>
 
   <div class="logRegContent mdl-grid">
 
-    <div class="Login mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+    <div class="Login pageWrapper mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
       <h3>Login</h3>
       <form>
 
         <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input" type="email" id="email" ng-model='login.email' required>
+          <input class="mdl-textfield__input" type="email" id="email" ng-model='login.email' >
           <label class="mdl-textfield__label" for="email">Email...</label>
         </div>
 
         <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input" type="password" id="password" ng-model='login.password' required>
+          <input class="mdl-textfield__input" type="password" id="password" ng-model='login.password' >
           <label class="mdl-textfield__label" for="password">Password...</label>
         </div>
 
@@ -28,23 +22,23 @@
       </form>
     </div>
 
-    <div class="Register mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+    <div class="Register pageWrapper mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
       <h3>Register</h3>
       <form>
 
 
         <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input" type="text" id="orgName" ng-model='temp.organization' required>
+          <input class="mdl-textfield__input" type="text" id="orgName" ng-model='temp.organization'>
           <label class="mdl-textfield__label" for="orgName">Organization Name...</label>
         </div>
 
         <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input" type="text" id="street" ng-model='temp.street1' required>
+          <input class="mdl-textfield__input" type="text" id="street" ng-model='temp.street1'>
           <label class="mdl-textfield__label" for="street">Street...</label>
         </div>
 
         <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input" type="text" id="city" ng-model='temp.city' required>
+          <input class="mdl-textfield__input" type="text" id="city" ng-model='temp.city'>
           <label class="mdl-textfield__label" for="city">City...</label>
         </div>
 
@@ -52,5 +46,3 @@
       </form>
     </div>
   </div>
-
-<!-- </div> -->

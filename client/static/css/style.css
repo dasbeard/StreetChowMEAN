@@ -8,8 +8,8 @@
 }
 
 .pageWrapper{
-  margin: 2%;
-  padding: 0;
+  /*margin: 2%;
+  padding: 0;*/
   background-color: rgba(225, 225, 225, 0.85);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -33,6 +33,18 @@ a{
   font-size: 1.2em;
 }
 
+.error-Message{
+  color: red;
+  text-align: center;
+}
+
+
+/*===========================================================================*/
+/*=============================== Home Page =================================*/
+/*===========================================================================*/
+
+
+
 #myMap{
   height: 100%;
   -webkit-border-radius: 5px;
@@ -51,19 +63,18 @@ a{
 }
 
 .homePage{
-  margin: 2%;
+  padding: 5px;
 }
 
 .home-title {
   text-align: center;
-  margin-top: 1px;
+  padding-top: 0;
+  margin-top: 0;
   margin-bottom: 1px;
-  background-color: rgba(190, 190, 190, 0.5);
-
 }
 
 .home-title h4, .home-title h1{
-  margin: 5px;
+  margin: 2px;
 }
 
 .bigBox {
@@ -73,7 +84,6 @@ a{
 .orgList {
   height: 89%;
   overflow-y: auto;
-  background-color: rgba(190, 190, 190, 0.5);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -86,7 +96,7 @@ a{
 }
 
 .orgList li{
-  font-size: 1.3em;
+  font-size: 1.2em;
   list-style: none;
   margin-bottom: 10px;
   padding-left: 5px;
@@ -127,7 +137,6 @@ a{
   height: 10%;;
   width: 100%;
   margin-left: 0;
-  background-color: rgba(190, 190, 190, 0.5);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -163,9 +172,8 @@ a{
 
 .searchResults{
   text-align: center;
-  height: 100px;
+  height: 120px;
   overflow-y: auto;
-  background-color: rgba(190, 190, 190, 0.5);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -200,7 +208,7 @@ a{
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  background-color: rgba(112, 112, 112, .6);
+  /*background-color: rgba(112, 112, 112, .6);*/
   box-shadow: 0 0 2px 2px rgba(112, 112, 112, .6);
 }
 
@@ -233,12 +241,11 @@ a{
 }
 
 .Login, .Register {
-  background-color: rgba(225, 225, 225, 0.7);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
   width: 35%;
-  height: 65%;
+  height: 75%;
 }
 
 
@@ -248,7 +255,6 @@ a{
 
 
 .Login form, .Register form{
-  /*background-color: lightgrey;*/
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
