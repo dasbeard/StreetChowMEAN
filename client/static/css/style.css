@@ -263,7 +263,6 @@ a{
 }
 
 
-
 .Login label, .Register label, .Login input, .Register input {
   text-align: center;
   margin-left: 75%;
@@ -352,6 +351,57 @@ a{
 }
 
 
+
+.DisplayMask{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8)
+}
+
+.passwordDiv, .multiLocations, .orgName{
+  width: 500px;
+  height: 400px;
+  background: white;
+  position: absolute;
+  top: 25%;
+  left: calc(50% - 250px);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.passwordDiv, .orgName{
+  text-align: center;
+}
+
+.passwordDiv, .orgName h3{
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.passwordFrom{
+  margin-top: 15%;
+  text-align: center;
+}
+
+.passwordFrom input, .passwordFrom label{
+  text-align: center;
+}
+
+.passwordBTN{
+  margin-top: 3%;
+}
+
+.orgName h3{
+  text-align: center;
+}
+
+.orgName input, .orgName label{
+  text-align: center;
+}
 
 /*===========================================================================*/
 /*============================== Show Page ==================================*/

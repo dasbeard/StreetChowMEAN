@@ -242,86 +242,109 @@ module.exports = (function(){
 
 
 
-    updateHoursOfOp: function(req,res){
-
-      console.log('===== Updating Hours of Op ====='.cyan);
-      console.log(req.body.hours);
-      console.log('=====  =====  =====  =====  =====  '.cyan);
-
-      Organization.findOne({_id: req.body.id}, function(err,oneUser){
+    newRegistration: function (req,res){
+      Organization.findOne({email: req.body.email}, function(err, oneUser){
         if (err){
-          console.log('==== Error finding organization ===='.red);
+          console.log('===== ERROR ====='.red);
           console.log(err);
         } else {
-
-          // ======== Remove date from dateTime ========
-          if (req.body.hours.mon){
-            req.body.hours.mon.open = new Date(req.body.hours.mon.open);
-            req.body.hours.mon.close = new Date(req.body.hours.mon.close);
+          if (oneUser){
+            var temp = oneUser.organization
+            res.json({error: 'Email is already registered to ' + temp})
           }
-          if (req.body.hours.tues){
-            req.body.hours.tues.open = new Date(req.body.hours.tues.open);
-            req.body.hours.tues.close = new Date(req.body.hours.tues.close);
-          }
-          if (req.body.hours.wen){
-            req.body.hours.wen.open = new Date(req.body.hours.wen.open);
-            req.body.hours.wen.close = new Date(req.body.hours.wen.close);
-          }
-          if (req.body.hours.thur){
-            req.body.hours.thur.open = new Date(req.body.hours.thur.open);
-            req.body.hours.thur.close = new Date(req.body.hours.thur.close);
-          }
-          if (req.body.hours.fri){
-            req.body.hours.fri.open = new Date(req.body.hours.fri.open);
-            req.body.hours.fri.close = new Date(req.body.hours.fri.close);
-          }
-          if (req.body.hours.sat){
-            req.body.hours.sat.open = new Date(req.body.hours.sat.open);
-            req.body.hours.sat.close = new Date(req.body.hours.sat.close);
-          }
-          if (req.body.hours.sun){
-            req.body.hours.sun.open = new Date(req.body.hours.sun.open);
-            req.body.hours.sun.close = new Date(req.body.hours.sun.close);
-          }
-
-          // console.log('=====  =====  =====  =====  =====  '.red);
-
-          oneUser.hoursOfOperation = req.body.hours;
-
-          oneUser.save(function(err){
-            if(err){
-              console.log('===== Error Updating Hours of Operation ====='.red);
-              console.log(err);
-            } else {
-              res.json(true);
-            }
-          }) // End Save
-        }
-      }) // End Query
-
-
-    }, // End updateHoursOfOp
-
-
-
-
-    findLocal: function (req,res){
-      console.log(req.body);
-      var toSearch = (req.body.street1 + ', ' + req.body.city);
-      geocoder.geocode(toSearch, function(err, output){
-        if (err){
-          console.log('===== Error ====='.red);
-          console.log(err);
-        } else {
-          if (output.length > 0){
-          res.json(output);
-          } else {
-            console.log('Nope'.red);
-            res.json(false)
+          else {
+            // ======== Check if address already registered =========
+            var toSearch = (req.body.street + ', ' + req.body.city);
+            geocoder.geocode(toSearch, function(err, output){
+              if (err){
+                console.log('===== ERROR ====='.red);
+                console.log(err);
+              } else {
+                if (output.length > 0){
+                  res.json(output);
+                } else {
+                  res.json({error: 'Please provide a real address'});
+                }
+              }
+            }) // End geocode
           }
         }
       });
-    }, // End findLocal
+    }, // End newRegistration
+
+
+
+
+
+
+
+    confirmRegistration: function(req,res){
+      console.log('In the reg method'.yellow);
+      console.log(req.body);
+      // console.log('=========================='.cyan);
+      var myEmail = req.body.email.toLowerCase();
+      var myZip;
+      var validatedObj = req.body;
+      if (validateLocation(validatedObj)){
+        myPhone = intParsing(req.body.phone);
+        // myZip = intParsing(req.body.zip);
+      } else {
+        res.json({error: validateLocation(validatedObj)});
+      }
+    // ========= Check if email is already registered =========
+      Organization.findOne({email: myEmail}, function(err, oneUser){
+        if (err){
+          console.log('===== Error ====='.red);
+          console.log(err);
+        } else if (oneUser) {
+          res.json({error: "This E-Mail is already registered to an account. Please Login to continue"})
+        } else {
+
+    // ===== Creating and Saving new Organization =====
+          Organization.findOne({formattedAddress: req.body.formattedAddress}, function(err, oneUser){
+            if (err){
+              console.log('==== Error ===='.red);
+            } else {
+              // Email already in the system
+              if (oneUser){
+              console.log('==== User Found in System'.yellow);
+              res.json({error: "This address is already registered to an account. Please Login to continue"});
+              } else {
+                // No Email Found
+                // console.log('=== New User ready to be created ==='.yellow);
+          // Encrypting password
+                var pw = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
+          // Create User object
+                var newOrganization = new Organization({
+                  organization: req.body.organization, formattedAddress: req.body.location.formattedAddress, streetNumber: req.body.location.streetNumber, streetName: req.body.location.streetName, city: req.body.location.city, state: req.body.location.administrativeLevels.level1short, zip: req.body.location.zipcode, latitude: req.body.location.latitude, longitude: req.body.location.longitude, email: myEmail, password: pw,
+                })
+                newOrganization.save(function(err){
+                  if (err){
+                    console.log('==== Error When saving new organization ===='.red);
+                    console.log(err);
+                  } else {
+                    // console.log('==== Successfuly Registered ===='.yellow);
+
+                    var toSendBack = {id: newOrganization._id,
+                      formattedAddress: newOrganization.formattedAddress,
+                      organization: newOrganization.organization,
+                    };
+                    res.json({success: true, sentback: toSendBack})
+                  }
+                });
+              }
+            }
+          });
+
+        }
+      });
+    },
+
+
+
+
+
+
 
 
     getAll: function(req,res){
@@ -349,6 +372,22 @@ module.exports = (function(){
       });
     },
 
+
+    newRegCheck: function(req,res){
+      console.log(req.body);
+      Organization.findOne({formattedAddress: req.body.formattedAddress}, function (err, oneUser){
+        if (err){
+          console.log('==== Error ===='.red);
+          console.log(err);
+        } else {
+          if (oneUser){
+            res.json({error: 'Organization already registered at this address'});
+          } else {
+            res.json(true);
+          }
+        }
+      });
+    }, // End newRegCheck
 
 
     regCheck: function(req,res){
@@ -632,15 +671,15 @@ function validateLocation(orgObj){
 if (!emailRegex.test(orgObj.email)){
     return 'Please enter in a valid email';
   }
-  else if (!orgObj.description){
-    return 'Please enter a Description to continue';
-  }
-  else if (orgObj.description.length < 3){
-    return 'Description must be at least 3 characters long';
-  }
-  else if (orgObj.description.length > 150){
-    return 'Description is too long. 150 Characters max';
-  }
+  // else if (!orgObj.description){
+  //   return 'Please enter a Description to continue';
+  // }
+  // else if (orgObj.description.length < 3){
+  //   return 'Description must be at least 3 characters long';
+  // }
+  // else if (orgObj.description.length > 150){
+  //   return 'Description is too long. 150 Characters max';
+  // }
   else if (orgObj.password == "     ") {
     return 'Please enter a password to continue';
   }
@@ -653,16 +692,16 @@ if (!emailRegex.test(orgObj.email)){
   else if(orgObj.password != orgObj.password_conf){
     return 'Passwords do not match!';
   }
-  if (orgObj.website){
-    if (!websiteRegex.test(orgObj.website)){
-      return 'Please enter a valid Website';
-    }
-  }
-  if (orgObj.phone){
-    if (!phoneRegex.test(orgObj.phone)){
-      return 'Please enter a valid Phone Number';
-    }
-  }
+  // if (orgObj.website){
+  //   if (!websiteRegex.test(orgObj.website)){
+  //     return 'Please enter a valid Website';
+  //   }
+  // }
+  // if (orgObj.phone){
+  //   if (!phoneRegex.test(orgObj.phone)){
+  //     return 'Please enter a valid Phone Number';
+  //   }
+  // }
   return true;
 }; // End Validate Location
 

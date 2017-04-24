@@ -8,18 +8,18 @@ const mongoose = require('mongoose');
 // ============================== Schemas ==================================
 // =========================================================================
 var OrganizationSchema = new mongoose.Schema({
-  organization: {type: String, required: true, minlength: 3, trim: true},
+  organization: {type: String, minlength: 3, trim: true},
   formattedAddress: {type: String, required: true},
   streetNumber: {type: Number, required: true, minlength: 1, trim: true},
-  streetName: {type: String, required: false, minlength: 2, trim: true},
+  streetName: {type: String, minlength: 2, trim: true},
   city: {type: String, required: true, minlength: 1, trim: true},
   state: {type: String, required: true, minlength: 1, trim: true},
   zip: {type: String, required: true, minlength: 5, trim: true},
-  phone: {type: String, required: false, trim: true},
-  website: {type: String, required: false, minlength: 3, trim: true},
-  description: {type: String, required: true, minlength: 3, maxlength: 150, trim: true},
-  latitude:{type: Number, trim: true},
-  longitude:{type: Number, trim: true},
+  phone: {type: String, trim: true},
+  website: {type: String, minlength: 3, trim: true},
+  description: {type: String, minlength: 3, maxlength: 150, trim: true},
+  latitude:{type: Number, required: true, trim: true},
+  longitude:{type: Number, required: true, trim: true},
   hoursOfOperation: [{}],
   email:{
         type: String,

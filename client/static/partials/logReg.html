@@ -22,18 +22,20 @@
       </form>
     </div>
 
+
+
     <div class="Register pageWrapper mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
       <h3>Register</h3>
       <form>
 
 
         <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input" type="text" id="orgName" ng-model='temp.organization'>
-          <label class="mdl-textfield__label" for="orgName">Organization Name...</label>
+          <input class="mdl-textfield__input" type="email" id="email" ng-model='temp.email'>
+          <label class="mdl-textfield__label" for="email">Email...</label>
         </div>
 
         <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input" type="text" id="street" ng-model='temp.street1'>
+          <input class="mdl-textfield__input" type="text" id="street" ng-model='temp.street'>
           <label class="mdl-textfield__label" for="street">Street...</label>
         </div>
 
@@ -42,7 +44,85 @@
           <label class="mdl-textfield__label" for="city">City...</label>
         </div>
 
-        <button type="button" class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' ng-click="continueReg()">Register</button>
+        <button type="button" class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' ng-click="register()">Register</button>
       </form>
     </div>
   </div>
+
+
+
+
+
+<!-- ========== Password Display Mask ========== -->
+
+<div class="DisplayMask" ng-show='passwordPrompt'>
+  <div class="passwordDiv">
+    <h3 class='errorMessage'>{{passwordError}}</h3>
+    <h3>Choose a password</h3>
+    <h5>Must be at least 5 characters long</h5>
+    <form class="passwordFrom">
+      <div class="mdl-textfield mdl-js-textfield ">
+        <input class="mdl-textfield__input" type="password" id="password" ng-model='password.password' required>
+        <label class="mdl-textfield__label" for="password">Password...</label>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield ">
+        <input class="mdl-textfield__input" type="password" id="password" ng-model='password.passconf' required>
+        <label class="mdl-textfield__label" for="password">Confirm Password...</label>
+      </div>
+
+      <div class="passwordBTN">
+        <button type="button" class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' ng-click="confirmPassword()">Submit</button>
+      </div>
+
+    </form>
+
+    </form>
+  </div>
+</div>
+
+<!-- ========== End Password Display Mask ========== -->
+
+
+
+
+<!-- ========== Multi Location Display Mask ========== -->
+
+<div class="DisplayMask" ng-show='multiLocation'>
+
+  <div class="multiLocations">
+    <h3 class='errorMessage'>{{multiLocalError}}</h3>
+    <table>
+      <tr ng-repeat='place in foundLocations'>
+        <td>{{place.formattedAddress}}</td>
+        <td><button class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' ng-click='selectedAddress(place)'>Select Address</button></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- ========== End Multi Location Display Mask ========== -->
+
+
+
+<!-- ========== Org Name Display Mask ========== -->
+
+<div class="DisplayMask" ng-show='orgNameMask'>
+
+  <div class="orgName">
+    <h3>What is your Organizations Name?</h3>
+    <div class="mdl-textfield mdl-js-textfield ">
+      <input class="mdl-textfield__input" type="text" id="orgName" ng-model='orgName' required>
+      <label class="mdl-textfield__label" for="orgName">Organization...</label>
+    </div>
+
+    <div class="passwordBTN">
+      <button type="button" class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' ng-click="pickOrgName()">Submit</button>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ========== End Org Name Display Mask ========== -->

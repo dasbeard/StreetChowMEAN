@@ -11,16 +11,24 @@ module.exports = function(app){
     organizations.reg(req,res)
   });
 
+  app.post('/newRegistration', function(req,res){
+    organizations.newRegistration(req,res)
+  });
+
+  app.post('/confirmRegistration', function (req,res){
+    organizations.confirmRegistration(req,res)
+  });
+
   app.post('/login', function(req,res){
     organizations.login(req,res)
   });
 
   app.post('/newRegCheck', function(req,res){
-    organizations.regCheck(req,res)
+    organizations.newRegCheck(req,res)
   });
 
-  app.post('/findLocation', function(req, res){
-    organizations.findLocal(req,res)
+  app.post('/newRegister', function(req, res){
+    organizations.newRegister(req,res)
   });
 
   app.post('/getOrg', function(req,res){

@@ -6,9 +6,23 @@ app.factory('logRegFactory', function ($http){
   var nearbyLocations = {};
   // console.log(nearbyLocations);
 
+
+
+  factory.newRegistration = function (input, callback){
+    $http.post('/newRegistration', input).then(function(output){
+      callback(output)
+    });
+  } // End newRegistration
+
+  factory.confirmRegistration = function (input, callback){
+    $http.post('/confirmRegistration', input).then(function(output){
+      callback(output)
+    });
+  } // End confirmRegistration
+
 // Find address
-  factory.findAddress = function(input, callback){
-    $http.post('/findLocation', input).then(function(output){
+  factory.newRegister = function(input, callback){
+    $http.post('/newRegister', input).then(function(output){
       callback(output)
     });
   } // End findAddress
@@ -22,7 +36,6 @@ app.factory('logRegFactory', function ($http){
 
   //Check if user is registered already or not
   factory.newRegCheck = function(input, callback){
-    console.log(input);
     $http.post('/newRegCheck', input).then(function(output){
       // console.log('Back from server');
       callback(output);
