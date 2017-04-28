@@ -67,6 +67,10 @@ module.exports = function(app){
     organizations.updateServices(req,res)
   });
 
+  app.post('/updateServices2', function(req,res){
+    organizations.updateServices2(req,res)
+  });
+
   app.post('/updateHoursOfOp', function(req,res){
     organizations.updateHoursOfOp(req,res)
   });

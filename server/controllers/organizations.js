@@ -53,7 +53,7 @@ module.exports = (function(){
           console.log('==== Error When finding user ===='.red);
           console.log(err);
         } else {
-          var sendBack = { formattedAddress: oneUser.formattedAddress, organization: oneUser.organization, website: oneUser.website, phone: oneUser.phone, description: oneUser.description, email: oneUser.email, services: oneUser.services, otherServices: oneUser.otherServices, days: oneUser.days, latitude: oneUser.latitude, longitude: oneUser.longitude};
+          var sendBack = { formattedAddress: oneUser.formattedAddress, organization: oneUser.organization, website: oneUser.website, phone: oneUser.phone, description: oneUser.description, email: oneUser.email, services: oneUser.services, otherServices: oneUser.otherServices, days: oneUser.days, latitude: oneUser.latitude, longitude: oneUser.longitude, hoursOfOp: oneUser.hoursOfOperation};
           res.json(sendBack);
         }
       });
@@ -171,6 +171,38 @@ module.exports = (function(){
     }, // End updateServices
 
 
+    updateServices2: function(req,res){
+      // console.log(req.body);
+      Organization.findOne({_id: req.body.id}, function(err, oneUser){
+        if (err){
+          console.log('==== Error updating services ===='.red);
+          console.log(err);
+        } else {
+
+          oneUser.services = req.body.services;
+          oneUser.website = req.body.info.website;
+          oneUser.phone = req.body.info.phone;
+          oneUser.description = req.body.info.description;
+
+          // console.log(oneUser);
+          oneUser.save(function(err){
+            if (err){
+              console.log('==== Error saving services ===='.red);
+              console.log(err);
+            } else {
+              res.json({message: 'Services Saved'});
+            }
+          })
+        }
+      })
+
+    }, // End updateServices2
+
+
+
+
+
+
 
     updateHoursOfOp2: function(req,res){
       console.log(req.body);
@@ -279,8 +311,8 @@ module.exports = (function(){
 
 
     confirmRegistration: function(req,res){
-      console.log('In the reg method'.yellow);
-      console.log(req.body);
+      // console.log('In the reg method'.yellow);
+      // console.log(req.body);
       // console.log('=========================='.cyan);
       var myEmail = req.body.email.toLowerCase();
       var myZip;
@@ -307,7 +339,7 @@ module.exports = (function(){
             } else {
               // Email already in the system
               if (oneUser){
-              console.log('==== User Found in System'.yellow);
+              // console.log('==== User Found in System'.yellow);
               res.json({error: "This address is already registered to an account. Please Login to continue"});
               } else {
                 // No Email Found
@@ -374,7 +406,7 @@ module.exports = (function(){
 
 
     newRegCheck: function(req,res){
-      console.log(req.body);
+      // console.log(req.body);
       Organization.findOne({formattedAddress: req.body.formattedAddress}, function (err, oneUser){
         if (err){
           console.log('==== Error ===='.red);
@@ -392,8 +424,8 @@ module.exports = (function(){
 
     regCheck: function(req,res){
       var checkObj = req.body;
-      console.log('in regCheck'.cyan);
-      console.log(checkObj);
+      // console.log('in regCheck'.cyan);
+      // console.log(checkObj);
       if (checkNewReg(checkObj)){
     // ======== Query DB to find instance ========
         Organization.findOne({formattedAddress: checkObj.formattedAddress}, function(err, oneUser){
@@ -402,7 +434,7 @@ module.exports = (function(){
             console.log(err);
           } else if (oneUser){
             // All Good
-            console.log('Already in system'.red);
+            // console.log('Already in system'.red);
             res.json(false);
           } else {
             // console.log('All Good'.cyan);
@@ -417,8 +449,8 @@ module.exports = (function(){
 
     reg: function(req,res){
     // ===== Validations =====
-      console.log('In the reg method'.yellow);
-      console.log(req.body);
+      // console.log('In the reg method'.yellow);
+      // console.log(req.body);
       var myEmail = req.body.email.toLowerCase();
       var myPhone;
       var myZip;
@@ -445,7 +477,7 @@ module.exports = (function(){
             } else {
               // Email already in the system
               if (oneUser){
-              console.log('==== User Found in System'.yellow);
+              // console.log('==== User Found in System'.yellow);
               res.json({error: "This address is already registered to an account. Please Login to continue"});
               } else {
                 // No Email Found
@@ -491,7 +523,7 @@ module.exports = (function(){
           console.log('====== Error ======'.red);
         } else {
           if(!oneUser){
-            console.log('====== user NOT Found ======'.yellow);
+            // console.log('====== user NOT Found ======'.yellow);
             res.json({error: "Email not in the system. Please Register"});
 
           } else {

@@ -1,0 +1,303 @@
+<h2>{{error}}</h2>
+
+<div class="mdl-grid">
+  <div class="servicesHeader mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    <h1>{{user.organization}}</h1>
+  </div>
+  <div class="servicesHeader mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    <h5>{{user.formattedAddress}}</h5>
+  </div>
+</div>
+
+
+<div class="midLevelHeader mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    <p>Description</p>
+  </div>
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    <p>Phone Number</p>
+    <p>Website</p>
+  </div>
+</div>
+
+<!-- Hours of Operation -->
+<section class="midSectionDiv mdl-grid" id="my-table">
+  <div class="datesOpen mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop mdl-cell--stretch">
+    <h4>Hours of Operation</h4>
+    <table class='mdl-data-table mdl-js-data-table mdl-shadow--2dp'>
+      <tr>
+        <td>
+          <h5>Monday</h5>
+        </td>
+        <td id='hoursText'>
+          From
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.open'>
+          </div>
+        </td>
+        <td id='hoursText'>
+          to
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.mon.close'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Tuesday</h5>
+        </td>
+        <td id='hoursText'>
+          From
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.tue.open'>
+          </div>
+        </td>
+        <td id='hoursText'>
+          to
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time"ng-model='hoursOfOp.tue.close'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Wednesday</h5>
+        </td>
+        <td id='hoursText'>
+          From
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.wen.open'>
+          </div>
+        </td>
+        <td id='hoursText'>
+          to
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time"ng-model='hoursOfOp.wen.close'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Thursday</h5>
+        </td>
+        <td id='hoursText'>
+          From
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.thurs.open'>
+          </div>
+        </td>
+        <td id='hoursText'>
+          to
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time"ng-model='hoursOfOp.thurs.close'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Friday</h5>
+        </td>
+        <td id='hoursText'>
+          From
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.open'>
+          </div>
+        </td>
+        <td id='hoursText'>
+          to
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.fri.close'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Saturday</h5>
+        </td>
+        <td id='hoursText'>
+          From
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.open'>
+          </div>
+        </td>
+        <td id='hoursText'>
+          to
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sat.close'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Sunday</h5>
+        </td>
+        <td id='hoursText'>
+          From
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.open'>
+          </div>
+        </td>
+        <td id='hoursText'>
+          to
+        </td>
+        <td>
+          <div class="datesOpen-Input mdl-textfield mdl-js-textfield ">
+            <input class="mdl-textfield__input" type="time" ng-model='hoursOfOp.sun.close'>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  <button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateHoursOfOp()'>Update Hours of Operation</button>
+  </div>
+
+<!-- Food Served On -->
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet">
+    <form class="">
+      <h4>Add a day when your serving food:</h4>
+
+      <label>
+        <select name="days" ng-model='days.day' required ng-options='d.code as d.name for d in daySelect'>
+          <option value="">-- Select Day --</option>
+        </select>
+      </label>
+
+      <label>
+        <select ng-model='days.start' required ng-options='t.code as t.name for t in timeSelect'>
+          <option value="">-- Start Time --</option>
+        </select>
+      </label>
+
+      <label>
+        <select ng-model='days.start2' required ng-options='p.code as p.name for p in period'>
+          <option value="">am/pm</option>
+        </select>
+      </label>
+
+      <label>
+        <select ng-model='days.end' required ng-options='t.code as t.name for t in timeSelect'>
+          <option value="">-- End Time --</option>
+        </select>
+      </label>
+
+      <label>
+        <select ng-model='days.end2' required ng-options='p.code as p.name for p in period'>
+          <option value="">am/pm</option>
+        </select>
+      </label>
+
+      <button type="button" name="button" ng-click = 'addDay()'>Add Day</button>
+    </form>
+    <div>
+
+    <table>
+
+      <thead>
+        <th>days</th>
+        <th>start time</th>
+        <th>end time</th>
+        <th>Action</th>
+      </thead>
+      <tr ng-repeat="d in days">
+        <td>{{ d.day }}</td>
+        <td>{{ d.start }}</td>
+        <td>{{ d.end }}</td>
+        <td><button  ng-click = "deleteDay($index)">Remove</button></td>
+      </tr>
+    </table>
+
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+        <h4>Services</h4>
+        <form  id="servicesRow">
+
+          <table id="myServiceTable">
+            <tr >
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Beds: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.beds' ng-true-value="true" ng-false-value="false" ></label>
+              </td>
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Clothes: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.clothes' ng-true-value="true" ng-false-value="false"></label>
+              </td>
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Education: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.education' ng-true-value="true" ng-false-value="false"></label>
+              </td>
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Interview Help: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.interviewHelp' ng-true-value="true" ng-false-value="false"></label>
+              </td>
+              <td>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="sample3" ng-model='services.otherServices' value="services.otherServices">
+                  <label class="mdl-textfield__label" for="sample3">Other Services...</label>
+                </div>
+              </td>
+            </tr>
+            <tr >
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Jobs: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.jobs' ng-true-value="true" ng-false-value="false"></label>
+              </td>
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Childcare: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.childcare' ng-true-value="true" ng-false-value="false"></label>
+              </td>
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Recreational Activities: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.recActivities' ng-true-value="true" ng-false-value="false"></label>
+              </td>
+              <td>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Takes Donations: <input id="checkbox-2" class="mdl-checkbox__input" type="checkbox" ng-model='services.donations' ng-true-value="true" ng-false-value="false"></label>
+              </td>
+              <td>
+                <button class="mdl-button mdl-js-button mdl-button--raised" type="button" ng-click = 'updateServices()'>Update Services</button>
+              </td>
+            </tr>
+          </table>
+
+    </div>
+
+  </form>
+
+</div>
+
+
+<div class="mdl-layout-spacer"></div>
+
+
+{{message}}
+
+ <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+
+   <div class="mdl-snackbar__text"></div>
+
+   <button class="mdl-snackbar__action" type="button"></button>
+
+ </div>

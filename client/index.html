@@ -55,13 +55,13 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <a href="#!/"><img src="assets/helpingHoursFullLogo1.png" alt="Clock Logo"></a>
+        <a ng-click='returnHome()'><img src="assets/helpingHoursFullLogo1.png" alt="Clock Logo"></a>
         <!-- <span class="header mdl-layout-title"> <a href="#!/">  <h2>Helping Hours</h2> </a></span> -->
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <nav class="myNav mdl-navigation">
-          <a class="mdl-navigation__link" href="#!/">Home</a>
-          <a class="mdl-navigation__link" href="#!/food">Services</a>
+          <a id='navHome' class="mdl-navigation__link" ng-click='returnHome()'>Home</a>
+          <!-- <a class="mdl-navigation__link" href="#!/food">Services</a> -->
           <a class="mdl-navigation__link" ng-show='organization' href="#!/showPage/{{organization.id}}">My Page</a>
 
           <a class="mdl-navigation__link" ng-show='!organization' href="#!/logReg/">Log/Reg</a>

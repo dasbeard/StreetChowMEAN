@@ -8,7 +8,7 @@ app.run(function () {
         componentHandler.upgradeDom();
         mdlUpgradeDom = false;
       }
-    }, 175);
+    }, 160);
 
     var observer = new MutationObserver(function () {
       mdlUpgradeDom = true;

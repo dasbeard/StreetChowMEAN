@@ -20,6 +20,12 @@ app.factory('foodFactory', function ($http){
     });
   };
 
+  factory.updateServices2 = function(input, callback){
+    $http.post('/updateServices2', input).then(function(output){
+      callback(output);
+    });
+  };
+
   factory.updateHoursOfOp = function(input, callback){
     $http.post('/updateHoursOfOp', input).then(function(output){
       callback(output);

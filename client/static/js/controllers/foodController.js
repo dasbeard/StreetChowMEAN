@@ -2,6 +2,11 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   $scope.days = [{}];
   $scope.user = $cookies.getObject('loggedUser');
 
+  var phoneRegex = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+
+  var websiteRegex = /[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+
+
   if(!($scope.user)){
     $location.url('/');
   } else {
@@ -10,8 +15,7 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
 
   $scope.updateHoursOfOp = function() {
-      console.log($scope.newHOPDay);
-    // Still need to Validate times are correct
+    // ===== Still need to Validate times are correct =====
 
     var flag = true;
       if ($scope.newHOPDay){
@@ -66,12 +70,10 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
   }; // End deleteDa
 
 
-
-
   $scope.addDay = function(){
-  // Still need to Validate times are correct
+    // Still need to Validate times are correct
 
-  var flag = true;
+    var flag = true;
     if ($scope.newDay){
       if (!($scope.newDay.day)){
         flag = false;
@@ -112,10 +114,6 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
   }; // End addDay
 
-
-
-
-
   $scope.deleteDay = function(idx){
     $scope.toRemove = {id: $scope.user.id, index: idx},
     foodFactory.destroy($scope.toRemove, function(output){
@@ -129,6 +127,8 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
   $scope.updateServices = function(){
     var myServices = {};
+    var flag = true;
+    $scope.error = '';
 
     if ($scope.services){
       if ($scope.services.beds == true){
@@ -189,17 +189,62 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       myServices.donations = false;
       myServices.otherServices = '';
     }
-    myServices.id = $scope.user.id;
 
-    foodFactory.updateServices(myServices, function(output){
-      if (output.data){
-        getData();
-        snackBar(output.data.message);
+
+    var orgInfo = {};
+    if ($scope.org.website){
+      if (!websiteRegex.test($scope.org.website)){
+        flag = false;
+        $scope.error = 'Please enter a valid website';
       } else {
-        $scope.error = 'Problem updating service';
+        orgInfo.website = $scope.org.website;
       }
-    });
+    }
+    if ($scope.org.description){
+      if ($scope.org.description.length < 3){
+        flag = false;
+        $scope.error = 'Description must be at least 3 characers long';
+      } else {
+        orgInfo.description = $scope.org.description;
+      }
+    }
+    if ($scope.org.phone){
+      if (!phoneRegex.test($scope.org.phone)){
+        flag = false;
+        $scope.error = 'Please enter a valid phone number';
+      } else {
+        orgInfo.phone = $scope.org.phone;
+      }
+    }
+
+    var toSend = {services: myServices, info: orgInfo, id: $scope.user.id};
+    // myServices.id = $scope.user.id;
+
+
+    if (flag){
+      var flag2 = true;
+      foodFactory.updateServices2(toSend, function(output){
+        if (output.data){
+          getData();
+          // snackBar(output.data.message);
+          $location.url('/showPage/' + $scope.user.id)
+
+
+        } else {
+          flag2 = false;
+          $scope.error = 'Problem updating service';
+        }
+      });
+      if (flag2){
+      }
+    }
   }; // End updateServices
+
+
+
+
+
+
 
 
 
@@ -207,11 +252,13 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
     'use strict';
     var data = {message: message};
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
-  }
+  };
+
 
 
   function getData (){
     foodFactory.getDayService($scope.user, function(output){
+      // console.log(output.data);
       if (output.data.days){
         $scope.days = output.data.days;
         // console.log($scope.days);
@@ -222,6 +269,7 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       if (output.data.hoursOfOp){
         $scope.hoursOfOp = output.data.hoursOfOp;
       }
+      // =================================
       if (output.data.org){
         $scope.org = output.data.org;
       }

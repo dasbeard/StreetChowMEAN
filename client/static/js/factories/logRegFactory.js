@@ -4,8 +4,6 @@
 app.factory('logRegFactory', function ($http){
   var factory = {};
   var nearbyLocations = {};
-  // console.log(nearbyLocations);
-
 
 
   factory.newRegistration = function (input, callback){

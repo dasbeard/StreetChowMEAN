@@ -97,19 +97,15 @@ app.controller('logReg', function($scope, logRegFactory, $location, $cookies){
     $scope.temp.organization = $scope.orgName;
     logRegFactory.confirmRegistration($scope.temp, function(output){
       if (output.data.success){
-        $cookies.putObject('loggedUser', output.data.sentback)
+        $cookies.putObject('loggedUser', output.data.sentback);
         $scope.orgNameMask = false;
-        window.location.replace('/');
+
+// =============== Need to fix log/reg to logout ===============
+        $location.url('/food');
+
       }
     })
   }
-
-
-
-
-
-
-
 
 
 

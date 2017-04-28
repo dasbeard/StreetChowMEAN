@@ -17,7 +17,6 @@
   /*height: 80vw;*/
 }
 
-
 .header a{
   text-decoration: none;
   color: inherit;
@@ -31,13 +30,21 @@ a{
   text-shadow: 12px 12px 10px #5A5858;
   color: #ffffff;
   font-size: 1.2em;
+  cursor: grab;
 }
 
-.error-Message{
-  color: red;
+.myNav a:hover{
+  cursor: pointer;
+}
+
+.errorMessage{
+  color: #e04141;
+  width: 100%;
   text-align: center;
+  margin: 1%;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000000;
 }
-
 
 /*===========================================================================*/
 /*=============================== Home Page =================================*/
@@ -282,76 +289,6 @@ a{
   background-color: #43e02f;
 }
 
-.showPageHeader{
-  /*width: 100%;*/
-  text-align: center;
-  display: inline;
-}
-
-.showPageHeader h1{
-  display: inline;
-  text-align: center;
-}
-
-.showPageHeader a{
-  display: inline;
-  margin-left: 50%;
-}
-
-.showPageOrgInfo {
-  /*outline: 1px solid black;*/
-  height: 350px;
-}
-
-.showPageInfo p, .showPageInfo h4 {
-  display: inline-block;
-}
-
-.showPageInfo {
-  /*outline: 1px solid black;*/
-  height: 50px;
-}
-
-.showMap {
-  height: 100%;
-}
-
-.showPageServices form{
-  padding-left: 6%;
-}
-
-.showPageServices td {
-  padding-right: 2%;
-}
-
-.showPageServices tr{
-  height: 45px;
-}
-
-.otherServices p{
-  display: inline-block;
-  font-size: 1.3em;
-  list-style: none;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.otherServices li :hover{
-  text-shadow: 12px 12px 10px #5A5858;
-  color: #E8E8E8;
-  font-size: 1.1em;
-}
-
-
-.otherServices li{
-  font-size: 1.3em;
-  list-style: none;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-
-
 .DisplayMask{
   height: 100%;
   width: 100%;
@@ -382,6 +319,7 @@ a{
   margin-bottom: 0;
 }
 
+
 .passwordFrom{
   margin-top: 15%;
   text-align: center;
@@ -407,19 +345,82 @@ a{
 /*============================== Show Page ==================================*/
 /*===========================================================================*/
 
-
-.showPageDays{
-  border-collapse: collapse;
+.showPageHeader{
+  padding: 0 5%;
 }
 
-.showPageDays tr {
-  height: 2%;
+.showPageHeaderLeft{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.showPageDays td {
-  width: 5%;
-  text-align: center;
-  padding: 3px;
+.showPageHeaderLeft a{
+  font-size: .3em;
+}
+
+.showPageHeaderLeft a:hover{
+  color: blue;
+  font-size: .35em;
+  text-shadow: 5px 5px 10px #5A5858;
+}
+
+.showPageHeaderRight{
+  padding-left: calc(15% - 120px);
+  /*text-align: right;*/
+}
+
+.showPageHeaderRight li{
+  list-style: none;
+  font-size: .8em;
+}
+
+.HopLI :hover{
+  font-size: 1.2em;
+  text-shadow: 5px 5px 10px #5A5858;
+}
+
+.showPageHeaderRight p{
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.showPageHeaderRight .hopHeader{
+  text-decoration: underline;
+  font-size: 1.3em;
+}
+
+.showPageMidSection {
+  min-height: 350px;
+  padding-top: 0;
+  padding-bottom: 0;
+
+}
+
+.showPageMidLeft{
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+.showMap {
+  height: 100%;
+  min-height: 250px;
+}
+
+.showPageServices table{
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.showPageServices td {
+  padding-right: 2%;
+}
+
+.showPageServices tr{
+  height: 45px;
 }
 
 .showPageDays tr:nth-child(even) {
@@ -430,40 +431,119 @@ a{
   box-shadow: 0 0 2px 2px rgba(112, 112, 112, .3);
 }
 
-#removeBtn {
-  color: #cc0000;
+.showPageServices h4{
+  margin: 0;
 }
 
-#addSpace td{
-  padding-top: 20px;
+.showPageServing h4{
+  margin: 0;
 }
+
+.showPageServing p{
+  /*margin: 0;*/
+  display: inline;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+
+.showPageServing span{
+  /*font-weight: bold;*/
+  /*width: 50px;*/
+  /*margin-right: 5px;*/
+}
+
+
+
+
+
+/*.showPageOrgInfo{
+outline: 1px solid blue;
+}*/
+
+
+/*.showPageDays{
+border-collapse: collapse;
+}
+
+.showPageDays tr {
+height: 2%;
+}*/
+
+/*.showPageDays td {
+text-align: center;
+padding: 3px;
+}*/
+
+/*#removeBtn {
+  color: #cc0000;
+}*/
+
+/*#addSpace td{
+  padding-top: 20px;
+}*/
+
+/*.otherServices p{
+display: inline-block;
+font-size: 1.3em;
+list-style: none;
+margin-bottom: 10px;
+text-align: center;
+}
+
+.otherServices li :hover{
+text-shadow: 12px 12px 10px #5A5858;
+color: #E8E8E8;
+font-size: 1.1em;
+}
+
+.otherServices li{
+font-size: 1.3em;
+list-style: none;
+margin-bottom: 10px;
+text-align: center;
+}*/
+
+/*.showPageInfo p, .showPageInfo h4 {
+  display: inline-block;
+}
+
+.showPageInfo {
+  height: 50px;
+}*/
 
 /*===========================================================================*/
 /*============================== Services Page ==============================*/
 /*===========================================================================*/
+.pageMargin{
+  margin: 2%;
+}
 
-
-.errorMessage{
-  color: #e04141;
-  width: 100%;
-  text-align: center;
-  margin: 1%;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px #000000;
+.servicesTopSection{
+  min-height: 160px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .servicesHeader{
-  /*outline: 1px solid blue;*/
-  margin: 0;
-  padding: 0 5%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 0;
 }
 
-.servicesHeader h2{
+.servicesHeader h6{
+  margin-bottom: 1px;
+}
+
+
+.servicesMidSection{
+  min-height: 300px;
+  padding-bottom: 0;
+}
+
+.servicesMidSection h4{
+  text-align: center;
   margin: 0;
-  padding: 0;
 }
 
 .orgName{
@@ -475,10 +555,6 @@ a{
   color: #6b6b6b;
 }
 
-.servicesTextInput{
-  margin-top: 0;
-}
-
 .inputSection{
   height: 10px;
 }
@@ -488,63 +564,8 @@ a{
 }
 
 .descTextArea{
-  height: 32px;
+  height: 36px;
 }
-
-.hoursOfOperation {
-  padding: 0 4%;
-}
-
-.hopDays{
-  display: flex;
-  justify-content: space-between;
-  /*height: 65px;*/
-}
-
-.hopDays h6 {
-  line-height: 60px;
-  height: 60px;
-  margin: 0 10px;
-}
-
-.hopDays label, .hopDays select{
-  text-align: center;
-  font-size: .8em;
-}
-
-.hopDayDiv {
-  padding-top: 0;
-  padding-bottom: 0;
-  height: 60px;
-}
-
-.mdl-selectfield__select .ng-empty{
-  background-color: red;
-  height: 0px;
-}
-
-/*
-.datesOpen-Input2 {
-  list-style: none;
-}
-
-.datesOpen-Input2 h6{
-  display: inline-block;
-  width: 90px;
-  padding: 2px;
-  margin: 0;
-}
-
-.datesOpen-Input2 input{
-  display: inline-block;
-  width: 120px;
-  padding: 2px;
-}
-
-.datesOpen-Input2 p{
-  margin: 0 5px;
-  display: inline-block;
-}*/
 
 .addNewWrapper{
   width: 100%;
@@ -553,15 +574,8 @@ a{
   align-items: center;
 }
 
-#addNewDay h4{
-  text-align: center;
-}
-
-#addNewDay {
-  padding: 0 4%;
-}
-
 .addNew button{
+  margin-left: 10px;
   height: 25px;
   line-height: 25px;
 }
@@ -570,24 +584,6 @@ a{
   margin: 0;
   margin-right: 10px;
   line-height: 30px;
-}
-
-#addDayInputs{
-  display: flex;
-  justify-content: space-around;
-}
-#addDayInputs label{
-  font-size: .75em
-}
-
-#timeInputs {
-  width: 75%;
-  display: flex;
-}
-
-#timeInputs button{
-  height: 25px;
-  line-height: 25px;
 }
 
 .displayDays li{
@@ -624,6 +620,14 @@ a{
   line-height: 25px;
 }
 
+.displayDays button :hover{
+  margin-right: 0;
+  height: 25px;
+  line-height: 25px;
+  font-weight: bold;
+  color: red;
+}
+
 .displayDays span{
   width: 80px;
   text-align: right;
@@ -632,9 +636,68 @@ a{
 
 .displayDays :hover{
   text-shadow: 5px 5px 10px #5A5858;
-  color: #E8E8E8;
+  /*color: #E8E8E8;*/
+  color: #0832cc;
 }
 
+.servicesBottomSection{
+  padding-top: 0;
+}
+
+.servicesBottomSection h4{
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.servicesCheckbox{
+  margin: 0 8px;
+}
+
+.servicesCheckbox td{
+  width: 18%;
+}
+
+.servicesCheckbox tr{
+  height: 55px;
+}
+
+.servicesBottomRight div{
+  /*padding-bottom: 10px;*/
+}
+
+.servicesBottomRight button{
+  width: 120px;
+  margin-left: calc(50% - 80px);
+}
+
+
+
+/*
+.hopDays{
+  display: flex;
+  justify-content: space-between;
+}
+
+.hopDays h6 {
+  line-height: 60px;
+  height: 60px;
+  margin: 0 10px;
+}
+
+.hopDays label, .hopDays select{
+  text-align: center;
+  font-size: .8em;
+}
+
+.hopDayDiv {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 60px;
+}*/
+
+/*
 #updateServices{
   padding: 0 5%;
   width: 100%;
@@ -648,11 +711,27 @@ a{
 #myServiceTable td{
   width: 10%;
   height: 35px;
+}*/
+
+
+/*
+#addDayInputs{
+  display: flex;
+  justify-content: space-around;
+}
+#addDayInputs label{
+  font-size: .75em
 }
 
+#timeInputs {
+  width: 75%;
+  display: flex;
+}
 
-
-
+#timeInputs button{
+  height: 25px;
+  line-height: 25px;
+}*/
 
 
 

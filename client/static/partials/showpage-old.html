@@ -1,0 +1,77 @@
+<div class="pageWrapper">
+
+  <div class="showPageHeader mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+
+  <h1 >{{thisOrg.organization}}</h1><a ng-if='showEdit' href="#!/food">Edit My Page</a>
+
+  </div>
+
+  <div class="mdl-grid">
+    <div class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <h4>{{thisOrg.formattedAddress}}</h4>
+
+      <p ng-show='thisOrg.website'><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+      <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
+      <!-- <a ng-show='thisOrg.email' href="mailto:{{thisOrg.email}}?" target="_top">{{thisOrg.email}}</a> -->
+      <h4 ng-show='thisOrg.description'>Description:  </h4>
+      <p ng-show='thisOrg.description'>{{thisOrg.description}}</p>
+      <h4 ng-show='thisOrg.services.otherServices'>Other Services: </h4>
+      <p ng-show='thisOrg.services.otherServices'> {{thisOrg.services.otherServices}}</p>
+
+
+    </div>
+
+
+
+
+    <div  map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="showPageOrgInfo mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--0-col-phone">
+
+      <ng-map class='showMap' center="{{latLong}}" zoom="12"></ng-map>
+
+
+    </div>
+  </div>
+
+  <div class="showPageServices mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <h1>Services Available</h1>
+
+      <table>
+        <tr>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Beds <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.beds' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Clothes <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.clothes' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Education <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.education' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Interview Help <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.interviewHelp' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        </tr>
+        <tr>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Jobs <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.jobs' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Childcare <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.childcare' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Recreational Activities <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.recActivities' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+          <td><label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Takes Donations <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.donations' ng-true-value="true" ng-false-value="false" disabled="disabled"></label></td>
+        </tr>
+      </table>
+
+
+
+    </div>
+
+        <div class=" mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+          <h1>Days Serving Food</h1>
+          <div class="displayDays">
+            <li ng-repeat='d in thisOrg.days'><h6>{{d.day}}</h6><p>From <span>{{d.startTime}}{{d.startPeriod}}</span> to <span>{{ d.endTime}}{{d.endPeriod}}</span> </p></li>
+          </div>
+
+
+          <!-- <table class="showPageDays">
+            <tr ng-repeat="d in thisOrg.days">
+              <td>{{ d.day }}</td>
+              <td>{{ d.startTime}}{{ d.startPeriod}}</td>
+              <td>{{ d.endTime}}{{ d.endPeriod}}</td>
+            </tr>
+          </table> -->
+        </div>
+    </div>
+
+
+  </div>
+</div>
