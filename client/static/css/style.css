@@ -1,3 +1,7 @@
+.testingBG{
+  background-color: white;
+}
+
 .mainBackground{
   /*background-image: url('../assets/mochaGrunge_@2X.png');*/
 
@@ -20,6 +24,18 @@
 .header a{
   text-decoration: none;
   color: inherit;
+}
+
+.testing {
+  color: white;
+}
+
+/*.titleLogo img {
+  width: 20%;
+}*/
+
+.titleLogo a{
+  font-size: 1.3em;
 }
 
 a{
@@ -88,6 +104,10 @@ a{
   height: 500px;
 }
 
+v-pane-header {
+  border-bottom-color: red;
+}
+
 .orgList {
   height: 89%;
   overflow-y: auto;
@@ -97,9 +117,15 @@ a{
   box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
 }
 
+.orgList {
+  padding-right: 2%;
+  padding-left: 2%;
+  /*background-color: red;*/
+}
+
 .orgList h5 span{
   font-size: .6em;
-  padding-left: 15%;
+  padding-left: 5%;
 }
 
 .orgList li{
@@ -126,12 +152,14 @@ a{
 
 .orgList h2{
   margin: 0;
-  margin-bottom: 15px;
+  margin-bottom: 1%;
   text-align: center;
 }
 
 .orgList h5{
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 6px;
 }
 
 .orgList .centerMe {
@@ -150,6 +178,11 @@ a{
   box-shadow: 1px 1px 2px rgba(112, 112, 112, .3);
 }
 
+#searchbar label{
+  color: #777777;
+  font-size: .8em;
+}
+
 #homeSearchInputs{
   padding-top: 20px;
   margin-right: 2%;
@@ -159,7 +192,8 @@ a{
 }
 
 #homeSearchInputsBtn{
-  margin-left: 2%;
+  margin-left: 1%;
+  margin-bottom: 2%;
 }
 
 .searchResults a {
@@ -245,6 +279,7 @@ a{
   margin-left: 85%;
   width: 85%;
   background-color: lightgrey;
+  margin-bottom: 5px;
 }
 
 .Login, .Register {
@@ -252,7 +287,7 @@ a{
   -moz-border-radius: 8px;
   border-radius: 8px;
   width: 35%;
-  height: 75%;
+  min-height: 75%;
 }
 
 
@@ -279,6 +314,10 @@ a{
 .Login h3, .Register h3 {
   display: block;
   text-align: center;
+}
+
+.Login button{
+  margin-top: 66px;
 }
 
 .css-form input.ng-invalid.ng-touched {
@@ -341,12 +380,177 @@ a{
   text-align: center;
 }
 
+/*.logRegBTN {
+  position: relative;
+  bottom: -55px;
+}*/
+
+/*===========================================================================*/
+/*============================ Show Page 2.0 ================================*/
+/*===========================================================================*/
+
+.newShowPageHeader{
+  /*background-color: green;*/
+  padding: 0;
+}
+
+.newShowPageHeader h1{
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.newMidSection{
+  /*background-color: red;*/
+  min-height: 350px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.newServingDays {
+  /*background-color: blue;*/
+}
+
+.newServingDays h4, .newServingDays p {
+  text-align: center;
+}
+
+.newMidMidSection {
+  /*background-color: white;*/
+}
+
+.newHOP {
+  /*background-color: purple;*/
+  list-style: none;
+}
+
+.newHOP h4, .newHOP p{
+  text-align: center;
+}
+
+.newHOP h4, .newServingDays h4{
+  margin-top: 2px;
+}
+
+.newHOP p, .newServingDays p{
+  margin-bottom: 5px;
+}
+
+.newMidContact{
+  /*backgroundv-color: yellow;*/
+  min-height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.newMidContact p{
+  margin-bottom: 0;
+}
+
+.linkWebsite:hover{
+  text-shadow: 12px 12px 10px #5A5858;
+  color: #E8E8E8;
+  font-size: 1.1em;
+}
+
+.pSpacer{
+  min-width: 30%;
+}
+
+.mapHolder{
+  padding-bottom: 0;
+}
+
+.newMidMap{
+  /*background-color: grey;*/
+  min-height: 300px;
+  width: 100%;
+  margin: 0;
+}
+
+.newMidAddress{
+  /*background-color: pink;*/
+  min-height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.newMidAddress p{
+  font-size: .8em;
+  margin-bottom: 10px;
+}
+
+.newShowDesc{
+  text-align: center;
+}
+
+.showPageServices2 h4{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.showServicesGrid{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.servicesDiv{
+  margin: 0 auto;
+}
+
+.servicesCol{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-top: 2px;
+  /*text-align: center;*/
+}
+
+.newOtherServices{
+  margin: 0;
+}
+
+
+/*.newShowPageServices h4{
+  text-align: center;
+}
+
+.newShowPageServices table{
+}
+
+.newShowPageServices tr{
+  display: flex;
+  justify-content: space-around;
+}
+
+.newShowPageServices td{
+  width: 20%;
+}
+
+*/
+
+
+
 /*===========================================================================*/
 /*============================== Show Page ==================================*/
 /*===========================================================================*/
 
 .showPageHeader{
-  padding: 0 5%;
+  padding: 0 16px;
+}
+
+.showPageHeader h1{
+  margin-bottom: 12px;
 }
 
 .showPageHeaderLeft{
@@ -354,6 +558,8 @@ a{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /*background-color: blue;*/
+
 }
 
 .showPageHeaderLeft a{
@@ -367,8 +573,10 @@ a{
 }
 
 .showPageHeaderRight{
-  padding-left: calc(15% - 120px);
+  /*padding-left: calc(15% - 120px);*/
   /*text-align: right;*/
+  /*background-color: red;*/
+
 }
 
 .showPageHeaderRight li{
@@ -376,10 +584,10 @@ a{
   font-size: .8em;
 }
 
-.HopLI :hover{
+/*.HopLI :hover{
   font-size: 1.2em;
   text-shadow: 5px 5px 10px #5A5858;
-}
+}*/
 
 .showPageHeaderRight p{
   margin: 0;
@@ -404,6 +612,13 @@ a{
   padding-bottom: 0;
 }
 
+.midLeft p, .midRight p{
+  margin-bottom: 2%;
+}
+
+.midLeft, .midRight{
+  padding-bottom: 2%;
+}
 
 .showMap {
   height: 100%;
@@ -412,7 +627,7 @@ a{
 
 .showPageServices table{
   width: 100%;
-  margin-bottom: 0;
+  margin-bottom: 8.5%;
 }
 
 .showPageServices td {
@@ -440,19 +655,21 @@ a{
 }
 
 .showPageServing p{
-  /*margin: 0;*/
-  display: inline;
+  display: inline-block;
   margin-right: 2%;
   margin-bottom: 2%;
 }
 
 .showPageServing span{
   /*font-weight: bold;*/
-  /*width: 50px;*/
-  /*margin-right: 5px;*/
+  /*width: 80px;*/
+  margin-right: 3px;
 }
 
-
+/*.showPageServing p:hover{
+  font-size: 1.05em;
+  text-shadow: 5px 5px 10px #5A5858;
+}*/
 
 
 
@@ -522,6 +739,7 @@ text-align: center;
   min-height: 160px;
   margin-top: 0;
   padding-top: 0;
+  padding-bottom: 0;
 }
 
 .servicesHeader{
@@ -539,11 +757,19 @@ text-align: center;
 .servicesMidSection{
   min-height: 300px;
   padding-bottom: 0;
+  padding-top: 0;
+
 }
 
-.servicesMidSection h4{
+.servicesMidSection h5{
   text-align: center;
+  font-weight: normal;
+  /*text-decoration: underline;*/
   margin: 0;
+}
+
+.servicesMidSection label{
+  color: #777777;
 }
 
 .orgName{

@@ -51,6 +51,10 @@ app.config(function($routeProvider){
       templateUrl: 'static/partials/showPage.html',
       controller: 'showPageController'
     })
+    .when('/testing/:id', {
+      templateUrl: 'static/partials/testing.html',
+      controller: 'testing'
+    })
     .otherwise({
       redirectTo: '/'
     })

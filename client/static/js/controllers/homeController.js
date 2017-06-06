@@ -145,29 +145,76 @@ app.controller('homeController', function($scope, $location, logRegFactory, sear
 
 
 
-function getNearby(pos){
-  logRegFactory.getNearby(pos, function(output){
-    $scope.within2miles = output.data.within2miles;
-    $scope.within5miles = output.data.within5miles;
-    $scope.within10miles = output.data.within10miles;
-    $scope.loading = false;
-  });
-
-};
-
-
-  $scope.searchByCity = function(){
-    $scope.noLocations = '';
-    $scope.searchedCity = {};
-    searchFactory.citySearch($scope.searchBy, function(output){
-      if (output.data.error){
-        $scope.noLocations = "No Locations Found";
-      } else {
-        console.log(output.data);
-        $scope.searchedCity = output.data;
-      }
+  function getNearby(pos){
+    logRegFactory.getNearby(pos, function(output){
+      $scope.within2miles = output.data.within2miles;
+      $scope.within5miles = output.data.within5miles;
+      $scope.within10miles = output.data.within10miles;
+      $scope.loading = false;
     });
-  }
+
+  };
+
+
+
+
+
+  $scope.citySearch = function(){
+
+    if ($scope.SearchCity.$pristine){
+      // Do Nothing
+      // console.log ('not touched')
+    }
+
+    if ($scope.SearchCity.$dirty){
+      if ($scope.SearchCity.city.$invalid){
+        // console.log('city invalid');
+      }
+      else if ($scope.SearchCity.state.$invalid){
+        // console.log('state invalid');
+      }
+      else {
+        $scope.searchBy = {city: $scope.city, state: $scope.state};
+        $scope.noLocations = '';
+        $scope.searchedCity = {};
+        searchFactory.citySearch($scope.searchBy, function(output){
+          if (output.data.error){
+            $scope.noLocations = "No Locations Found";
+          } else {
+            // console.log(output.data);
+            $scope.searchedCity = output.data;
+          }
+        });
+      }
+
+    }
+
+
+  } // End citySearch
+
+
+
+
+
+
+
+
+
+
+
+
+  // $scope.searchByCity = function(){
+  //   $scope.noLocations = '';
+  //   $scope.searchedCity = {};
+  //   searchFactory.citySearch($scope.searchBy, function(output){
+  //     if (output.data.error){
+  //       $scope.noLocations = "No Locations Found";
+  //     } else {
+  //       console.log(output.data);
+  //       $scope.searchedCity = output.data;
+  //     }
+  //   });
+  // }
 
 
   $scope.linkModelFunc = function (linkedSite){
@@ -178,6 +225,15 @@ function getNearby(pos){
   }
 
 
+
+  $scope.expandCallback = function (index, id) {
+  };
+
+  $scope.collapseCallback = function (index, id) {
+  };
+
+  $scope.$on('accordionA:onReady', function () {
+  });
 
 
 

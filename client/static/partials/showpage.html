@@ -8,7 +8,7 @@
       <h4>{{thisOrg.formattedAddress}}</h4>
     </div>
 
-    <div class="showPageHeaderRight md-cell mdl-cell--3-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+    <div class="showPageHeaderRight md-cell mdl-cell--3-col mdl-cell--2-col-tablet mdl-cell--4-col-phone" ng-show='isHOP'>
       <p class="hopHeader">Hours of Operation</p>
       <li ng-show='thisOrg.hoursOfOp' class='HopLI' ng-repeat='d in thisOrg.hoursOfOp'><p>{{d.day}} {{d.startTime}}{{d.startPeriod}} - {{ d.endTime}}{{d.endPeriod}}</p></li>
     </div>
@@ -65,7 +65,7 @@
     </div>
 
 
-    <div  map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--hide-phone">
+    <div  map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="mdl-cell mdl-cell--6-col mdl-cell--hide-tablet mdl-cell--hide-phone">
 
       <ng-map class='showMap' center="{{latLong}}" zoom="12"></ng-map>
 
@@ -81,8 +81,8 @@
 
     <div class=" mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
       <h4>Days Serving Food</h4>
-      <div class="">
-        <p ng-repeat='d in thisOrg.days'><span>{{d.day}}</span> {{d.startTime}}{{d.startPeriod}} - {{ d.endTime}}{{d.endPeriod}}</p>
+      <div>
+        <p ng-repeat='d in thisOrg.days'><span>{{d.day}}:</span> {{d.startTime}}{{d.startPeriod}} - {{ d.endTime}}{{d.endPeriod}}</p>
       </div>
     </div>
 

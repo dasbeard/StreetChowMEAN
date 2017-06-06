@@ -33,7 +33,7 @@ app.factory('foodFactory', function ($http){
   };
 
   factory.updateHoursOfOp2 = function(input, callback){
-    console.log(input);
+    // console.log(input);
     $http.post('/updateHoursOfOp2', input).then(function(output){
       callback(output);
     });

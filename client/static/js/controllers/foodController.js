@@ -15,35 +15,38 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
 
 
   $scope.updateHoursOfOp = function() {
-    // ===== Still need to Validate times are correct =====
-
     var flag = true;
-      if ($scope.newHOPDay){
-        if (!($scope.newHOPDay.day)){
-          flag = false;
-          $scope.error = 'Please enter the day you are Open';
-        }
-        else if (!($scope.newHOPDay.startTime)){
-          flag = false;
-          $scope.error = 'Please enter the Time you Open';
-        }
-        else if (!($scope.newHOPDay.startPeriod)){
-          flag = false;
-          $scope.error = 'Please enter the period you Open';
-        }
-        else if (!($scope.newHOPDay.endTime)){
-          flag = false;
-          $scope.error = 'Please enter the Time when you Close';
-        }
-        else if (!($scope.newHOPDay.endPeriod)){
-          flag = false;
-          $scope.error = 'Please enter the period when you Close';
-        }
-      } else {
+    if ($scope.newHOPDay){
+      if (!($scope.newHOPDay.day)){
         flag = false;
+        $scope.error = 'Please enter the day you are Open';
       }
+      else if (!($scope.newHOPDay.startTime)){
+        flag = false;
+        $scope.error = 'Please enter the Time you Open';
+      }
+      else if (!($scope.newHOPDay.startPeriod)){
+        flag = false;
+        $scope.error = 'Please enter the period you Open';
+      }
+      else if (!($scope.newHOPDay.endTime)){
+        flag = false;
+        $scope.error = 'Please enter the Time when you Close';
+      }
+      else if (!($scope.newHOPDay.endPeriod)){
+        flag = false;
+        $scope.error = 'Please enter the period when you Close';
+      }
+    } else {
+      flag = false;
+    }
 
-      if (flag){
+    // If user has properly input all info, Check for valid times
+
+    if (flag){
+      if (($scope.newHOPDay.startTime > $scope.newHOPDay.endTime) && ($scope.newHOPDay.startPeriod == $scope.newHOPDay.endPeriod)){
+          $scope.error = 'End time can not be before Start time'
+      } else {
         $scope.newHOPDay.id = $scope.user.id;
         foodFactory.updateHoursOfOp2($scope.newHOPDay, function(output){
           console.log(output);
@@ -55,6 +58,8 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
           }
         })
       }
+    }
+
 
   } // End updateHoursOfOp
 
@@ -99,17 +104,24 @@ app.controller('foodController', function($scope, foodFactory, $location, $cooki
       flag = false;
     }
 
+    // If user has properly input all info, Check for valid times
+
+
     if (flag){
-      $scope.newDay.id = $scope.user.id;
-      foodFactory.addDay($scope.newDay, function(output){
-        console.log(output);
-        if (output.data == true){
-          getData();
-          $scope.error = '';
-        } else {
-          $scope.error = 'Problem saving day'
-        }
-      })
+      if (($scope.newDay.startTime > $scope.newDay.endTime) && ($scope.newDay.startPeriod == $scope.newDay.endPeriod)){
+          $scope.error = 'End time can not be before Start time'
+      } else {
+        $scope.newDay.id = $scope.user.id;
+        foodFactory.addDay($scope.newDay, function(output){
+          // console.log(output);
+          if (output.data == true){
+            getData();
+            $scope.error = '';
+          } else {
+            $scope.error = 'Problem saving day'
+          }
+        })
+      }
     }
 
   }; // End addDay

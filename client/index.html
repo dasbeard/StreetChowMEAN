@@ -3,6 +3,8 @@
 
  <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Helping Hours</title>
   <!-- <link rel="shortcut icon" type="image/gif" href="assets/favicon.ico"/> -->
 
@@ -11,12 +13,14 @@
   <link rel="stylesheet" href="css/material.copy.min.css">
   <link rel="stylesheet" href="css/mdl-selectfield-master/mdl-selectfield.min.css">
 
+
   <link rel="stylesheet" href="css/style.css">
 
   <link rel="stylesheet" href="/v-accordion/dist/v-accordion.css">
 
   <script src="css/mdl/material.min.js"></script>
   <script src="css/mdl-selectfield-master/mdl-selectfield.min.js"></script>
+
 
   <script type="text/javascript" src='angular/angular.min.js'></script>
   <script type="text/javascript" src='angular-route/angular-route.min.js'></script>
@@ -26,13 +30,20 @@
   <script type="text/javascript" src='ngmap/build/scripts/ng-map.min.js'></script>
 
 
+
+
   <script type="text/javascript" src='js/app.js'></script>
+
+
+
 
   <script type="text/javascript" src='js/factories/logRegFactory.js'></script>
   <script type="text/javascript" src='js/factories/searchFactory.js'></script>
   <script type="text/javascript" src='js/factories/foodFactory.js'></script>
   <script type="text/javascript" src='js/factories/myEditPageFactory.js'></script>
   <script type="text/javascript" src='js/factories/showPageFactory.js'></script>
+
+  <script type="text/javascript" src='js/controllers/testing.js'></script>
 
 
   <script type="text/javascript" src='js/controllers/homeController.js'></script>
@@ -55,12 +66,12 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <a ng-click='returnHome()'><img src="assets/helpingHoursFullLogo1.png" alt="Clock Logo"></a>
-        <!-- <span class="header mdl-layout-title"> <a href="#!/">  <h2>Helping Hours</h2> </a></span> -->
+        <!-- <span class="header mdl-layout-title titleLogo"> <a ng-click='returnHome()'><img src="assets/helpingHoursFullLogo1.png" alt="Clock Logo"></a> </span> -->
+        <span class="header mdl-layout-title titleLogo"> <a href="#!/">Helping Hours </a></span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <nav class="myNav mdl-navigation">
-          <a id='navHome' class="mdl-navigation__link" ng-click='returnHome()'>Home</a>
+          <a class="mdl-navigation__link mdl-cell--hide-phone" ng-click='returnHome()'>Home</a>
           <!-- <a class="mdl-navigation__link" href="#!/food">Services</a> -->
           <a class="mdl-navigation__link" ng-show='organization' href="#!/showPage/{{organization.id}}">My Page</a>
 

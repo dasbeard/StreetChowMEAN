@@ -1,0 +1,178 @@
+<div class="pageWrapper pageMargin">
+
+    <!-- ====================== Header 2 ====================== -->
+    <div class="newShowPageHeader mdl-grid">
+      <div class="showPageHeaderLeft md-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <h1><a ng-if='showEdit' href="#!/food">Edit Page </a>{{thisOrg.organization}}</h1>
+      </div>
+    </div>
+    <!-- ====================== End Header 2 ====================== -->
+
+
+  <!-- ========== AllContent ========== -->
+  <div ng-if="allContent">
+    <!-- ====================== Mid Section 2 ====================== -->
+    <div class="newMidSection mdl-grid">
+      <div class="newServingDays md-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone">
+        <h4>Days Serving Food</h4>
+          <p ng-repeat='d in thisOrg.days'><span>{{d.day}}:</span> {{d.startTime}}{{d.startPeriod}} - {{ d.endTime}}{{d.endPeriod}}</p>
+      </div>
+
+
+      <div class="newMidMidSection md-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+        <div class="newMidContact">
+
+          <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
+          <p class="pSpacer"> </p>
+          <p ng-show='thisOrg.website' class="linkWebsite"><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+
+        </div>
+
+        <div class="mapHolder mdl-grid">
+          <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}" class="newMidMap mdl-cell mdl-cell--6-col mdl-cell--8-tablet mdl-cell--hide-phone">
+
+            <ng-map class='showMap' center="{{latLong}}" zoom="15"></ng-map>
+
+          </div>
+        </div>
+
+        <div class="newMidAddress">
+          <p>{{thisOrg.formattedAddress}}</p>
+        </div>
+
+      </div>
+
+
+      <div class="newHOP md-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone">
+        <h4>Hours of Operation</h4>
+        <li ng-show='thisOrg.hoursOfOp' class='HopLI' ng-repeat='d in thisOrg.hoursOfOp'><p>{{d.day}} {{d.startTime}}{{d.startPeriod}} - {{d.endTime}}{{d.endPeriod}}</p></li>
+      </div>
+
+    </div>
+    <!-- ====================== End Mid Section 2 ====================== -->
+
+  </div>
+  <!-- ========== End AllContent ========== -->
+
+
+  <!-- ========== Missing Content ========== -->
+  <div ng-if='partialContent'>
+    <div class="newMidSection mdl-grid">
+      <div class="newServingDays md-cell mdl-cell--5-col mdl-cell--3-col-tablet mdl-cell--4-col-phone">
+        <h4>{{partialTitle}}</h4>
+          <p ng-repeat='d in thisOrg.partialInfo'><span>{{d.day}}:</span> {{d.startTime}}{{d.startPeriod}} - {{ d.endTime}}{{d.endPeriod}}</p>
+      </div>
+
+      <div class="newMidMidSection md-cell mdl-cell--7-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+        <div class="newMidContact">
+
+          <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
+          <p class="pSpacer"> </p>
+          <p ng-show='thisOrg.website' class="linkWebsite"><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+
+        </div>
+
+        <div class="mapHolder mdl-grid">
+          <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}" class="newMidMap mdl-cell mdl-cell--6-col mdl-cell--8-tablet mdl-cell--hide-phone">
+
+            <ng-map class='showMap' center="{{latLong}}" zoom="15"></ng-map>
+
+          </div>
+        </div>
+
+        <div class="newMidAddress">
+          <p>{{thisOrg.formattedAddress}}</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- ========== End Missing Content ========== -->
+
+
+  <!-- ========== No Content ========== -->
+  <div ng-if='noContent'>
+    <div class="newMidSection mdl-grid">
+      <div class="newMidMidSection md-cell mdl-cell--10-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <div class="newMidContact">
+
+          <p ng-show='thisOrg.phone'>{{thisOrg.phone}}</p>
+          <p class="pSpacer"> </p>
+          <p ng-show='thisOrg.website' class="linkWebsite"><a  href="{{thisOrg.website}}" target="_blank" ng-click="linkModelFunc()">{{thisOrg.website}}</a></p>
+
+        </div>
+
+        <div class="mapHolder mdl-grid">
+          <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}" class="newMidMap mdl-cell mdl-cell--6-col mdl-cell--8-tablet mdl-cell--hide-phone">
+
+            <ng-map class='showMap' center="{{latLong}}" zoom="15"></ng-map>
+
+          </div>
+        </div>
+
+        <div class="newMidAddress">
+          <p>{{thisOrg.formattedAddress}}</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- ========== End No Content ========== -->
+
+
+  <!-- ====================== Description ====================== -->
+  <div ng-show='thisOrg.description' class="newShowDesc">
+    <p >{{thisOrg.description}}</p>
+
+  </div>
+  <!-- ====================== End Description ====================== -->
+
+
+  <!-- ====================== showPageServices2 ====================== -->
+  <div class="showPageServices2">
+    <h4>Services Available</h4>
+    <div class="showServicesGrid mdl-grid">
+      <div class="servicesDiv mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--4-col-phone">
+        <div class="servicesCol">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Beds <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.beds' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Clothes <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.clothes' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+        </div>
+
+        <div class="servicesCol">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Jobs <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.jobs' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Childcare <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.childcare' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+        </div>
+      </div>
+
+      <div class="servicesDiv mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet mdl-cell--4-col-phone">
+        <div class="servicesCol">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Education <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.education' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Interview Help <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.interviewHelp' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+        </div>
+
+        <div class="servicesCol">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Recreational Activities <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.recActivities' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">Takes Donations <input class="mdl-checkbox__input" type="checkbox" ng-model='thisOrg.services.donations' ng-true-value="true" ng-false-value="false" disabled="disabled"></label>
+        </div>
+      </div>
+
+      <div class="newOtherServices mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+        <p ng-show='thisOrg.services.otherServices'> {{thisOrg.services.otherServices}}</p>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- ====================== End showPageServices2 ====================== -->
+
+
+
+
+
+</div>

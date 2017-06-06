@@ -6,6 +6,8 @@ app.controller('showPageController', function($scope, $location, showPageFactory
   $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyBN4DR6_NEex4E0iFmkgDgqANrO69pCgtM";
   $scope.thisOrg = $cookies.getObject('loggedUser')
 
+  $scope.isHOP = false;
+
 
   if ($scope.thisOrg){
     if ($scope.thisOrg.id == $scope.org.id){
@@ -18,7 +20,8 @@ app.controller('showPageController', function($scope, $location, showPageFactory
     if(!output){
       console.log('Someing went wrong');
     } else {
-      console.log(output);
+      // console.log(output);
+      
       // ========== Need Error Checking for what comes back ==========
 
 
@@ -28,6 +31,9 @@ app.controller('showPageController', function($scope, $location, showPageFactory
       $scope.latLong = output.latitude + ',' + output.longitude
       if ($scope.thisOrg.phone){
         $scope.thisOrg.phone = phoneDisplay(output.phone)
+      }
+      if ($scope.thisOrg.hoursOfOp.length > 0){
+        $scope.isHOP = true;
       }
       map();
     }

@@ -1,40 +1,58 @@
-<!-- <div class="pageWrapper"> -->
 <h2 class='errorMessage'>{{error}}</h2>
+  <div class="missionStatement mdl-grid">
 
-  <div class="pageWrapper home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet" ng-show='organization'>
+    <div class="pageWrapper home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" ng-hide='organization'>
 
-    <h4>Welcome</h4>
-    <h1>{{organization.organization}}</h1>
+      <h4>This is where the mission statement will go, until there is a proper one written. <br>This is just a place holder until that time.</h4>
+
+    </div>
+
+    <div class="pageWrapper home-title mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" ng-show='organization'>
+
+      <h4>Welcome</h4>
+      <h1>{{organization.organization}}</h1>
+    </div>
+
   </div>
 
   <div class="mdl-grid homePage">
-    <div map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="mapDiv pageWrapper mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <div map-lazy-load="https://maps.google.com/maps/api/js"  map-lazy-load-params="{{googleMapsUrl}}" class="mapDiv pageWrapper mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
 
       <ng-map id="myMap" center="41,-97" zoom="3"></ng-map>
 
     </div>
 
-    <div class="bigBox  mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+    <div class="bigBox  mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
 
       <div class="orgList pageWrapper">
         <div ng-hide='loading'>
 
           <h2>Near By Places</h2>
-          <v-accordion class="vAccordion--default" multiple >
+          <v-accordion id='nearbyAccordian'class="vAccordion--default nearbyPanels"  control="accordionA" onexpand="expandCallback(index, id)" oncollapse="collapseCallback(index, id)">
 
-            <v-pane expanded>
+            <v-pane id="2mile" expanded>
               <v-pane-header>
                 <h5>Within 2 miles <span>{{within2miles.length}} locations</span></h5>
               </v-pane-header>
 
               <v-pane-content>
                 <li ng-repeat='place in within2miles'>
-                  <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+
+
+                  <!-- ---------- Here Is The Temp -------------  -->
+
+                  <a href="#!/testing/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
+
+
+                  <!-- <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> -->
+
+
+
                 </li>
               </v-pane-content>
             </v-pane>
 
-            <v-pane>
+            <v-pane id="5mile">
               <v-pane-header>
                 <h5>Within 5 miles <span>{{within5miles.length}} locations</h5>
               </v-pane-header>
@@ -46,7 +64,7 @@
               </v-pane-content>
             </v-pane>
 
-            <v-pane>
+            <v-pane id="10mile">
               <v-pane-header>
                 <h5>Within 10 miles <span>{{within10miles.length}} locations</h5>
               </v-pane-header>
@@ -66,16 +84,17 @@
 
       </div>
 
-      <div id='searchbar'  class="pageWrapper mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-        <form>
+
+      <div id='searchbar'  class="pageWrapper mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <form name='SearchCity'>
 
           <div id='homeSearchInputs' class="mdl-textfield mdl-js-textfield ">
-            <input class='myInputCity mdl-textfield__input' id='searchCity' type="text" ng-model='searchBy.city'>
+            <input class='myInputCity mdl-textfield__input' id='searchCity' type="text" name="city" ng-model='city' required>
             <label class="mdl-textfield__label" for="searchCity">Search City.. </label>
           </div>
 
           <div id='homeSearchInputs' class="mdl-selectfield mdl-js-selectfield">
-            <select class="mdl-selectfield__select" ng-model='searchBy.state' required>
+            <select class="mdl-selectfield__select" name="state" ng-model='state' required>
               <option value=""></option>
               <option value="AL">AL</option>
               <option value="AK">AK</option>
@@ -131,7 +150,7 @@
             <label class="mdl-selectfield__label" for="myselect">State..</label>
           </div>
 
-          <button id='homeSearchInputsBtn' type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click='searchByCity()'> Search</form>
+          <button id='homeSearchInputsBtn' type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click='citySearch()'> Search</button>
 
         </form>
       </div>
@@ -142,7 +161,7 @@
 
     <div class="Spacer mdl-cell mdl-cell--2-col mdl-cell--0-col-tablet"></div>
 
-    <div ng-show='searchedCity' class="searchResults pageWrapper mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+    <div ng-show='searchedCity' class="searchResults pageWrapper mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
 
       <li ng-repeat='place in searchedCity'>
         <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> <p ng-show='place.website'> - </p> <a id='website' ng-show='place.website' href="{{place.website}}" target="_blank" ng-click="linkModelFunc(place.website)">{{place.website}}</a>
@@ -153,5 +172,3 @@
     </div>
 
   </div>
-
-<!-- </div> -->
