@@ -37,17 +37,7 @@
 
               <v-pane-content>
                 <li ng-repeat='place in within2miles'>
-
-
-                  <!-- ---------- Here Is The Temp -------------  -->
-
-                  <a href="#!/testing/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
-
-
-                  <!-- <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a> -->
-
-
-
+                  <a href="#!/showPage/{{place._id}}"> <span>{{place.organization}}</span> - {{place.formattedAddress}}</a>
                 </li>
               </v-pane-content>
             </v-pane>
