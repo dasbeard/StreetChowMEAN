@@ -21,15 +21,16 @@ app.controller('showPageController', function($scope, $location, showPageFactory
         // console.log(output);
 
         if (output.days.length>0 && output.hoursOfOp.length>0){
+          $scope.allContent = true;
           $scope.thisOrg = output;
           $scope.latLong = output.latitude + ',' + output.longitude
           if ($scope.thisOrg.phone){
             $scope.thisOrg.phone = phoneDisplay(output.phone)
           }
           map();
-          $scope.allContent = true;
         }
         else if (output.days.length>0){
+          $scope.partialContent = true;
           $scope.partialTitle = 'Days Serving Food'
           $scope.thisOrg = {
                             organization: output.organization, description: output.description, services: output.services, website: output.website, formattedAddress: output.formattedAddress, email: output.email, partialInfo: output.days, latitude: output.latitude, longitude: output.longitude
@@ -39,9 +40,9 @@ app.controller('showPageController', function($scope, $location, showPageFactory
             $scope.thisOrg.phone = phoneDisplay(output.phone)
           }
           map();
-          $scope.partialContent = true;
         }
         else if (output.hoursOfOp.length>0){
+          $scope.partialContent = true;
           $scope.partialTitle = 'Hours of Operation'
           $scope.thisOrg = {
                             organization: output.organization, description: output.description, services: output.services, website: output.website, formattedAddress: output.formattedAddress, email: output.email, partialInfo: output.hoursOfOp, latitude: output.latitude, longitude: output.longitude
@@ -51,16 +52,15 @@ app.controller('showPageController', function($scope, $location, showPageFactory
             $scope.thisOrg.phone = phoneDisplay(output.phone)
           }
           map();
-          $scope.partialContent = true;
         }
         else {
+          $scope.noContent = true;
           $scope.thisOrg = output;
           $scope.latLong = output.latitude + ',' + output.longitude
           if ($scope.thisOrg.phone){
             $scope.thisOrg.phone = phoneDisplay(output.phone)
           }
           map();
-          $scope.noContent = true;
         }
       }
     });
