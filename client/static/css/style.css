@@ -138,8 +138,8 @@ a{
 }
 
 .orgList li :hover{
-  text-shadow: 12px 12px 10px #5A5858;
-  color: blue;
+  text-shadow: 12px 12px 15px #5A5858;
+  color: #2a6884;
   font-size: 1.05em;
 }
 
