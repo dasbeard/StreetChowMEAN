@@ -31,7 +31,7 @@
           <v-accordion id='nearbyAccordian'class="vAccordion--default nearbyPanels"  control="accordionA" onexpand="expandCallback(index, id)" oncollapse="collapseCallback(index, id)">
 
             <v-pane id="2mile" expanded>
-              <v-pane-header>
+              <v-pane-header id="testme">
                 <h5>Within 2 miles <span>{{within2miles.length}} locations</span></h5>
               </v-pane-header>
 
@@ -43,7 +43,7 @@
             </v-pane>
 
             <v-pane id="5mile">
-              <v-pane-header>
+              <v-pane-header id="testme">
                 <h5>Within 5 miles <span>{{within5miles.length}} locations</h5>
               </v-pane-header>
 
@@ -55,7 +55,7 @@
             </v-pane>
 
             <v-pane id="10mile">
-              <v-pane-header>
+              <v-pane-header id="testme">
                 <h5>Within 10 miles <span>{{within10miles.length}} locations</h5>
               </v-pane-header>
 

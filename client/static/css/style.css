@@ -1,7 +1,3 @@
-.testingBG{
-  background-color: white;
-}
-
 .mainBackground{
   /*background-image: url('../assets/mochaGrunge_@2X.png');*/
 
@@ -29,10 +25,6 @@
 .testing {
   color: white;
 }
-
-/*.titleLogo img {
-  width: 20%;
-}*/
 
 .titleLogo a{
   font-size: 1.3em;
@@ -104,8 +96,17 @@ a{
   height: 500px;
 }
 
-v-pane-header {
-  border-bottom-color: red;
+#testme{
+  border-bottom: 2px solid #607D8B;
+  color: black;
+}
+
+#testme:hover{
+  color: #607D8B
+}
+
+#testme::after, #testme::before{
+  background-color: #607D8B;
 }
 
 .orgList {
@@ -139,7 +140,7 @@ v-pane-header {
 .orgList li :hover{
   text-shadow: 12px 12px 10px #5A5858;
   color: blue;
-  font-size: 1.1em;
+  font-size: 1.05em;
 }
 
 .orgList a{
